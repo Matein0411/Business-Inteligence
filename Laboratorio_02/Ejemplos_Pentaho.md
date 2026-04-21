@@ -8,11 +8,25 @@
 ## Ejemplos de inputs y transform
 
 ### 1. Limpieza de API
-**Input:** `JSON Input` (Consume datos de una API externa).
-**Transform:** `Select Values` (Elimina campos innecesarios y renombra las claves a español).
+- **Input:** `JSON Input`.
+- **Transform:** `Select Values` (Elimina campos innecesarios y renombra las claves a español).
 
+<p align="center">
+  <img width="504" height="130" alt="image" src="https://github.com/user-attachments/assets/b1adafee-0111-42f7-a9d5-01a975853a74" />
+  <sub><strong>Figura 1.</strong>Flujo</sub>
+</p>
 
-## 2. Dividir campos mediante separador
+<p align="center">
+  <img width="696" height="63" alt="image" src="https://github.com/user-attachments/assets/58beb90c-cdad-4416-b752-9e213b47b4bc" />
+  <sub><strong>Figura 1.</strong>Datos de entrada</sub>
+</p>
+
+<p align="center">
+  <img width="405" height="63" alt="image" src="https://github.com/user-attachments/assets/7deab141-1d38-4c87-9b3c-72a2dc13ccc0" />
+  <sub><strong>Figura 1.</strong>Datos de salida</sub>
+</p>
+
+### 2. Dividir campos mediante separador
 
 - **Input:** `Data Grid`
 - **Transform:** `Split field to rows`
