@@ -18,12 +18,12 @@
 
 <p align="center">
   <img width="696" height="63" alt="image" src="https://github.com/user-attachments/assets/58beb90c-cdad-4416-b752-9e213b47b4bc" />
-  <sub><strong>Figura 1.</strong>Datos de entrada</sub>
+  <sub><strong>Figura 2.</strong>Datos de entrada</sub>
 </p>
 
 <p align="center">
   <img width="405" height="63" alt="image" src="https://github.com/user-attachments/assets/7deab141-1d38-4c87-9b3c-72a2dc13ccc0" />
-  <sub><strong>Figura 1.</strong>Datos de salida</sub>
+  <sub><strong>Figura 3.</strong>Datos de salida</sub>
 </p>
 
 ### 2. Dividir campos mediante separador
@@ -34,14 +34,14 @@
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c2984284-49b4-41d7-8c3f-ac6210bbeb3b" alt="Data Grid" width="400" />
   <br>
-  <sub><strong>Figura 1.</strong> Input y Transformation</sub>
+  <sub><strong>Figura 4.</strong> Input y Transformation</sub>
 </p>
 
 
   <p align="center">
   <img src="https://github.com/user-attachments/assets/b04e23d8-28eb-4336-864d-6d96114efb5d" alt="Preview" width="400" />
   <br>
-  <sub><strong>Figura 2.</strong>Preview</sub>
+  <sub><strong>Figura 5.</strong>Preview</sub>
 </p>
 
 ### 3. Ordenamiento de productos por precio
@@ -73,13 +73,13 @@ Los productos quedan ordenados desde el más barato hasta el más costoso, permi
 <p align="center">
   <img src="https://github.com/user-attachments/assets/8358e441-e448-4201-b401-48c47568f948" alt="Transformación en Spoon" width="400" />
   <br>
-  <sub><strong>Figura 3.</strong> Flujo de transformación: CSV Input → Sort Rows → Excel Writer</sub>
+  <sub><strong>Figura 6.</strong> Flujo de transformación: CSV Input → Sort Rows → Excel Writer</sub>
 </p>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/8ba8b78b-b9fe-428f-b463-3312b3caf238" alt="Resultado Excel" width="400" />
   <br>
-  <sub><strong>Figura 4.</strong> Archivo de salida con productos ordenados por precio</sub>
+  <sub><strong>Figura 7.</strong> Archivo de salida con productos ordenados por precio</sub>
 </p>
 
 ### 4. Enriquecimiento de datos con valores constantes
