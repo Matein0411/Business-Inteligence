@@ -82,6 +82,48 @@ Los productos quedan ordenados desde el más barato hasta el más costoso, permi
   <sub><strong>Figura 4.</strong> Archivo de salida con productos ordenados por precio</sub>
 </p>
 
+### 4. Enriquecimiento de datos con valores constantes
 
+- **Input:** `Get data from XML`
+- **Transform:** `Add constants`
+- **Output:** `Text File Output`
 
+**Descripción:**  
+Se cargó un archivo XML con registros de personas que contienen los campos `id`, `first_name`, `last_name`, `email`, `gender` e `ip_address`.  
+Mediante la transformación `Add constants`, se añadieron dos nuevos campos: `pais` con el valor "Ecuador" y `fuente` con el valor "XML_dataset".  
+Finalmente, los datos enriquecidos fueron exportados a un archivo CSV (`salida.csv`).
 
+**Campos del dataset:**
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| id | Integer | Identificador único |
+| first_name | String | Nombre |
+| last_name | String | Apellido |
+| email | String | Correo electrónico |
+| gender | String | Género |
+| ip_address | String | Dirección IP |
+| pais | String | País asignado (constante) |
+| fuente | String | Origen de los datos |
+
+**Configuración de Add constants:**
+
+| Fieldname | Type | Value |
+|----------|------|--------|
+| pais | String | Ecuador |
+| fuente | String | XML_dataset |
+
+**Resultado esperado:**  
+Todos los registros del dataset original se mantienen, pero ahora incluyen las columnas adicionales `pais` y `fuente`, permitiendo enriquecer la información y facilitar su trazabilidad.
+
+<p align="center">
+  <img width="459" height="75" alt="image" src="https://github.com/user-attachments/assets/ea9048b4-eb21-4ae7-b2cd-2a7f2a06d193" />
+  <br>
+  <sub><strong>Figura 8.</strong> Flujo de transformación: XML Input → Add Constants → Text File Output</sub>
+</p>
+
+<p align="center">
+  <img width="759" height="699" alt="image" src="https://github.com/user-attachments/assets/0ab6a72d-4a67-4b42-9ddc-75a969c15249" />
+  <br>
+  <sub><strong>Figura 9.</strong> Archivo de salida con columnas adicionales (pais y fuente)</sub>
+</p>
