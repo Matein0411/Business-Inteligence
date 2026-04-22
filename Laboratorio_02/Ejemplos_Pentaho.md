@@ -28,20 +28,26 @@
 
 ### 2. Dividir campos mediante separador
 
-- **Input:** `Data Grid`
-- **Transform:** `Split field to rows`
+- **Input:** `Data Grid` (Tabla estática que permite hardcodear valores)
+- **Transform:** `Split field to rows` (Permite dividir valores mediante un separador definido)
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c2984284-49b4-41d7-8c3f-ac6210bbeb3b" alt="Data Grid" width="400" />
   <br>
-  <sub><strong>Figura 4.</strong> Input y Transformation</sub>
+  <sub><strong>Figura 4.</strong> Flujo</sub>
 </p>
 
 
   <p align="center">
   <img src="https://github.com/user-attachments/assets/b04e23d8-28eb-4336-864d-6d96114efb5d" alt="Preview" width="400" />
   <br>
-  <sub><strong>Figura 5.</strong> Preview</sub>
+  <sub><strong>Figura 5.</strong> Datos de entrada</sub>
+</p>
+
+  <p align="center">
+  <img src="https://github.com/user-attachments/assets/a9e0df61-7c4e-4fb5-bbe7-25b35ca87495" alt="Preview" width="710" />
+  <br>
+  <sub><strong>Figura 6.</strong> Datos de salida</sub>
 </p>
 
 ### 3. Ordenamiento de productos por precio
@@ -73,13 +79,13 @@ Los productos quedan ordenados desde el más barato hasta el más costoso, permi
 <p align="center">
   <img src="https://github.com/user-attachments/assets/8358e441-e448-4201-b401-48c47568f948" alt="Transformación en Spoon" width="400" />
   <br>
-  <sub><strong>Figura 6.</strong> Flujo de transformación: CSV Input → Sort Rows → Excel Writer</sub>
+  <sub><strong>Figura 7.</strong> Flujo de transformación: CSV Input → Sort Rows → Excel Writer</sub>
 </p>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/8ba8b78b-b9fe-428f-b463-3312b3caf238" alt="Resultado Excel" width="400" />
   <br>
-  <sub><strong>Figura 7.</strong> Archivo de salida con productos ordenados por precio</sub>
+  <sub><strong>Figura 8.</strong> Archivo de salida con productos ordenados por precio</sub>
 </p>
 
 ### 4. Enriquecimiento de datos con valores constantes
@@ -119,11 +125,11 @@ Todos los registros del dataset original se mantienen, pero ahora incluyen las c
 <p align="center">
   <img width="459" height="75" alt="image" src="https://github.com/user-attachments/assets/ea9048b4-eb21-4ae7-b2cd-2a7f2a06d193" />
   <br>
-  <sub><strong>Figura 8.</strong> Flujo de transformación: XML Input → Add Constants → Text File Output</sub>
+  <sub><strong>Figura 9.</strong> Flujo de transformación: XML Input → Add Constants → Text File Output</sub>
 </p>
 
 <p align="center">
   <img width="759" height="699" alt="image" src="https://github.com/user-attachments/assets/0ab6a72d-4a67-4b42-9ddc-75a969c15249" />
   <br>
-  <sub><strong>Figura 9.</strong> Archivo de salida con columnas adicionales (pais y fuente)</sub>
+  <sub><strong>Figura 10.</strong> Archivo de salida con columnas adicionales (pais y fuente)</sub>
 </p>
