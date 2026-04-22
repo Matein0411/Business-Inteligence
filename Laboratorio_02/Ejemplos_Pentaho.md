@@ -151,9 +151,15 @@ El proceso inicia con la lectura de la fuente de datos en formato **CSV**, garan
 - **Enclosure (`"`):** permite manejar textos con comas internas sin romper la estructura.  
 - **Header row present:** Activado, ya que la primera fila contiene nombres de columnas.
 
+<p align="center">
+  <img width="1345" height="722" alt="image" src="https://github.com/user-attachments/assets/3ff89d94-bc11-475a-b9be-1741e0eaccf9" />
+  <br>
+  <sub><strong>Figura 11.</strong> Preview de haber ejecutado CSV File Input y corroborado que esté leído completamente el archivo.</sub>
+</p>
+
 #### Fase 2: Modified JavaScript Value para normalización y limpieza de atributos
 
-Se estandarizan nombres y apellidos para evitar inconsistencias, porque habían ciertos caracteres especiales que se necesitaban limpiar para poder usar el primer nombre y primer apellido para la construcción del correo institucional del estudiante.
+Se estandarizan nombres y apellidos para evitar inconsistencias, porque habían ciertos caracteres especiales, se pueden ver en la figura 11, que se necesitaban limpiar para poder usar el primer nombre y primer apellido para la construcción del correo institucional del estudiante.
 
 ##### Procesos aplicados:
 
@@ -191,6 +197,12 @@ var apellido1 = apellidos.split(" ")[0];
 ```
 Al final se crean dos nuevas columnas para obtener los resultados de la ejecución del script, nombre1 y apellido1, de tipo String.
 
+<p align="center">
+  <img width="1598" height="858" alt="image" src="https://github.com/user-attachments/assets/90f3bd7e-21b8-4473-9e45-dcf4241d16de" />
+  <br>
+  <sub><strong>Figura 12.</strong> Resultado de haber limpiado las columnas de nombres y apellidos al aplicar Modified JavaScript Value.</sub>
+</p>
+
 #### Fase 3: Concat Fields para la construcción del identificador para el inicio del correo
 
 - **Campo para el resultado:** correobase
@@ -198,12 +210,24 @@ Al final se crean dos nuevas columnas para obtener los resultados de la ejecuci�
 
 Ejemplo: juan + lara → juan.lara
 
+<p align="center">
+  <img width="1702" height="742" alt="image" src="https://github.com/user-attachments/assets/17da945d-6657-4cec-b564-0373e98cf7d9" />
+  <br>
+  <sub><strong>Figura 13.</strong> Resultado de haber aplicado Concat Fields, columna correobase creado.</sub>
+</p>
+
 #### Fase 4: Sort Rows para preparar a los resultados en correobase iguales
 
 - **Campo:** correobase
 - **Orden:** Ascendente
 
 Se ordenó para poder identificar en grupos a los duplicados en la siguiente fase.
+
+<p align="center">
+  <img width="527" height="500" alt="image" src="https://github.com/user-attachments/assets/4b8f9f52-7dfc-4456-a7f2-4e7a1ab67ba2" />
+  <br>
+  <sub><strong>Figura 14.</strong> Columna correobase ordenada ascendentemente.</sub>
+</p>
 
 #### Fase 5: Group By para identificación y numeración de duplicados
 
@@ -220,6 +244,12 @@ Ejemplo:
 - juan.lara → 1
 - juan.lara → 2
 - lidia.martinez → 1
+
+<p align="center">
+  <img width="785" height="553" alt="image" src="https://github.com/user-attachments/assets/de61d208-a70c-496e-bae4-116371a062ff" />
+  <br>
+  <sub><strong>Figura 15.</strong> Se observa como en la columa nueva num_file se identifican duplicados.</sub>
+</p>
 
 #### Fase 6: Formula para lógica de diferenciación de identificadores
 
@@ -239,6 +269,12 @@ Explicación:
 
 Ejemplo: juan.lara, juan.lara01 y juan.lara02
 
+<p align="center">
+  <img width="1915" height="861" alt="image" src="https://github.com/user-attachments/assets/0007df8b-88e3-428c-8244-e3081dd1c000" />
+  <br>
+  <sub><strong>Figura 16.</strong> La fórmula para el sufijo de correos duplicados funciona correctamente.</sub>
+</p>
+
 #### Fase 7: Add Constants para parametrización del dominio institucional
 
 - **Campo a ser creado:** dominio
@@ -246,6 +282,12 @@ Ejemplo: juan.lara, juan.lara01 y juan.lara02
 - **Tipo:** String
 
 Permite cambiar el dominio en un solo punto sin afectar la lógica del flujo, así también con la siguiente fase solo se unirá a la columna ya establecida de correo_final, en la que ya está el nombre.apellido o nombre.apellido01.
+
+<p align="center">
+  <img width="952" height="329" alt="image" src="https://github.com/user-attachments/assets/6b69476e-423f-4965-be98-3e80e46517ec" />
+  <br>
+  <sub><strong>Figura 17.</strong> Se agregó una constante para el dominio del correo.</sub>
+</p>
 
 #### Fase 8: Calculator para consolidación del correo electrónico final
 
@@ -257,6 +299,12 @@ Permite cambiar el dominio en un solo punto sin afectar la lógica del flujo, as
 Ejemplo: juan.lara01 + @epn.edu.ec → juan.lara01@epn.edu.ec
 
 Permitó tener el resultado que se esperaba.
+
+<p align="center">
+  <img width="1054" height="699" alt="image" src="https://github.com/user-attachments/assets/71951128-d125-4dfa-ac63-88c53d4e3b71" />
+  <br>
+  <sub><strong>Figura 18.</strong> Se obtuvo el campo CORREO como se esperaba.</sub>
+</p>
 
 #### Fase 9: Select Values para depuración y estructuración del dataset final
 
@@ -288,6 +336,17 @@ Se mantienen campos que serán enviado a mi output:
 
 Después de establecer esos tres puntos, la intención es que los datos transformados se guarden en el archivo limpio generado.
 
+<p align="center">
+  <img width="849" height="538" alt="image" src="https://github.com/user-attachments/assets/5be6c78e-afea-4913-8ca3-04e63a93ba9b" />
+  <br>
+  <sub><strong>Figura 19.</strong> Proceso del ejercicio de generar correos.</sub>
+</p>
+
+<p align="center">
+  <img width="1229" height="763" alt="image" src="https://github.com/user-attachments/assets/499d2470-9d1b-4102-bb46-e562e813679e" />
+  <br>
+  <sub><strong>Figura 20.</strong> Resultado obtenido.</sub>
+</p>
 
 
 
