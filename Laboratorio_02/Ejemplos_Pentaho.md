@@ -13,17 +13,17 @@
 
 <p align="center">
   <img width="504" height="130" alt="image" src="https://github.com/user-attachments/assets/b1adafee-0111-42f7-a9d5-01a975853a74" />
-  <sub><strong>Figura 1.</strong>Flujo</sub>
+  <sub><strong>Figura 1.</strong> Flujo</sub>
 </p>
 
 <p align="center">
   <img width="696" height="63" alt="image" src="https://github.com/user-attachments/assets/58beb90c-cdad-4416-b752-9e213b47b4bc" />
-  <sub><strong>Figura 2.</strong>Datos de entrada</sub>
+  <sub><strong>Figura 2.</strong> Datos de entrada</sub>
 </p>
 
 <p align="center">
   <img width="405" height="63" alt="image" src="https://github.com/user-attachments/assets/7deab141-1d38-4c87-9b3c-72a2dc13ccc0" />
-  <sub><strong>Figura 3.</strong>Datos de salida</sub>
+  <sub><strong>Figura 3.</strong> Datos de salida</sub>
 </p>
 
 ### 2. Dividir campos mediante separador
@@ -41,7 +41,7 @@
   <p align="center">
   <img src="https://github.com/user-attachments/assets/b04e23d8-28eb-4336-864d-6d96114efb5d" alt="Preview" width="400" />
   <br>
-  <sub><strong>Figura 5.</strong>Preview</sub>
+  <sub><strong>Figura 5.</strong> Preview</sub>
 </p>
 
 ### 3. Ordenamiento de productos por precio
