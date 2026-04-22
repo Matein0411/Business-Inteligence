@@ -1,6 +1,6 @@
 # Pentaho Data Integration
 
-**Equipo**: Betancourt, Camacho, Calvache, Villareal, Yunga
+**Equipo**: Betancourt Alison, Camacho Julian, Calvache Mateo, Villareal Alexis, Yunga Mateo
 
 
 **Fecha**: 21-04-2026
@@ -133,3 +133,161 @@ Todos los registros del dataset original se mantienen, pero ahora incluyen las c
   <br>
   <sub><strong>Figura 10.</strong> Archivo de salida con columnas adicionales (pais y fuente)</sub>
 </p>
+
+### 5. Generación de correos institucionales únicos
+
+Este ejercicio consiste en la generación de correos institucionales bajo el estándar: **`nombre.apellido@epn.edu.ec`**
+
+El problema principal ocurre cuando varios estudiantes comparten el mismo primer nombre y primer apellido, lo que requiere generar un identificador único mediante sufijos numéricos secuenciales sin alterar la integridad del dataset original.
+
+#### Fase 1: CSV file input para ingreso de datos
+
+El proceso inicia con la lectura de la fuente de datos en formato **CSV**, garantizando compatibilidad universal.
+
+##### CSV File Input
+
+- **Encoding:** UTF-8, permite leer correctamente caracteres especiales como tildes y “ñ”.
+- **Delimitador:** `;`, separación correcta de columnas.
+- **Enclosure (`"`):** permite manejar textos con comas internas sin romper la estructura.  
+- **Header row present:** Activado, ya que la primera fila contiene nombres de columnas.
+
+#### Fase 2: Modified JavaScript Value para normalización y limpieza de atributos
+
+Se estandarizan nombres y apellidos para evitar inconsistencias, porque habían ciertos caracteres especiales que se necesitaban limpiar para poder usar el primer nombre y primer apellido para la construcción del correo institucional del estudiante.
+
+##### Procesos aplicados:
+
+```javascript
+// pasar a minúsculas
+var nombres = NOMBRES.toLowerCase();
+var apellidos = APELLIDOS.toLowerCase();
+// función limpieza para correos
+function limpiar(texto) {
+  return texto
+    // reemplazos del dataset
+    .replace(/~/g, "n")
+    .replace(/\|\|/g, "i")
+    // quitar tildes
+    .replace(/á/g, "a")
+    .replace(/é/g, "e")
+    .replace(/í/g, "i")
+    .replace(/ó/g, "o")
+    .replace(/ú/g, "u")
+    .replace(/ñ/g, "n")
+    // espacios extra
+    .replace(/\s+/g, " ")
+    .trim();
+}
+```
+##### Extracción de componentes:
+
+```javascript
+// aplicar limpieza
+nombres = limpiar(nombres);
+apellidos = limpiar(apellidos);
+// primer nombre y apellido
+var nombre1 = nombres.split(" ")[0];
+var apellido1 = apellidos.split(" ")[0];
+```
+Al final se crean dos nuevas columnas para obtener los resultados de la ejecución del script, nombre1 y apellido1, de tipo String.
+
+#### Fase 3: Concat Fields para la construcción del identificador para el inicio del correo
+
+- **Campo para el resultado:** correobase
+- **Separador:** . (para concatenar el nombre.apellido).
+
+Ejemplo: juan + lara → juan.lara
+
+#### Fase 4: Sort Rows para preparar a los resultados en correobase iguales
+
+- **Campo:** correobase
+- **Orden:** Ascendente
+
+Se ordenó para poder identificar en grupos a los duplicados en la siguiente fase.
+
+#### Fase 5: Group By para identificación y numeración de duplicados
+
+- **Group Field:** correobase
+- **Line number:** Activado
+- **Reset por grupo:** Sí
+- **Campo a ser creado:** num_fila
+- **Include all rows:** Activado
+
+Con ello se generará numeración secuencial por grupo de correos repetidos.
+
+Ejemplo: 
+
+- juan.lara → 1
+- juan.lara → 2
+- lidia.martinez → 1
+
+#### Fase 6: Formula para lógica de diferenciación de identificadores
+
+- **Campo a ser creado:** correo_final
+
+Dentro de la columna de formula se añadió lo siguiente:
+
+```javascript
+IF([num_fila] > 1;
+   [correobase] & TEXT([num_fila] - 1; "00");
+   [correobase])
+```
+Explicación:
+
+1. Primer registro → sin cambios
+2. Duplicados → sufijo numérico: 01, 02, 03, etc.
+
+Ejemplo: juan.lara, juan.lara01 y juan.lara02
+
+#### Fase 7: Add Constants para parametrización del dominio institucional
+
+- **Campo a ser creado:** dominio
+- **Valor:** @epn.edu.ec
+- **Tipo:** String
+
+Permite cambiar el dominio en un solo punto sin afectar la lógica del flujo, así también con la siguiente fase solo se unirá a la columna ya establecida de correo_final, en la que ya está el nombre.apellido o nombre.apellido01.
+
+#### Fase 8: Calculator para consolidación del correo electrónico final
+
+- **Campo final a ser creado:** CORREO
+- **Operación:** A + B
+- **A:** correo_final
+- **B:** dominio
+
+Ejemplo: juan.lara01 + @epn.edu.ec → juan.lara01@epn.edu.ec
+
+Permitó tener el resultado que se esperaba.
+
+#### Fase 9: Select Values para depuración y estructuración del dataset final
+
+Se eliminan campos que se crearon en el proceso de transformación:
+- nombre1
+- apellido1
+- correobase
+- num_fila
+- correo_final
+- dominio
+
+Se mantienen campos que serán enviado a mi output:
+- ID
+- NOMBRES
+- APELLIDOS
+- CEDULA
+- MODALIDAD
+- NIVEL
+- FECHA ADMISIÓN
+- ESTADO ACTUAL
+- FECHA ESTADO
+- CORREO
+
+#### Fase 10: Microsoft Excel Writer como output para carga de datos y generación del entregable final
+
+- **Formato:** .xlsx
+- **Versión:** Excel 2007+
+- Validación con Get Fields
+
+Después de establecer esos tres puntos, la intención es que los datos transformados se guarden en el archivo limpio generado.
+
+
+
+
