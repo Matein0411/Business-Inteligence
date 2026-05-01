@@ -21,25 +21,44 @@ El gerente de sistemas de *El Tornillo Feliz* solicita el desarrollo de un proce
 ## Creación de los datos
 Inicialmente, se procedió con la creación de la base de datos `ferreteria_feliz`. Posteriormente, dentro del esquema `staging`, se generó la tabla `productos_ferreteria_raw` para almacenar la carga inicial de los datos en bruto proporcionados por el negocio.
 
-<img width="1594" height="892" alt="Screenshot 2026-04-30 215855" src="https://github.com/user-attachments/assets/1d747a7d-7644-4ddb-ae53-fbc7d6fb1d07" />
+<p align="center">
+  <img width="1594" height="892" alt="Screenshot 2026-04-30 215855" src="https://github.com/user-attachments/assets/1d747a7d-7644-4ddb-ae53-fbc7d6fb1d07" />
+  <br><sub><strong>Figura 1.</strong> Creación de los datos en base de datos</sub>
+</p>
 
 ## Análisis de datos
 Previa a la implementación del flujo, se realizó un perfilado de la información, identificando severas oportunidades de mejora en la calidad de los registros:
 
 **Datos inconsistentes en la columna "Categorías":** Se observó una alta varianza en la nomenclatura, incluyendo errores tipográficos, uso mixto de mayúsculas/minúsculas y abreviaturas no estandarizadas.
-<img width="256" height="507" alt="image" src="https://github.com/user-attachments/assets/8bdc7ddf-2014-4963-8adc-8cc8b9edce8c" />
+
+<p align="center">
+  <img width="256" height="507" alt="image" src="https://github.com/user-attachments/assets/8bdc7ddf-2014-4963-8adc-8cc8b9edce8c" />
+  <br><sub><strong>Figura 2.</strong> Datos inconsistentes en categorías</sub>
+</p>
 
 **Datos inconsistentes en la "Unidad de Medida":** Se detectaron múltiples formatos para representar una misma magnitud física o de empaque.
-<img width="256" height="595" alt="image" src="https://github.com/user-attachments/assets/299a0f26-cb60-460a-8160-1b6bfa7d361f" />
+
+<p align="center">
+  <img width="256" height="595" alt="image" src="https://github.com/user-attachments/assets/299a0f26-cb60-460a-8160-1b6bfa7d361f" />
+  <br><sub><strong>Figura 3.</strong> Datos inconsistentes en unidad de medida</sub>
+</p>
 
 ## Proceso ETL
 
 ### Extracción
 Se configuró exitosamente la conexión de base de datos entre el entorno de Pentaho Data Integration y el contenedor de PostgreSQL.
-<img width="800" height="748" alt="Screenshot 2026-04-30 222227" src="https://github.com/user-attachments/assets/758dcfcd-1a06-4dc9-aed9-24b792e2980a" />
+
+<p align="center">
+  <img width="800" height="748" alt="Screenshot 2026-04-30 222227" src="https://github.com/user-attachments/assets/758dcfcd-1a06-4dc9-aed9-24b792e2980a" />
+  <br><sub><strong>Figura 4.</strong> Conexión de Pentaho con PostgreSQL</sub>
+</p>
 
 La ingesta de los datos iniciales hacia el flujo de transformación se ejecutó mediante el paso **Table Input**.
-<img width="1443" height="657" alt="Screenshot 2026-04-30 222604" src="https://github.com/user-attachments/assets/e7c3c377-a75c-4aff-99ee-fe1fdd6ad39c" />
+
+<p align="center">
+  <img width="1443" height="657" alt="Screenshot 2026-04-30 222604" src="https://github.com/user-attachments/assets/e7c3c377-a75c-4aff-99ee-fe1fdd6ad39c" />
+  <br><sub><strong>Figura 5.</strong> Carga de datos mediante Table Input</sub>
+</p>
 
 ## Transformación
 se hizo con replace in string
