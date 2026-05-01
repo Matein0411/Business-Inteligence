@@ -17,6 +17,7 @@ El gerente de sistemas de *El Tornillo Feliz* solicita el desarrollo de un proce
 2. [Análisis de datos](#análisis-de-datos)
 3. [Proceso ETL](#proceso-etl)
     * [Extracción](#extracción)
+    * [Carga](#carga)
 
 ## Creación de los datos
 Inicialmente, se procedió con la creación de la base de datos `ferreteria_feliz`. Posteriormente, dentro del esquema `staging`, se generó la tabla `productos_ferreteria_raw` para almacenar la carga inicial de los datos en bruto proporcionados por el negocio.
@@ -73,17 +74,26 @@ Se hizo con value mapper
 ### Normalización de precio
 se hizo con replace in string
 Se reemplazo el simbolo $, se estandarizo el formato decimal a 0.00, 
+
 <img width="515" height="377" alt="Screenshot 2026-04-30 230042" src="https://github.com/user-attachments/assets/02fc8b74-6d1d-41cb-8d14-fe3951a38dc7" />
 ademas, se seteo el valor en number
 <img width="696" height="311" alt="Screenshot 2026-04-30 230208" src="https://github.com/user-attachments/assets/e1945836-5518-4e3e-97e2-422525a93e30" />
 
 ## Carga
-Se utilizo para esto una tabla productos_ferreteria_raw_new en staging mediante una sentencia sql
-<img width="679" height="599" alt="Screenshot 2026-04-30 230400" src="https://github.com/user-attachments/assets/09ca9e08-6aa0-49ce-9a95-62d3851ffb67" />
-flujo exitoso
-<img width="793" height="369" alt="Screenshot 2026-04-30 230445" src="https://github.com/user-attachments/assets/0721627e-3f50-4d92-9dc4-f953d1dc72a5" />
+Para recibir los resultados de los datos transformados, se creó la tabla `productos_ferreteria_raw_new` usando el esquema staging. 
+
+<p align="center">
+  <img width="679" height="599" alt="Screenshot 2026-04-30 230400" src="https://github.com/user-attachments/assets/09ca9e08-6aa0-49ce-9a95-62d3851ffb67" />
+  <br><sub><strong>Figura .</strong> Carga de datos transformados. </sub>
+</p>
 
 # Resultados y conclusiones
+Finalmente, el flujo creado tuvo resultado exitoso. 
+<p align="center">
+  <img width="793" height="369" alt="Screenshot 2026-04-30 230445" src="https://github.com/user-attachments/assets/0721627e-3f50-4d92-9dc4-f953d1dc72a5" />
+  <br><sub><strong>Figura .</strong> Flujo finalizado </sub>
+</p>
+
 <img width="900" height="516" alt="image" src="https://github.com/user-attachments/assets/3fadd7c9-7bbb-4b05-a5be-df491919f518" />
 
 
