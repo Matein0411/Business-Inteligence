@@ -64,7 +64,111 @@
 4. Se verificó que los datos estén
 <img width="1919" height="1014" alt="image" src="https://github.com/user-attachments/assets/2ba03ffe-7bc9-49a6-938f-6adc8f7e9c9b" />
 
-5. 
+5. Se crearán las tablas establecidas entre el grupo que se consideró patra el modelo estrella.
+
+5.1. Tabla de dimensión para los productos (dim_product) junto a sus valores
+
+CREATE TABLE dim_product (
+    product_key VARCHAR(100) PRIMARY KEY,
+    product_code VARCHAR(100),
+    product_name VARCHAR(200),
+    list_price DECIMAL(18,2),
+    color VARCHAR(50),
+    size VARCHAR(50),
+    category VARCHAR(100),
+    subcategory VARCHAR(100)
+);
+
+INSERT INTO dim_product
+SELECT DISTINCT 
+    product_key, product_code, product_name, 
+    CAST(list_price AS DECIMAL), 
+    color, size, category, subcategory
+FROM ventas;
+
+<img width="1919" height="906" alt="image" src="https://github.com/user-attachments/assets/c53f93e3-0c29-4e5d-bc4d-820ca30a531a" />
+
+5.2. Tabla de dimensión para los clientes (dim_customer) junto a sus valores
+
+CREATE TABLE dim_customer (
+    customer_key VARCHAR(100) PRIMARY KEY,
+    birth_date DATE,
+    marital_status VARCHAR(50),
+    gender VARCHAR(20),
+    income DECIMAL(18,2),
+    children INT,
+    home_owner VARCHAR(10),
+    cars INT
+);
+
+INSERT INTO dim_customer
+SELECT DISTINCT 
+    customer_key, 
+    CAST(birth_date AS DATE), 
+    marital_status, 
+    gender, 
+    CAST(income AS DECIMAL), 
+    CAST(children AS INT), 
+    home_owner, 
+    CAST(cars AS INT)
+FROM ventas;
+
+<img width="1744" height="859" alt="image" src="https://github.com/user-attachments/assets/6a3167ed-445c-4ce4-b949-1b3cabfdc758" />
+
+5.3. Tabla de dimensión para la fecha (dim_date) junto a sus valores, a diferencia de las otras, esta se genera combinando todas las fechas únicas de órdenes y envíos.
+
+CREATE TABLE dim_date (
+    date_key DATE PRIMARY KEY,
+    month_name VARCHAR(20),
+    month_no INT,
+    year INT
+);
+
+INSERT INTO dim_date
+SELECT DISTINCT 
+    fecha, 
+    TO_CHAR(fecha, 'Month'), 
+    EXTRACT(MONTH FROM fecha), 
+    EXTRACT(YEAR FROM fecha)
+FROM (
+    SELECT CAST(order_date AS DATE) AS fecha FROM ventas
+    UNION
+    SELECT CAST(ship_date AS DATE) AS fecha FROM ventas
+) AS t;
+
+<img width="1137" height="975" alt="image" src="https://github.com/user-attachments/assets/61b1af55-4a29-45e5-a4df-0ba2923cc853" />
+
+5.4. Tabla de hechos para el análisis
+
+CREATE TABLE fact_sales (
+    order_number VARCHAR(100),
+    order_line_number INT,
+    product_key VARCHAR(100) REFERENCES dim_product(product_key),
+    customer_key VARCHAR(100) REFERENCES dim_customer(customer_key),
+    order_date_key DATE REFERENCES dim_date(date_key),
+    ship_date_key DATE REFERENCES dim_date(date_key),
+    quantity INT,
+    unit_price DECIMAL(18,2),
+    product_cost DECIMAL(18,2),
+    sales_amount DECIMAL(18,2),
+    PRIMARY KEY (order_number, order_line_number)
+);
+
+INSERT INTO fact_sales
+SELECT 
+    order_number, 
+    CAST(order_line_number AS INT), 
+    product_key, 
+    customer_key, 
+    CAST(order_date AS DATE), 
+    CAST(ship_date AS DATE), 
+    CAST(quantity AS INT), 
+    CAST(unit_price AS DECIMAL), 
+    CAST(product_cost AS DECIMAL), 
+    CAST(sales_amount AS DECIMAL)
+FROM ventas;
+
+<img width="1919" height="936" alt="image" src="https://github.com/user-attachments/assets/fbc0f880-61c8-4fb3-8d3d-d8385c8f1924" />
 
 ### Diagrama modelo estrella 2 
 ### Respuestas a las preguntas 
