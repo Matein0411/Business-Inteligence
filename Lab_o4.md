@@ -18,6 +18,7 @@
 ### Proceso 
 
 #### Datos desde postgreSQL
+<img width="1919" height="1018" alt="image" src="https://github.com/user-attachments/assets/c9e5a33f-0356-4714-b96a-5a5e3d565a61" />
 
 #### Creacion de tablas postgreSQL
 <img width="752" height="336" alt="Screenshot 2026-05-05 185615" src="https://github.com/user-attachments/assets/e8466095-ff66-4a90-a2a8-ccc5ec550294" />
