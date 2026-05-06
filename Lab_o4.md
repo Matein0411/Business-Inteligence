@@ -172,9 +172,56 @@ FROM ventas;
 
 ### Diagrama modelo estrella 2 
 ### Respuestas a las preguntas 
-#### Pregunta 1
-#### Pregunta 1
+#### 1. ¿Cuántas ventas se realizaron por categoría de producto y mes?
 
+SELECT p.category, d.year, d.month_name, COUNT(f.order_number) AS total_ventas
+FROM fact_sales f
+JOIN dim_product p ON f.product_key = p.product_key
+JOIN dim_date d ON f.order_date_key = d.date_key
+GROUP BY p.category, d.year, d.month_no, d.month_name
+ORDER BY d.year, d.month_no;
+
+<img width="1315" height="1016" alt="image" src="https://github.com/user-attachments/assets/ba6b2c47-55d9-463b-b2e6-a8c29af8e8b7" />
+
+#### 2. ¿Cuál es el ingreso total (ventas) por cliente y género?
+
+SELECT c.customer_key, c.gender, SUM(f.sales_amount) AS ingreso_total
+FROM fact_sales f
+JOIN dim_customer c ON f.customer_key = c.customer_key
+GROUP BY c.customer_key, c.gender
+ORDER BY ingreso_total DESC;
+
+<img width="1209" height="869" alt="image" src="https://github.com/user-attachments/assets/38481dae-1a3b-4ad5-bb17-19b3421d2c9d" />
+
+#### 3. ¿Cuál es la cantidad total vendida por producto?
+
+SELECT p.product_name, SUM(f.quantity) AS cantidad_total
+FROM fact_sales f
+JOIN dim_product p ON f.product_key = p.product_key
+GROUP BY p.product_name
+ORDER BY cantidad_total DESC;
+
+<img width="1088" height="858" alt="image" src="https://github.com/user-attachments/assets/4d7c0e8e-752b-45a4-b2f3-a18c136caf8f" />
+
+#### 4. ¿Cuál fue la cantidad enviada por mes de envío?
+
+SELECT d.year, d.month_name, SUM(f.quantity) AS cantidad_enviada
+FROM fact_sales f
+JOIN dim_date d ON f.ship_date_key = d.date_key
+GROUP BY d.year, d.month_no, d.month_name
+ORDER BY d.year, d.month_no;
+
+<img width="1189" height="978" alt="image" src="https://github.com/user-attachments/assets/76f2f35f-a77f-457c-9983-461ef0ec0586" />
+
+#### 5. ¿Cuánto se vendió por tamaño de producto y por estado civil del cliente?
+
+SELECT p.size, c.marital_status, SUM(f.sales_amount) AS total_vendido
+FROM fact_sales f
+JOIN dim_product p ON f.product_key = p.product_key
+JOIN dim_customer c ON f.customer_key = c.customer_key
+GROUP BY p.size, c.marital_status;
+
+<img width="1219" height="752" alt="image" src="https://github.com/user-attachments/assets/f21bb579-33a5-41d0-82e7-4137acb65877" />
 
 
 # Resultados y conclusiones
