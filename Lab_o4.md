@@ -10,27 +10,35 @@
 
 ## **Índice de Contenidos** 
 
-1. [Modelo estrella products.csv](#modelo-estrella-products.csv)
-2. [Análisis de datos](#análisis-de-datos)
+1. [Products.csv](#products.csv)
+2. [Tabla_Desnormalizada_Ventas.csv](#tabla_desnormalizada_ventas.csv)
 
 
-## Modelo estrella products.csv
+## Products.csv
+### Proceso 
 
+#### Datos desde postgreSQL
 
-### Datos desde postgreSQL
-
-### Creacion de tablas postgreSQL
+#### Creacion de tablas postgreSQL
 <img width="752" height="336" alt="Screenshot 2026-05-05 185615" src="https://github.com/user-attachments/assets/e8466095-ff66-4a90-a2a8-ccc5ec550294" />
 
-### Cargando al; modelo de datos
+#### Cargando al; modelo de datos
 <img width="996" height="540" alt="Screenshot 2026-05-05 185754" src="https://github.com/user-attachments/assets/2598914b-1bb3-40a7-84d6-6695b3c76a86" />
 
 ### Modelo estrella
 <img width="1006" height="571" alt="Screenshot 2026-05-05 190020" src="https://github.com/user-attachments/assets/c877e5c4-8601-4968-8222-84ae902a6f33" />
 
+### Diagrama modelo estrella 1 
 
 
 
+
+## Tabla_Desnormalizada_Ventas.csv
+### Proceso 
+### Diagrama modelo estrella 2 
+### Respuestas a las preguntas 
+#### Pregunta 1
+#### Pregunta 1
 
 
 
