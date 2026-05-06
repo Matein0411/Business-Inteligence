@@ -24,40 +24,38 @@
 
 
 ## Products.csv
-### Proceso 
+### Normalización 
 
-#### Datos desde postgreSQL
+Se importaron los 699 registros del archivo products.csv en una tabla temporal en PostgreSQL para su posterior procesamiento.
 <p align="center">
   <img width="1919" height="1018" alt="image" src="https://github.com/user-attachments/assets/c9e5a33f-0356-4714-b96a-5a5e3d565a61" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos denormalizados cargados en la tabla 'products' mediante pgAdmin. </sub>
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
-Se muestra la importación exitosa de los 699 registros del archivo products.csv en una tabla temporal para su posterior procesamiento.
 
 
-#### Creacion de tablas postgreSQL
+Se definió la estructura física del modelo mediante sentencias CREATE TABLE, estableciendo las claves primarias y relaciones necesarias.
+
 <p align="center">
   <img width="752" height="336" alt="Screenshot 2026-05-05 185615" src="https://github.com/user-attachments/assets/e8466095-ff66-4a90-a2a8-ccc5ec550294" />
-  <br><sub><strong>Figura 2.</strong> Ejecución de scripts SQL para la creación de las tablas de dimensiones y la tabla de hechos. </sub>
+  <br><sub><strong>Figura 2.</strong> Ejecución de sentencias SQL para la creación de las tablas de dimensiones y la tabla de hechos. </sub>
 </p>
 
-Definición de la estructura física del modelo mediante sentencias CREATE TABLE, estableciendo las claves primarias y relaciones necesarias.
 
-#### Cargando al modelo de datos
+Se exportó las tablas desde Excel hacia el complemento Power Pivot para establecer el modelo de datos.
 <p align="center">
   <img width="996" height="540" alt="Screenshot 2026-05-05 185754" src="https://github.com/user-attachments/assets/2598914b-1bb3-40a7-84d6-6695b3c76a86" />
   <br><sub><strong>Figura 3.</strong> Incorporación de las tablas normalizadas al modelo de datos de Power Pivot para su integración. </sub>
 </p>
 
-Proceso de exportación de las tablas desde Excel hacia el complemento Power Pivot para establecer el motor analítico del modelo.
 
 ### Modelo estrella
+Con estos pasos, se pudo obtener la representación gráfica de las relaciones uno a muchos (1:N) entre las dimensiones de categoría y subcategoría con la tabla central de productos.
 <p align="center">
   <img width="1006" height="571" alt="Screenshot 2026-05-05 190020" src="https://github.com/user-attachments/assets/c877e5c4-8601-4968-8222-84ae902a6f33" />
   <br><sub><strong>Figura 4.</strong> Diagrama relacional del modelo estrella que conecta la tabla de hechos 'fact_products' con sus respectivas dimensiones. </sub>
 </p>
 
-Representación gráfica de las relaciones uno a muchos (1:N) entre las dimensiones de categoría y subcategoría con la tabla central de productos.
 
 ## Tabla_Desnormalizada_Ventas.csv
 ### Proceso 
@@ -247,14 +245,15 @@ FROM ventas;
 
 ### Modelo estrella
 
-Una vez definida la arquitectura estrella, se procedió a cargar las tablas en Excel y al modelo de datos de Power Pivot, con ello, se establecieron las relaciones correspondientes entre claves d[...]
+Una vez definida la arquitectura estrella, se procedió a cargar las tablas en Excel y al modelo de datos de Power Pivot, con ello, se establecieron las relaciones correspondientes entre las claves foráneas de la tabla de hechos y las claves primarias de la tablas de dimensiones. 
 <p align="center">
   <img width="1119" height="718" alt="image" src="https://github.com/user-attachments/assets/ef18d89a-6f55-41e1-a9a0-3915bc8254a2" />
-  <br><sub><strong>Figura 18.</strong> </sub>
+  <br><sub><strong>Figura 18.</strong> Modelo Estrella Tabla Desnormalizada </sub>
 </p>
 
 ### Respuestas a las preguntas 
 #### 1. ¿Cuántas ventas se realizaron por categoría de producto y mes?
+Esta pregunta se pudo responder mediante el uso de la siguiente consulta SQL:
 
 ```sql
 SELECT p.category, d.year, d.month_name, COUNT(f.order_number) AS total_ventas
@@ -265,15 +264,16 @@ GROUP BY p.category, d.year, d.month_no, d.month_name
 ORDER BY d.year, d.month_no;
 ```
 
+La siguiente figura muestra la respuesta solicitada:
+
 <p align="center">
   <img width="1315" height="1016" alt="image" src="https://github.com/user-attachments/assets/ba6b2c47-55d9-463b-b2e6-a8c29af8e8b7" />
-  <br><sub><strong>Figura 19.</strong> Resultado de la consulta SQL que contabiliza el total de órdenes agrupadas por categoría y periodo temporal. </sub>
+  <br><sub><strong>Figura 19.</strong> Respuesta pregunta 1. </sub>
 </p>
 
-Visualización del conjunto de resultados que integra las tablas fact_sales, dim_product y dim_date para obtener métricas de volumen de ventas.
 
 #### 2. ¿Cuál es el ingreso total (ventas) por cliente y género?
-
+Esta pregunta se pudo responder mediante el uso de la siguiente consulta SQL:
 ```sql
 SELECT c.customer_key, c.gender, SUM(f.sales_amount) AS ingreso_total
 FROM fact_sales f
@@ -281,15 +281,17 @@ JOIN dim_customer c ON f.customer_key = c.customer_key
 GROUP BY c.customer_key, c.gender
 ORDER BY ingreso_total DESC;
 ```
+De la ejecución de esta consulta se pudo destacar que el ingreso más representativo proviene del customer con key '1022', de género masculino. 
 
 <p align="center">
   <img width="1209" height="869" alt="image" src="https://github.com/user-attachments/assets/38481dae-1a3b-4ad5-bb17-19b3421d2c9d" />
-  <br><sub><strong>Figura 20.</strong> Resultado de la consulta SQL que calcula los ingresos totales mediante la suma de 'sales_amount' agrupada por cliente y género. </sub>
+  <br><sub><strong>Figura 20.</strong> Respuesta pregunta 2. </sub>
 </p>
 
-Aplicación de la función de agregado SUM sobre la tabla de hechos, relacionada con la dimensión de clientes para segmentar los ingresos por género y clave de usuario.
 
 #### 3. ¿Cuál es la cantidad total vendida por producto?
+
+Esta pregunta se pudo responder mediante el uso de la siguiente consulta SQL:
 
 ```sql
 SELECT p.product_name, SUM(f.quantity) AS cantidad_total
@@ -298,13 +300,15 @@ JOIN dim_product p ON f.product_key = p.product_key
 GROUP BY p.product_name
 ORDER BY cantidad_total DESC;
 ```
+La ejecución de esta consulta revela revela principalmente que los productos de nombre: 'Product 19', 'Product 41' y 'Product 18' son los más vendidos con una cantidad de 60, 41 y 39 unidades respectivamente.   
 
 <p align="center">
   <img width="1088" height="858" alt="image" src="https://github.com/user-attachments/assets/4d7c0e8e-752b-45a4-b2f3-a18c136caf8f" />
-  <br><sub><strong>Figura 21.</strong> </sub>
+  <br><sub><strong>Figura 21.</strong> Respuesta pregunta 3</sub>
 </p>
 
 #### 4. ¿Cuál fue la cantidad enviada por mes de envío?
+Esta pregunta se pudo responder mediante el uso de la siguiente consulta SQL:
 
 ```sql
 SELECT d.year, d.month_name, SUM(f.quantity) AS cantidad_enviada
@@ -314,13 +318,15 @@ GROUP BY d.year, d.month_no, d.month_name
 ORDER BY d.year, d.month_no;
 ```
 
+La ejecución de esta consulta permitió revelar la cantidad enviada en cada uno de los 32 meses de operación, tal como lo muestra la figura a continuación:
+
 <p align="center">
   <img width="1189" height="978" alt="image" src="https://github.com/user-attachments/assets/76f2f35f-a77f-457c-9983-461ef0ec0586" />
-  <br><sub><strong>Figura 22.</strong> </sub>
+  <br><sub><strong>Figura 22.</strong> Respuesta pregunta 4 </sub>
 </p>
 
 #### 5. ¿Cuánto se vendió por tamaño de producto y por estado civil del cliente?
-
+Esta pregunta se pudo responder mediante el uso de la siguiente consulta SQL:
 ```sql
 SELECT p.size, c.marital_status, SUM(f.sales_amount) AS total_vendido
 FROM fact_sales f
@@ -329,8 +335,10 @@ JOIN dim_customer c ON f.customer_key = c.customer_key
 GROUP BY p.size, c.marital_status;
 ```
 
+La ejecución de esta consulta reveló que la mayor cantidad de ventas se concentró en el grupo que adquirió talla Medium y su estado marital es casado; con un total vendido de 23714 unidades. 
+
 <p align="center">
   <img width="1219" height="752" alt="image" src="https://github.com/user-attachments/assets/f21bb579-33a5-41d0-82e7-4137acb65877" />
-  <br><sub><strong>Figura 23.</strong> </sub>
+  <br><sub><strong>Figura 23.</strong> Respuesta pregunta 5 </sub>
 </p>
 
