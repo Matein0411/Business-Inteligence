@@ -13,7 +13,7 @@
 1. [Products.csv](#productscsv)
    - [Modelo estrella](#modelo-estrella)
 2. [Tabla_Desnormalizada_Ventas.csv](#tabla_desnormalizada_ventascsv)
-   - [Normalización](#normalización)
+   - [Normalización](#normalización-1)
    - [Modelo estrella](#modelo-estrella-1)
    - [Respuestas a las preguntas](#respuestas-a-las-preguntas)
      - [1. ¿Cuántas ventas se realizaron por categoría de producto y mes?](#1-cuántas-ventas-se-realizaron-por-categoría-de-producto-y-mes)
@@ -58,7 +58,7 @@ Con estos pasos, se pudo obtener la representación gráfica de las relaciones u
 
 
 ## Tabla_Desnormalizada_Ventas.csv
-### Proceso 
+### Normalización
 1. Se ingresa al PGAdmin dentro del esquema public y se abre un query tool.
 <p align="center">
   <img width="1118" height="1010" alt="image" src="https://github.com/user-attachments/assets/a7a92d40-8f7e-4abc-9d3c-4fc9bfa3a324" />
@@ -117,7 +117,9 @@ Con estos pasos, se pudo obtener la representación gráfica de las relaciones u
 
 ### Normalización
 
-5. Se crearán las tablas establecidas entre el grupo que se consideró patra el modelo estrella.
+Para normalizar el archivo `Tabla_Desnormalizada_Ventas.csv`, se separaron los datos repetidos en tablas de dimensión y se mantuvieron las métricas de venta en una tabla de hechos. De esta forma, el modelo queda organizado en torno a `fact_sales`, que se relaciona con las dimensiones `dim_product`, `dim_customer` y `dim_date`.
+
+5. Se crearon las tablas establecidas por el grupo para construir el modelo estrella.
 
 5.1. Tabla de dimensión para los productos (dim_product) junto a sus valores
 
@@ -143,7 +145,7 @@ FROM ventas;
 
 <p align="center">
   <img width="1919" height="906" alt="image" src="https://github.com/user-attachments/assets/c53f93e3-0c29-4e5d-bc4d-820ca30a531a" />
-  <br><sub><strong>Figura 14.</strong> </sub>
+  <br><sub><strong>Figura 14.</strong> Creación e inserción de registros únicos en la dimensión de productos (`dim_product`). </sub>
 </p>
 
 5.2. Tabla de dimensión para los clientes (dim_customer) junto a sus valores
@@ -175,7 +177,7 @@ FROM ventas;
 
 <p align="center">
   <img width="1744" height="859" alt="image" src="https://github.com/user-attachments/assets/6a3167ed-445c-4ce4-b949-1b3cabfdc758" />
-  <br><sub><strong>Figura 15.</strong> </sub>
+  <br><sub><strong>Figura 15.</strong> Creación e inserción de registros únicos en la dimensión de clientes (`dim_customer`). </sub>
 </p>
 
 5.3. Tabla de dimensión para la fecha (dim_date) junto a sus valores, a diferencia de las otras, esta se genera combinando todas las fechas únicas de órdenes y envíos.
@@ -203,7 +205,7 @@ FROM (
 
 <p align="center">
   <img width="1137" height="975" alt="image" src="https://github.com/user-attachments/assets/61b1af55-4a29-45e5-a4df-0ba2923cc853" />
-  <br><sub><strong>Figura 16.</strong> </sub>
+  <br><sub><strong>Figura 16.</strong> Generación de la dimensión de fechas (`dim_date`) a partir de las fechas de orden y envío. </sub>
 </p>
 
 5.4. Tabla de hechos para el análisis
@@ -240,8 +242,10 @@ FROM ventas;
 
 <p align="center">
   <img width="1919" height="936" alt="image" src="https://github.com/user-attachments/assets/fbc0f880-61c8-4fb3-8d3d-d8385c8f1924" />
-  <br><sub><strong>Figura 17.</strong> </sub>
+  <br><sub><strong>Figura 17.</strong> Creación e inserción de la tabla de hechos (`fact_sales`) con sus claves foráneas hacia las dimensiones. </sub>
 </p>
+
+Con esta estructura, cada venta conserva sus medidas principales (`quantity`, `unit_price`, `product_cost` y `sales_amount`) y queda conectada con la información descriptiva de producto, cliente y fechas. Esto permite responder las preguntas analíticas mediante consultas SQL con relaciones entre la tabla de hechos y sus dimensiones.
 
 ### Modelo estrella
 
