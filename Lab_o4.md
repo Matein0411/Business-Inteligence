@@ -10,8 +10,14 @@
 
 ## **Índice de Contenidos** 
 
-1. [Products.csv](#products.csv)
-2. [Tabla_Desnormalizada_Ventas.csv](#tabla_desnormalizada_ventas.csv)
+1. [Products.csv](#productscsv)
+2. [Tabla_Desnormalizada_Ventas.csv](#tabla_desnormalizada_ventascsv)
+   - [Respuestas a las preguntas](#respuestas-a-las-preguntas)
+     - [1. ¿Cuántas ventas se realizaron por categoría de producto y mes?](#1-cuántas-ventas-se-realizaron-por-categoría-de-producto-y-mes)
+     - [2. ¿Cuál es el ingreso total (ventas) por cliente y género?](#2-cuál-es-el-ingreso-total-ventas-por-cliente-y-género)
+     - [3. ¿Cuál es la cantidad total vendida por producto?](#3-cuál-es-la-cantidad-total-vendida-por-producto)
+     - [4. ¿Cuál fue la cantidad enviada por mes de envío?](#4-cuál-fue-la-cantidad-enviada-por-mes-de-envío)
+     - [5. ¿Cuánto se vendió por tamaño de producto y por estado civil del cliente?](#5-cuánto-se-vendió-por-tamaño-de-producto-y-por-estado-civil-del-cliente)
 
 
 ## Products.csv
@@ -39,7 +45,7 @@
 1. Se ingresa al PGAdmin dentro del esquema public y se abre un query tool.
 <img width="1118" height="1010" alt="image" src="https://github.com/user-attachments/assets/a7a92d40-8f7e-4abc-9d3c-4fc9bfa3a324" />
 
-2. Se crea una base para poder importar todos los datos del excel de Tabla_Desnormalizada_Ventas.csv, pero antes de crear la table base se setean las fechas para poder importar los datos del archivo.
+2. Se crea una base para poder importar todos los datos del excel de Tabla_Desnormalizada_Ventas.csv, pero antes de crear la table base se setean las fechas para poder importar los datos del archi[...]
 
 <img width="1291" height="575" alt="image" src="https://github.com/user-attachments/assets/3bf21df6-69b8-4f7a-bb40-b24b7e34301e" />
 <img width="1918" height="1015" alt="image" src="https://github.com/user-attachments/assets/9ecd0cdd-dee9-47df-bcb7-79dfeebf31aa" />
@@ -68,6 +74,7 @@
 
 5.1. Tabla de dimensión para los productos (dim_product) junto a sus valores
 
+```sql
 CREATE TABLE dim_product (
     product_key VARCHAR(100) PRIMARY KEY,
     product_code VARCHAR(100),
@@ -85,11 +92,13 @@ SELECT DISTINCT
     CAST(list_price AS DECIMAL), 
     color, size, category, subcategory
 FROM ventas;
+```
 
 <img width="1919" height="906" alt="image" src="https://github.com/user-attachments/assets/c53f93e3-0c29-4e5d-bc4d-820ca30a531a" />
 
 5.2. Tabla de dimensión para los clientes (dim_customer) junto a sus valores
 
+```sql
 CREATE TABLE dim_customer (
     customer_key VARCHAR(100) PRIMARY KEY,
     birth_date DATE,
@@ -112,11 +121,13 @@ SELECT DISTINCT
     home_owner, 
     CAST(cars AS INT)
 FROM ventas;
+```
 
 <img width="1744" height="859" alt="image" src="https://github.com/user-attachments/assets/6a3167ed-445c-4ce4-b949-1b3cabfdc758" />
 
 5.3. Tabla de dimensión para la fecha (dim_date) junto a sus valores, a diferencia de las otras, esta se genera combinando todas las fechas únicas de órdenes y envíos.
 
+```sql
 CREATE TABLE dim_date (
     date_key DATE PRIMARY KEY,
     month_name VARCHAR(20),
@@ -135,11 +146,13 @@ FROM (
     UNION
     SELECT CAST(ship_date AS DATE) AS fecha FROM ventas
 ) AS t;
+```
 
 <img width="1137" height="975" alt="image" src="https://github.com/user-attachments/assets/61b1af55-4a29-45e5-a4df-0ba2923cc853" />
 
 5.4. Tabla de hechos para el análisis
 
+```sql
 CREATE TABLE fact_sales (
     order_number VARCHAR(100),
     order_line_number INT,
@@ -167,63 +180,74 @@ SELECT
     CAST(product_cost AS DECIMAL), 
     CAST(sales_amount AS DECIMAL)
 FROM ventas;
+```
 
 <img width="1919" height="936" alt="image" src="https://github.com/user-attachments/assets/fbc0f880-61c8-4fb3-8d3d-d8385c8f1924" />
 
 ### Diagrama modelo estrella 2 
 
-Una vez definida la arquitectura estrella, se procedió a cargar las tablas en Excel y al modelo de datos de Power Pivot, con ello, se establecieron las relaciones correspondientes entre claves de la siguiente manera:
+Una vez definida la arquitectura estrella, se procedió a cargar las tablas en Excel y al modelo de datos de Power Pivot, con ello, se establecieron las relaciones correspondientes entre claves d[...]
 <img width="1119" height="718" alt="image" src="https://github.com/user-attachments/assets/ef18d89a-6f55-41e1-a9a0-3915bc8254a2" />
 
 ### Respuestas a las preguntas 
 #### 1. ¿Cuántas ventas se realizaron por categoría de producto y mes?
 
+```sql
 SELECT p.category, d.year, d.month_name, COUNT(f.order_number) AS total_ventas
 FROM fact_sales f
 JOIN dim_product p ON f.product_key = p.product_key
 JOIN dim_date d ON f.order_date_key = d.date_key
 GROUP BY p.category, d.year, d.month_no, d.month_name
 ORDER BY d.year, d.month_no;
+```
 
 <img width="1315" height="1016" alt="image" src="https://github.com/user-attachments/assets/ba6b2c47-55d9-463b-b2e6-a8c29af8e8b7" />
 
 #### 2. ¿Cuál es el ingreso total (ventas) por cliente y género?
 
+```sql
 SELECT c.customer_key, c.gender, SUM(f.sales_amount) AS ingreso_total
 FROM fact_sales f
 JOIN dim_customer c ON f.customer_key = c.customer_key
 GROUP BY c.customer_key, c.gender
 ORDER BY ingreso_total DESC;
+```
 
 <img width="1209" height="869" alt="image" src="https://github.com/user-attachments/assets/38481dae-1a3b-4ad5-bb17-19b3421d2c9d" />
 
 #### 3. ¿Cuál es la cantidad total vendida por producto?
 
+```sql
 SELECT p.product_name, SUM(f.quantity) AS cantidad_total
 FROM fact_sales f
 JOIN dim_product p ON f.product_key = p.product_key
 GROUP BY p.product_name
 ORDER BY cantidad_total DESC;
+```
 
 <img width="1088" height="858" alt="image" src="https://github.com/user-attachments/assets/4d7c0e8e-752b-45a4-b2f3-a18c136caf8f" />
 
 #### 4. ¿Cuál fue la cantidad enviada por mes de envío?
 
+```sql
 SELECT d.year, d.month_name, SUM(f.quantity) AS cantidad_enviada
 FROM fact_sales f
 JOIN dim_date d ON f.ship_date_key = d.date_key
 GROUP BY d.year, d.month_no, d.month_name
 ORDER BY d.year, d.month_no;
+```
 
 <img width="1189" height="978" alt="image" src="https://github.com/user-attachments/assets/76f2f35f-a77f-457c-9983-461ef0ec0586" />
 
 #### 5. ¿Cuánto se vendió por tamaño de producto y por estado civil del cliente?
 
+```sql
 SELECT p.size, c.marital_status, SUM(f.sales_amount) AS total_vendido
 FROM fact_sales f
 JOIN dim_product p ON f.product_key = p.product_key
 JOIN dim_customer c ON f.customer_key = c.customer_key
 GROUP BY p.size, c.marital_status;
+```
 
 <img width="1219" height="752" alt="image" src="https://github.com/user-attachments/assets/f21bb579-33a5-41d0-82e7-4137acb65877" />
 
@@ -244,10 +268,10 @@ Como resultado tangible, se obtuvo una tabla normalizada en PostgreSQL donde se 
 
 * **Estandarización de Categorías:** Se unificaron términos inconsistentes (como "Htas." o "herram.") bajo la categoría única "Herramientas".
 * **Limpieza de Unidades:** Se estandarizaron las presentaciones de productos (ej. de "1L" a "1 litro").
-* **Conversión de Tipos de Datos:** El campo de precio fue transformado de una cadena de texto con símbolos especiales ($) a un formato numérico decimal, permitiendo cálculos matemáticos directos.
+* **Conversión de Tipos de Datos:** El campo de precio fue transformado de una cadena de texto con símbolos especiales ($) a un formato numérico decimal, permitiendo cálculos matemáticos dir[...]
 
 ## Conclusiones
 
-1.  **Automatización y Eficiencia:** La implementación de este proceso ETL permite que la *Ferretería El Tornillo Feliz* centralice su información de inventario de forma automática, eliminando el error humano derivado del ingreso manual de datos inconsistentes.
-2.  **Integridad de la Información:** El uso de herramientas de transformación como *Value Mapper* y *Replace in String* garantizó que los datos ahora cumplan con los estándares necesarios para su análisis, asegurando que cada producto esté correctamente categorizado y valorado.
-3.  **Preparación para Business Intelligence:** Con la limpieza de los campos de precio y categoría, la base de datos queda lista para alimentar tableros de visualización o reportes de ventas, facilitando una toma de decisiones basada en datos reales y confiables.
+1.  **Automatización y Eficiencia:** La implementación de este proceso ETL permite que la *Ferretería El Tornillo Feliz* centralice su información de inventario de forma automática, eliminan[...]
+2.  **Integridad de la Información:** El uso de herramientas de transformación como *Value Mapper* y *Replace in String* garantizó que los datos ahora cumplan con los estándares necesarios pa[...]
+3.  **Preparación para Business Intelligence:** Con la limpieza de los campos de precio y categoría, la base de datos queda lista para alimentar tableros de visualización o reportes de ventas,[...]
