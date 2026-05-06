@@ -267,8 +267,10 @@ ORDER BY d.year, d.month_no;
 
 <p align="center">
   <img width="1315" height="1016" alt="image" src="https://github.com/user-attachments/assets/ba6b2c47-55d9-463b-b2e6-a8c29af8e8b7" />
-  <br><sub><strong>Figura 19.</strong> </sub>
+  <br><sub><strong>Figura 19.</strong> Resultado de la consulta SQL que contabiliza el total de órdenes agrupadas por categoría y periodo temporal. </sub>
 </p>
+
+Visualización del conjunto de resultados que integra las tablas fact_sales, dim_product y dim_date para obtener métricas de volumen de ventas.
 
 #### 2. ¿Cuál es el ingreso total (ventas) por cliente y género?
 
@@ -282,8 +284,10 @@ ORDER BY ingreso_total DESC;
 
 <p align="center">
   <img width="1209" height="869" alt="image" src="https://github.com/user-attachments/assets/38481dae-1a3b-4ad5-bb17-19b3421d2c9d" />
-  <br><sub><strong>Figura 20.</strong> </sub>
+  <br><sub><strong>Figura 20.</strong> Resultado de la consulta SQL que calcula los ingresos totales mediante la suma de 'sales_amount' agrupada por cliente y género. </sub>
 </p>
+
+Aplicación de la función de agregado SUM sobre la tabla de hechos, relacionada con la dimensión de clientes para segmentar los ingresos por género y clave de usuario.
 
 #### 3. ¿Cuál es la cantidad total vendida por producto?
 
