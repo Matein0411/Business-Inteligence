@@ -38,25 +38,26 @@ Se muestra la importación exitosa de los 699 registros del archivo products.csv
 #### Creacion de tablas postgreSQL
 <p align="center">
   <img width="752" height="336" alt="Screenshot 2026-05-05 185615" src="https://github.com/user-attachments/assets/e8466095-ff66-4a90-a2a8-ccc5ec550294" />
-  <br><sub><strong>Figura 2.</strong> </sub>
+  <br><sub><strong>Figura 2.</strong> Ejecución de scripts SQL para la creación de las tablas de dimensiones y la tabla de hechos. </sub>
 </p>
 
-#### Cargando al; modelo de datos
+Definición de la estructura física del modelo mediante sentencias CREATE TABLE, estableciendo las claves primarias y relaciones necesarias.
+
+#### Cargando al modelo de datos
 <p align="center">
   <img width="996" height="540" alt="Screenshot 2026-05-05 185754" src="https://github.com/user-attachments/assets/2598914b-1bb3-40a7-84d6-6695b3c76a86" />
-  <br><sub><strong>Figura 3.</strong> </sub>
+  <br><sub><strong>Figura 3.</strong> Incorporación de las tablas normalizadas al modelo de datos de Power Pivot para su integración. </sub>
 </p>
+
+Proceso de exportación de las tablas desde Excel hacia el complemento Power Pivot para establecer el motor analítico del modelo.
 
 ### Modelo estrella
 <p align="center">
   <img width="1006" height="571" alt="Screenshot 2026-05-05 190020" src="https://github.com/user-attachments/assets/c877e5c4-8601-4968-8222-84ae902a6f33" />
-  <br><sub><strong>Figura 4.</strong> </sub>
+  <br><sub><strong>Figura 4.</strong> Diagrama relacional del modelo estrella que conecta la tabla de hechos 'fact_products' con sus respectivas dimensiones. </sub>
 </p>
 
-### Diagrama modelo estrella 1 
-
-
-
+Representación gráfica de las relaciones uno a muchos (1:N) entre las dimensiones de categoría y subcategoría con la tabla central de productos.
 
 ## Tabla_Desnormalizada_Ventas.csv
 ### Proceso 
