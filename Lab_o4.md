@@ -171,6 +171,10 @@ FROM ventas;
 <img width="1919" height="936" alt="image" src="https://github.com/user-attachments/assets/fbc0f880-61c8-4fb3-8d3d-d8385c8f1924" />
 
 ### Diagrama modelo estrella 2 
+
+Una vez definida la arquitectura estrella, se procedió a cargar las tablas en Excel y al modelo de datos de Power Pivot, con ello, se establecieron las relaciones correspondientes entre claves de la siguiente manera:
+<img width="1119" height="718" alt="image" src="https://github.com/user-attachments/assets/ef18d89a-6f55-41e1-a9a0-3915bc8254a2" />
+
 ### Respuestas a las preguntas 
 #### 1. ¿Cuántas ventas se realizaron por categoría de producto y mes?
 
