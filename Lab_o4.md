@@ -36,6 +36,36 @@
 
 ## Tabla_Desnormalizada_Ventas.csv
 ### Proceso 
+1. Se ingresa al PGAdmin dentro del esquema public y se abre un query tool.
+<img width="1118" height="1010" alt="image" src="https://github.com/user-attachments/assets/a7a92d40-8f7e-4abc-9d3c-4fc9bfa3a324" />
+
+2. Se crea una base para poder importar todos los datos del excel de Tabla_Desnormalizada_Ventas.csv, pero antes de crear la table base se setean las fechas para poder importar los datos del archivo.
+
+<img width="1291" height="575" alt="image" src="https://github.com/user-attachments/assets/3bf21df6-69b8-4f7a-bb40-b24b7e34301e" />
+<img width="1918" height="1015" alt="image" src="https://github.com/user-attachments/assets/9ecd0cdd-dee9-47df-bcb7-79dfeebf31aa" />
+
+3. Se importan los datos:
+
+3.1. En la tabla creada, clic derecho para acceder a import/export data.
+<img width="1162" height="1021" alt="image" src="https://github.com/user-attachments/assets/6a5b2602-8c1f-40da-b628-727f983e1d61" />
+
+3.2. establecer import, la extensión del archivo (csv) y el encoding (UTF8).
+<img width="1478" height="825" alt="image" src="https://github.com/user-attachments/assets/a1246b20-3fd4-4284-b3a2-aedd3cefebe9" />
+
+3.3. en la pestaña de options se activó header y se verificó que el delimitador sea el punto y coma
+<img width="1475" height="876" alt="image" src="https://github.com/user-attachments/assets/b9cadfb2-5446-4fe7-9d47-3b9e74ae8e0f" />
+
+3.4. Se verifica que estén las columnas especificadas
+<img width="1429" height="816" alt="image" src="https://github.com/user-attachments/assets/f528e6e1-a99d-4049-9134-5dad2440fb8f" />
+
+3.5. Se da en ok y se ve el proceso con éxito.
+<img width="1919" height="1022" alt="image" src="https://github.com/user-attachments/assets/8a67ace9-981a-4222-9e51-d33c67ece53b" />
+
+4. Se verificó que los datos estén
+<img width="1919" height="1014" alt="image" src="https://github.com/user-attachments/assets/2ba03ffe-7bc9-49a6-938f-6adc8f7e9c9b" />
+
+5. 
+
 ### Diagrama modelo estrella 2 
 ### Respuestas a las preguntas 
 #### Pregunta 1
