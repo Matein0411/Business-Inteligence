@@ -29,8 +29,11 @@
 #### Datos desde postgreSQL
 <p align="center">
   <img width="1919" height="1018" alt="image" src="https://github.com/user-attachments/assets/c9e5a33f-0356-4714-b96a-5a5e3d565a61" />
-  <br><sub><strong>Figura 1.</strong> </sub>
+  <br><sub><strong>Figura 1.</strong> Vista de los datos denormalizados cargados en la tabla 'products' mediante pgAdmin. </sub>
 </p>
+
+Se muestra la importación exitosa de los 699 registros del archivo products.csv en una tabla temporal para su posterior procesamiento.
+
 
 #### Creacion de tablas postgreSQL
 <p align="center">
