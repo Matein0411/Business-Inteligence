@@ -24,10 +24,12 @@
 
 
 
+primero se analizaron los dartos, estableciendo las dimensiones que serian (tal y con tales campos (verificar para esto el diagrama final), en dim_date solo mencionar que es calendario )
+<img width="1844" height="196" alt="image" src="https://github.com/user-attachments/assets/162d870a-bea2-4084-bd12-426346218862" />
 
-dividio en nuevas hojas las tablas y se les dio formato dinero, enteros, etc
+dividio en nuevas hojas las tablas y se les dio formato dinero, enteros, etc (dim_procut, dim_cusotmer_ dim_date (solo se usa para encontrar el rango de las ordenes pa sacar el calendario), fact_sales)
 <img width="681" height="337" alt="Screenshot 2026-05-07 225054" src="https://github.com/user-attachments/assets/83298662-906a-46be-9f45-57d2c5981027" />
-eliminacnon de duplicados en tablas dim, solo key
+eliminacnon de duplicados en tablas dim, el cmapo key como criterio
 <img width="473" height="269" alt="Screenshot 2026-05-07 230519" src="https://github.com/user-attachments/assets/97300c1e-302e-44b5-8fdd-3968623bbff3" />
 por practicidad se nombran las tablas
 <img width="1067" height="440" alt="image" src="https://github.com/user-attachments/assets/8eb0938c-e15c-4abf-9bb9-2710a3d2a1b4" />
@@ -42,10 +44,11 @@ para la datekey se estandarizo a formato int, al igual que las otras key de las 
 
 obteniendo asi los  siguientes campos
 <img width="237" height="298" alt="Screenshot 2026-05-07 230027" src="https://github.com/user-attachments/assets/b865f606-1edb-4e54-b233-19473d0883bc" />
+la date kety se conecta de forma activa a order date key y pasiva a ship date key
 finalmente usando la vista de disgrama se llego a lo siguiente
 <img width="1444" height="744" alt="Screenshot 2026-05-07 230746" src="https://github.com/user-attachments/assets/7281cb68-8c8d-49f0-a303-73d6ae2764a1" />
 
-pa las tablas dinamicas
+pa las tablas dinamicas se cargan desde pivot
 <img width="1017" height="318" alt="image" src="https://github.com/user-attachments/assets/21e4248c-0120-4841-be03-f3b3a35517d8" />
 
 1.	¿Cuántas ventas se realizaron por categoría de producto y mes?
