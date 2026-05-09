@@ -54,7 +54,6 @@ Por esta razón, fue necesario dividir la información en tablas de dimensiones 
 
 <p align="center">
   <img width="1844" height="196" alt="image" src="https://github.com/user-attachments/assets/162d870a-bea2-4084-bd12-426346218862" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 ## 2.2. Conversión a Tablas
@@ -63,7 +62,6 @@ Cada conjunto de datos fue convertido a formato de tabla de Excel utilizando la 
 
 <p align="center">
   <img width="681" height="337" alt="Screenshot 2026-05-07 225054" src="https://github.com/user-attachments/assets/83298662-906a-46be-9f45-57d2c5981027" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 ## 2.3. Limpieza y Eliminación de Duplicados
@@ -74,7 +72,6 @@ Este procedimiento garantizó la integridad del modelo dimensional, asegurando q
 
 <p align="center">
   <img width="473" height="269" alt="Screenshot 2026-05-07 230519" src="https://github.com/user-attachments/assets/97300c1e-302e-44b5-8fdd-3968623bbff3" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 ## 2.4. Estandarización de Nombres
@@ -93,7 +90,6 @@ Se aplicó una convención de nombres para identificar claramente cada tabla seg
 
 <p align="center">
   <img width="1067" height="440" alt="image" src="https://github.com/user-attachments/assets/8eb0938c-e15c-4abf-9bb9-2710a3d2a1b4" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 ---
 
@@ -105,7 +101,6 @@ Una vez limpias las tablas, se cargaron al modelo de datos de Power Pivot utiliz
 
 <p align="center">
   <img width="1006" height="490" alt="image" src="https://github.com/user-attachments/assets/1b0f803e-2d1a-4405-8da9-10c5e7c5b717" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 ## 3.2. Creación de la Tabla Calendario
@@ -119,7 +114,6 @@ La tabla calendario es fundamental en modelos dimensionales porque permite:
 
 <p align="center">
   <img width="1049" height="207" alt="image" src="https://github.com/user-attachments/assets/0239de4f-ea4b-4a4d-aa4d-db667a0976e7" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 ## 3.3. Creación de la Clave de Fecha
@@ -136,12 +130,10 @@ Esta clave fue utilizada para relacionar la dimensión calendario con la tabla d
 
 <p align="center">
   <img width="979" height="272" alt="Screenshot 2026-05-07 233938" src="https://github.com/user-attachments/assets/90d8ea83-4168-42cd-b877-6b79015aefae" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 <p align="center">
   <img width="237" height="298" alt="Screenshot 2026-05-07 230027" src="https://github.com/user-attachments/assets/b865f606-1edb-4e54-b233-19473d0883bc" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 
@@ -161,7 +153,6 @@ Esto permitió analizar tanto ventas realizadas como envíos efectuados.
 
 <p align="center">
   <img width="1444" height="744" alt="Screenshot 2026-05-07 230746" src="https://github.com/user-attachments/assets/7281cb68-8c8d-49f0-a303-73d6ae2764a1" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 ---
@@ -172,7 +163,6 @@ A través de tablas dinámicas conectadas al modelo de datos se respondieron las
 
 <p align="center">
   <img width="1017" height="318" alt="image" src="https://github.com/user-attachments/assets/21e4248c-0120-4841-be03-f3b3a35517d8" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 ## 4.1. Ventas por Categoría y Mes
@@ -189,7 +179,6 @@ Este análisis ayuda a planificar inventarios y estrategias comerciales.
 
 <p align="center">
   <img width="464" height="312" alt="Screenshot 2026-05-07 232706" src="https://github.com/user-attachments/assets/0d2941ef-6676-4886-8219-f606830aaa76" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 ## 4.2. Ventas por Cliente y Género
@@ -219,7 +208,6 @@ ORDER BY dc.gender;
 
 <p align="center">
   <img width="986" height="113" alt="image" src="https://github.com/user-attachments/assets/7edd9399-8059-49ce-b1b7-8353cc714823" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 ## 4.3. Cantidad Vendida por Producto
@@ -236,7 +224,6 @@ Este análisis es útil para control de inventarios y decisiones de abastecimien
 
 <p align="center">
   <img width="275" height="246" alt="Screenshot 2026-05-07 232946" src="https://github.com/user-attachments/assets/56d36462-6f98-40d8-844c-0f02a45c8b93" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 ## 4.4. Cantidad enviada por mes
@@ -262,12 +249,10 @@ CALCULATE(
 
 <p align="center">
   <img width="1414" height="165" alt="image" src="https://github.com/user-attachments/assets/c54f162d-183b-4c99-801e-3ecc9a51fb8d" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 <p align="center">
   <img width="936" height="76" alt="Screenshot 2026-05-07 234620" src="https://github.com/user-attachments/assets/58bc990f-4870-4561-ae6f-0ac88c654a7a" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 Esta medida permitió analizar la logística de envíos utilizando la fecha de despacho en lugar de la fecha de venta.
@@ -289,7 +274,6 @@ Este tipo de análisis permite:
 
 <p align="center">
   <img width="472" height="124" alt="image" src="https://github.com/user-attachments/assets/68621bc8-5f63-4755-ba72-ba71c9adf724" />
-  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 ---
