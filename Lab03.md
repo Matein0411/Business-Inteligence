@@ -7,389 +7,303 @@
 * Villareal Alexis
 * Yunga Mateo
 
+# <center> Implementación de Modelo Estrella y Análisis Comercial </center>
 
 ## **Índice de Contenidos** 
 
-1. [Products.csv](#productscsv)
-   - [Modelo estrella](#modelo-estrella)
-2. [Tabla_Desnormalizada_Ventas.csv](#tabla_desnormalizada_ventascsv)
-   - [Normalización](#normalización-1)
-   - [Modelo estrella](#modelo-estrella-1)
-   - [Respuestas a las preguntas](#respuestas-a-las-preguntas)
-     - [1. ¿Cuántas ventas se realizaron por categoría de producto y mes?](#1-cuántas-ventas-se-realizaron-por-categoría-de-producto-y-mes)
-     - [2. ¿Cuál es el ingreso total (ventas) por cliente y género?](#2-cuál-es-el-ingreso-total-ventas-por-cliente-y-género)
-     - [3. ¿Cuál es la cantidad total vendida por producto?](#3-cuál-es-la-cantidad-total-vendida-por-producto)
-     - [4. ¿Cuál fue la cantidad enviada por mes de envío?](#4-cuál-fue-la-cantidad-enviada-por-mes-de-envío)
-     - [5. ¿Cuánto se vendió por tamaño de producto y por estado civil del cliente?](#5-cuánto-se-vendió-por-tamaño-de-producto-y-por-estado-civil-del-cliente)
+1. [Introducción](#1-introducción)
+2. [Fase I: Extracción, Transformación y Carga (ETL)](#2-fase-i-extracción-transformación-y-carga-etl)
+  2.1. [Análisis de la Fuente de Datos](#21-análisis-de-la-fuente-de-datos)
+  2.2. [Conversión a Tablas](#22-conversión-a-tablas)
+  2.3. [Limpieza y Eliminación de Duplicados](#23-limpieza-y-eliminación-de-duplicados)
+  2.4. [Estandarización de Nombres](#24-estandarización-de-nombres)
+3. [Fase II: Diseño del Modelo Dimensional](#3-fase-ii-diseño-del-modelo-dimensional)
+  3.1. [Carga de Datos al Modelo](#31-carga-de-datos-al-modelo)
+  3.2. [Creación de la Tabla Calendario](#32-creación-de-la-tabla-calendario)
+  3.3. [Creación de la Clave de Fecha](#33-creación-de-la-clave-de-fecha)
+  3.4. [Construcción del Modelo Estrella](#34-construcción-del-modelo-estrella)
+4. [Fase III: Análisis Analítico y Reportabilidad](#4-fase-iii-análisis-analítico-y-reportabilidad)
+  4.1. [Ventas por Categoría y Mes](#41-ventas-por-categoría-y-mes})
+  4.2. [Ventas por Cliente y Género](#42-ventas-por-cliente-y-género)
+  4.3. [Cantidad Vendida por Producto](#43-cantidad-vendida-por-producto)
+  4.4. [Cantidad enviada por mes](#44-cantidad-enviada-por-mes)
+  4.5. [Relación de las ventas con el tamaño del producto y el estado civil](#45-relación-de-las-ventas-con-el-tamaño-del-producto-y-el-estado-civil)
+5. [Conclusiones](#5-conclusiones)
 
+## 1. Introducción
 
+El presente informe describe el proceso de implementación de un modelo de datos en estrella para el análisis comercial de ventas utilizando Power Pivot, el objetivo principal fue transformar una fuente de datos desnormalizada en una estructura optimizada para análisis, permitiendo responder preguntas estratégicas de negocio relacionadas con ventas, clientes, productos y logística.
 
-primero se analizaron los dartos, estableciendo las dimensiones que serian (tal y con tales campos (verificar para esto el diagrama final), en dim_date solo mencionar que es calendario )
-<img width="1844" height="196" alt="image" src="https://github.com/user-attachments/assets/162d870a-bea2-4084-bd12-426346218862" />
+### Preguntas de negocio planteadas
 
-dividio en nuevas hojas las tablas y se les dio formato dinero, enteros, etc (dim_procut, dim_cusotmer_ dim_date (solo se usa para encontrar el rango de las ordenes pa sacar el calendario), fact_sales)
-<img width="681" height="337" alt="Screenshot 2026-05-07 225054" src="https://github.com/user-attachments/assets/83298662-906a-46be-9f45-57d2c5981027" />
-eliminacnon de duplicados en tablas dim, el cmapo key como criterio
-<img width="473" height="269" alt="Screenshot 2026-05-07 230519" src="https://github.com/user-attachments/assets/97300c1e-302e-44b5-8fdd-3968623bbff3" />
-por practicidad se nombran las tablas
-<img width="1067" height="440" alt="image" src="https://github.com/user-attachments/assets/8eb0938c-e15c-4abf-9bb9-2710a3d2a1b4" />
+- ¿Cuánto se vendió por categoría y mes?
+- ¿Cuánto se vendió a cada cliente según su género?
+- ¿Cuál es la cantidad total vendida por producto?
+- ¿Cuánta cantidad fue enviada por mes?
+- ¿Cómo se relacionan las ventas con el tamaño del producto y el estado civil de los clientes?
 
-se agregan las tablas al modelo de datos
-<img width="1006" height="490" alt="image" src="https://github.com/user-attachments/assets/1b0f803e-2d1a-4405-8da9-10c5e7c5b717" />
+---
 
-se analizo la primera y ultima fecha de regsitro del order date para crear un calendario con pivot
-<img width="1049" height="207" alt="image" src="https://github.com/user-attachments/assets/0239de4f-ea4b-4a4d-aa4d-db667a0976e7" />
-para la datekey se estandarizo a formato int, al igual que las otras key de las otras tablas mediante la formula descrita
-<img width="979" height="272" alt="Screenshot 2026-05-07 233938" src="https://github.com/user-attachments/assets/90d8ea83-4168-42cd-b877-6b79015aefae" />
+# 2. Fase I: Extracción, Transformación y Carga (ETL)
 
-obteniendo asi los  siguientes campos
-<img width="237" height="298" alt="Screenshot 2026-05-07 230027" src="https://github.com/user-attachments/assets/b865f606-1edb-4e54-b233-19473d0883bc" />
-la date kety se conecta de forma activa a order date key y pasiva a ship date key
-finalmente usando la vista de disgrama se llego a lo siguiente
-<img width="1444" height="744" alt="Screenshot 2026-05-07 230746" src="https://github.com/user-attachments/assets/7281cb68-8c8d-49f0-a303-73d6ae2764a1" />
+## 2.1. Análisis de la Fuente de Datos
 
-pa las tablas dinamicas se cargan desde pivot
-<img width="1017" height="318" alt="image" src="https://github.com/user-attachments/assets/21e4248c-0120-4841-be03-f3b3a35517d8" />
+El proceso inició con una tabla desnormalizada que contenía información de ventas, clientes, productos y fechas en una sola estructura. Aunque esta organización permite almacenar toda la información en un único lugar, no es eficiente para análisis avanzados debido a la redundancia de datos y al incremento en el tamaño de la tabla.
 
-1.	¿Cuántas ventas se realizaron por categoría de producto y mes?
-<img width="464" height="312" alt="Screenshot 2026-05-07 232706" src="https://github.com/user-attachments/assets/0d2941ef-6676-4886-8219-f606830aaa76" />
+Por esta razón, fue necesario dividir la información en tablas de dimensiones y una tabla de hechos, en un modelo estrella.
 
-2.	¿Cuál es el ingreso total (ventas) por cliente y género?
-<img width="986" height="113" alt="image" src="https://github.com/user-attachments/assets/7edd9399-8059-49ce-b1b7-8353cc714823" />
-
-   
-4.	¿Cuál es la cantidad total vendida por producto?
-<img width="275" height="246" alt="Screenshot 2026-05-07 232946" src="https://github.com/user-attachments/assets/56d36462-6f98-40d8-844c-0f02a45c8b93" />
-
-5.	¿Cuál fue la cantidad enviada por mes de envío?
-formula
-<img width="1414" height="165" alt="image" src="https://github.com/user-attachments/assets/c54f162d-183b-4c99-801e-3ecc9a51fb8d" />
-<img width="936" height="76" alt="Screenshot 2026-05-07 234620" src="https://github.com/user-attachments/assets/58bc990f-4870-4561-ae6f-0ac88c654a7a" />
-
-	
-7.	¿Cuánto se vendió por tamaño de producto y por estado civil del cliente?
-<img width="472" height="124" alt="image" src="https://github.com/user-attachments/assets/68621bc8-5f63-4755-ba72-ba71c9adf724" />
-
-
-## Products.csv
-### Normalización 
-
-Se importaron los 699 registros del archivo products.csv en una tabla temporal en PostgreSQL para su posterior procesamiento.
 <p align="center">
-  <img width="1919" height="1018" alt="image" src="https://github.com/user-attachments/assets/c9e5a33f-0356-4714-b96a-5a5e3d565a61" />
+  <img width="1844" height="196" alt="image" src="https://github.com/user-attachments/assets/162d870a-bea2-4084-bd12-426346218862" />
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
+</p>
+
+## 2.2. Conversión a Tablas
+
+Cada conjunto de datos fue convertido a formato de tabla de Excel utilizando la opción `Ctrl + T`.
+
+<p align="center">
+  <img width="681" height="337" alt="Screenshot 2026-05-07 225054" src="https://github.com/user-attachments/assets/83298662-906a-46be-9f45-57d2c5981027" />
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
+</p>
+
+## 2.3. Limpieza y Eliminación de Duplicados
+
+En las tablas dimensionales, `dim_customer` y `dim_product`, se eliminaron registros duplicados utilizando las llaves primarias correspondientes.
+
+Este procedimiento garantizó la integridad del modelo dimensional, asegurando que cada dimensión contenga únicamente registros únicos.
+
+<p align="center">
+  <img width="473" height="269" alt="Screenshot 2026-05-07 230519" src="https://github.com/user-attachments/assets/97300c1e-302e-44b5-8fdd-3968623bbff3" />
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
+</p>
+
+## 2.4. Estandarización de Nombres
+
+Se aplicó una convención de nombres para identificar claramente cada tabla según su función dentro del modelo:
+
+### Tablas de hechos
+
+- `fact_sales`
+
+### Tablas de dimensiones
+
+- `dim_customer`
+- `dim_product`
+- `dim_date`
+
+<p align="center">
+  <img width="1067" height="440" alt="image" src="https://github.com/user-attachments/assets/8eb0938c-e15c-4abf-9bb9-2710a3d2a1b4" />
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
+</p>
+---
+
+# 3. Fase II: Diseño del Modelo Dimensional
+
+## 3.1. Carga de Datos al Modelo
+
+Una vez limpias las tablas, se cargaron al modelo de datos de Power Pivot utilizando la opción **Agregar al modelo de datos**.
+
+<p align="center">
+  <img width="1006" height="490" alt="image" src="https://github.com/user-attachments/assets/1b0f803e-2d1a-4405-8da9-10c5e7c5b717" />
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
+</p>
+
+## 3.2. Creación de la Tabla Calendario
+
+Para realizar análisis temporales por mes, año y fecha, se creó una tabla calendario dentro del modelo de datos.
+
+La tabla calendario es fundamental en modelos dimensionales porque permite:
+
+- Agrupar ventas por períodos.
+- Comparar resultados temporales.
+
+<p align="center">
+  <img width="1049" height="207" alt="image" src="https://github.com/user-attachments/assets/0239de4f-ea4b-4a4d-aa4d-db667a0976e7" />
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
+</p>
+
+## 3.3. Creación de la Clave de Fecha
+
+Se creó una columna calculada denominada `Date_key`, la cual transforma las fechas a un formato numérico entero (`YYYYMMDD`) para facilitar las relaciones entre tablas.
+
+La fórmula utilizada fue:
+
+```DAX
+Date_key = INT(FORMAT([Date], "YYYYMMDD"))
+```
+
+Esta clave fue utilizada para relacionar la dimensión calendario con la tabla de hechos.
+
+<p align="center">
+  <img width="979" height="272" alt="Screenshot 2026-05-07 233938" src="https://github.com/user-attachments/assets/90d8ea83-4168-42cd-b877-6b79015aefae" />
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
+</p>
+
+<p align="center">
+  <img width="237" height="298" alt="Screenshot 2026-05-07 230027" src="https://github.com/user-attachments/assets/b865f606-1edb-4e54-b233-19473d0883bc" />
   <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
 
+## 3.4. Construcción del Modelo Estrella
 
-Se definió la estructura física del modelo mediante sentencias CREATE TABLE, estableciendo las claves primarias y relaciones necesarias.
+El modelo implementado siguió una estructura de estrella, donde:
 
-<p align="center">
-  <img width="752" height="336" alt="Screenshot 2026-05-05 185615" src="https://github.com/user-attachments/assets/e8466095-ff66-4a90-a2a8-ccc5ec550294" />
-  <br><sub><strong>Figura 2.</strong> Ejecución de sentencias SQL para la creación de las tablas de dimensiones y la tabla de hechos. </sub>
-</p>
+- La tabla `fact_sales` almacena las métricas de negocio.
+- Las tablas dimensionales almacenan información descriptiva.
 
+Además, se configuraron dos relaciones de fecha:
 
-Se exportó las tablas desde Excel hacia el complemento Power Pivot para establecer el modelo de datos.
-<p align="center">
-  <img width="996" height="540" alt="Screenshot 2026-05-05 185754" src="https://github.com/user-attachments/assets/2598914b-1bb3-40a7-84d6-6695b3c76a86" />
-  <br><sub><strong>Figura 3.</strong> Incorporación de las tablas normalizadas al modelo de datos de Power Pivot para su integración. </sub>
-</p>
+- Relación activa con la fecha de orden.
+- Relación inactiva con la fecha de envío.
 
-
-### Modelo estrella
-Con estos pasos, se pudo obtener la representación gráfica de las relaciones uno a muchos (1:N) entre las dimensiones de categoría y subcategoría con la tabla central de productos.
-<p align="center">
-  <img width="1006" height="571" alt="Screenshot 2026-05-05 190020" src="https://github.com/user-attachments/assets/c877e5c4-8601-4968-8222-84ae902a6f33" />
-  <br><sub><strong>Figura 4.</strong> Diagrama relacional del modelo estrella que conecta la tabla de hechos 'fact_products' con sus respectivas dimensiones. </sub>
-</p>
-
-
-## Tabla_Desnormalizada_Ventas.csv
-### Normalización
-1. Se ingresa al PGAdmin dentro del esquema public y se abre un query tool.
-<p align="center">
-  <img width="1118" height="1010" alt="image" src="https://github.com/user-attachments/assets/a7a92d40-8f7e-4abc-9d3c-4fc9bfa3a324" />
-  <br><sub><strong>Figura 5.</strong> </sub>
-</p>
-
-2. Se crea una base para poder importar todos los datos del excel de Tabla_Desnormalizada_Ventas.csv, pero antes de crear la table base se setean las fechas para poder importar los datos del archi[...]
+Esto permitió analizar tanto ventas realizadas como envíos efectuados.
 
 <p align="center">
-  <img width="1291" height="575" alt="image" src="https://github.com/user-attachments/assets/3bf21df6-69b8-4f7a-bb40-b24b7e34301e" />
-  <br><sub><strong>Figura 6.</strong> </sub>
+  <img width="1444" height="744" alt="Screenshot 2026-05-07 230746" src="https://github.com/user-attachments/assets/7281cb68-8c8d-49f0-a303-73d6ae2764a1" />
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
+
+---
+
+# 4. Fase III: Análisis Analítico y Reportabilidad
+
+A través de tablas dinámicas conectadas al modelo de datos se respondieron las preguntas de negocio planteadas.
 
 <p align="center">
-  <img width="1918" height="1015" alt="image" src="https://github.com/user-attachments/assets/9ecd0cdd-dee9-47df-bcb7-79dfeebf31aa" />
-  <br><sub><strong>Figura 7.</strong> </sub>
+  <img width="1017" height="318" alt="image" src="https://github.com/user-attachments/assets/21e4248c-0120-4841-be03-f3b3a35517d8" />
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
-3. Se importan los datos:
+## 4.1. Ventas por Categoría y Mes
 
-3.1. En la tabla creada, clic derecho para acceder a import/export data.
-<p align="center">
-  <img width="1162" height="1021" alt="image" src="https://github.com/user-attachments/assets/6a5b2602-8c1f-40da-b628-727f983e1d61" />
-  <br><sub><strong>Figura 8.</strong> </sub>
-</p>
+**Pregunta:** ¿Cuántas ventas se realizaron por categoría de producto y mes?
 
-3.2. establecer import, la extensión del archivo (csv) y el encoding (UTF8).
-<p align="center">
-  <img width="1478" height="825" alt="image" src="https://github.com/user-attachments/assets/a1246b20-3fd4-4284-b3a2-aedd3cefebe9" />
-  <br><sub><strong>Figura 9.</strong> </sub>
-</p>
+Se analizaron las ventas agrupadas por categoría de producto y mes, permitiendo identificar:
 
-3.3. en la pestaña de options se activó header y se verificó que el delimitador sea el punto y coma
-<p align="center">
-  <img width="1475" height="876" alt="image" src="https://github.com/user-attachments/assets/b9cadfb2-5446-4fe7-9d47-3b9e74ae8e0f" />
-  <br><sub><strong>Figura 10.</strong> </sub>
-</p>
+- Temporadas de mayor demanda.
+- Categorías con mejor rendimiento.
+- Variaciones mensuales de ventas.
 
-3.4. Se verifica que estén las columnas especificadas
-<p align="center">
-  <img width="1429" height="816" alt="image" src="https://github.com/user-attachments/assets/f528e6e1-a99d-4049-9134-5dad2440fb8f" />
-  <br><sub><strong>Figura 11.</strong> </sub>
-</p>
-
-3.5. Se da en ok y se ve el proceso con éxito.
-<p align="center">
-  <img width="1919" height="1022" alt="image" src="https://github.com/user-attachments/assets/8a67ace9-981a-4222-9e51-d33c67ece53b" />
-  <br><sub><strong>Figura 12.</strong> </sub>
-</p>
-
-4. Se verificó que los datos estén
-<p align="center">
-  <img width="1919" height="1014" alt="image" src="https://github.com/user-attachments/assets/2ba03ffe-7bc9-49a6-938f-6adc8f7e9c9b" />
-  <br><sub><strong>Figura 13.</strong> </sub>
-</p>
-
-### Normalización
-
-Para normalizar el archivo `Tabla_Desnormalizada_Ventas.csv`, se separaron los datos repetidos en tablas de dimensión y se mantuvieron las métricas de venta en una tabla de hechos. De esta forma, el modelo queda organizado en torno a `fact_sales`, que se relaciona con las dimensiones `dim_product`, `dim_customer` y `dim_date`.
-
-5. Se crearon las tablas establecidas por el grupo para construir el modelo estrella.
-
-5.1. Tabla de dimensión para los productos (dim_product) junto a sus valores
-
-```sql
-CREATE TABLE dim_product (
-    product_key VARCHAR(100) PRIMARY KEY,
-    product_code VARCHAR(100),
-    product_name VARCHAR(200),
-    list_price DECIMAL(18,2),
-    color VARCHAR(50),
-    size VARCHAR(50),
-    category VARCHAR(100),
-    subcategory VARCHAR(100)
-);
-
-INSERT INTO dim_product
-SELECT DISTINCT 
-    product_key, product_code, product_name, 
-    CAST(list_price AS DECIMAL), 
-    color, size, category, subcategory
-FROM ventas;
-```
+Este análisis ayuda a planificar inventarios y estrategias comerciales.
 
 <p align="center">
-  <img width="1919" height="906" alt="image" src="https://github.com/user-attachments/assets/c53f93e3-0c29-4e5d-bc4d-820ca30a531a" />
-  <br><sub><strong>Figura 14.</strong> Creación e inserción de registros únicos en la dimensión de productos (`dim_product`). </sub>
+  <img width="464" height="312" alt="Screenshot 2026-05-07 232706" src="https://github.com/user-attachments/assets/0d2941ef-6676-4886-8219-f606830aaa76" />
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
-5.2. Tabla de dimensión para los clientes (dim_customer) junto a sus valores
+## 4.2. Ventas por Cliente y Género
 
-```sql
-CREATE TABLE dim_customer (
-    customer_key VARCHAR(100) PRIMARY KEY,
-    birth_date DATE,
-    marital_status VARCHAR(50),
-    gender VARCHAR(20),
-    income DECIMAL(18,2),
-    children INT,
-    home_owner VARCHAR(10),
-    cars INT
-);
+**Pregunta:** ¿Cuál es el ingreso total (ventas) por cliente y género?
 
-INSERT INTO dim_customer
-SELECT DISTINCT 
-    customer_key, 
-    CAST(birth_date AS DATE), 
-    marital_status, 
-    gender, 
-    CAST(income AS DECIMAL), 
-    CAST(children AS INT), 
-    home_owner, 
-    CAST(cars AS INT)
-FROM ventas;
-```
+Se calculó el total vendido por cliente segmentado según género.
 
-<p align="center">
-  <img width="1744" height="859" alt="image" src="https://github.com/user-attachments/assets/6a3167ed-445c-4ce4-b949-1b3cabfdc758" />
-  <br><sub><strong>Figura 15.</strong> Creación e inserción de registros únicos en la dimensión de clientes (`dim_customer`). </sub>
-</p>
+La consulta permitió identificar:
 
-5.3. Tabla de dimensión para la fecha (dim_date) junto a sus valores, a diferencia de las otras, esta se genera combinando todas las fechas únicas de órdenes y envíos.
+- Clientes con mayores ingresos generados.
+- Distribución de ventas según género.
 
-```sql
-CREATE TABLE dim_date (
-    date_key DATE PRIMARY KEY,
-    month_name VARCHAR(20),
-    month_no INT,
-    year INT
-);
+### Consulta SQL utilizada
 
-INSERT INTO dim_date
-SELECT DISTINCT 
-    fecha, 
-    TO_CHAR(fecha, 'Month'), 
-    EXTRACT(MONTH FROM fecha), 
-    EXTRACT(YEAR FROM fecha)
-FROM (
-    SELECT CAST(order_date AS DATE) AS fecha FROM ventas
-    UNION
-    SELECT CAST(ship_date AS DATE) AS fecha FROM ventas
-) AS t;
-```
-
-<p align="center">
-  <img width="1137" height="975" alt="image" src="https://github.com/user-attachments/assets/61b1af55-4a29-45e5-a4df-0ba2923cc853" />
-  <br><sub><strong>Figura 16.</strong> Generación de la dimensión de fechas (`dim_date`) a partir de las fechas de orden y envío. </sub>
-</p>
-
-5.4. Tabla de hechos para el análisis
-
-```sql
-CREATE TABLE fact_sales (
-    order_number VARCHAR(100),
-    order_line_number INT,
-    product_key VARCHAR(100) REFERENCES dim_product(product_key),
-    customer_key VARCHAR(100) REFERENCES dim_customer(customer_key),
-    order_date_key DATE REFERENCES dim_date(date_key),
-    ship_date_key DATE REFERENCES dim_date(date_key),
-    quantity INT,
-    unit_price DECIMAL(18,2),
-    product_cost DECIMAL(18,2),
-    sales_amount DECIMAL(18,2),
-    PRIMARY KEY (order_number, order_line_number)
-);
-
-INSERT INTO fact_sales
+```SQL
 SELECT 
-    order_number, 
-    CAST(order_line_number AS INT), 
-    product_key, 
-    customer_key, 
-    CAST(order_date AS DATE), 
-    CAST(ship_date AS DATE), 
-    CAST(quantity AS INT), 
-    CAST(unit_price AS DECIMAL), 
-    CAST(product_cost AS DECIMAL), 
-    CAST(sales_amount AS DECIMAL)
-FROM ventas;
+    dc.customer_name AS "NOMBRE",
+    dc.gender AS "GENERO",
+    SUM(fss.sales_amount) AS "VALOR VENDIDO"
+FROM fact_sales fss
+JOIN dim_customer dc
+    ON fss.customer_key = dc.customer_key
+GROUP BY dc.gender, dc.customer_key
+ORDER BY dc.gender;
 ```
 
 <p align="center">
-  <img width="1919" height="936" alt="image" src="https://github.com/user-attachments/assets/fbc0f880-61c8-4fb3-8d3d-d8385c8f1924" />
-  <br><sub><strong>Figura 17.</strong> Creación e inserción de la tabla de hechos (`fact_sales`) con sus claves foráneas hacia las dimensiones. </sub>
+  <img width="986" height="113" alt="image" src="https://github.com/user-attachments/assets/7edd9399-8059-49ce-b1b7-8353cc714823" />
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
-Con esta estructura, cada venta conserva sus medidas principales (`quantity`, `unit_price`, `product_cost` y `sales_amount`) y queda conectada con la información descriptiva de producto, cliente y fechas. Esto permite responder las preguntas analíticas mediante consultas SQL con relaciones entre la tabla de hechos y sus dimensiones.
+## 4.3. Cantidad Vendida por Producto
 
-### Modelo estrella
+**Pregunta:** ¿Cuál es la cantidad total vendida por producto?
 
-Una vez definida la arquitectura estrella, se procedió a cargar las tablas en Excel y al modelo de datos de Power Pivot, con ello, se establecieron las relaciones correspondientes entre las claves foráneas de la tabla de hechos y las claves primarias de la tablas de dimensiones. 
+Se calculó la cantidad total vendida por producto para identificar:
+
+- Productos líderes.
+- Productos con baja rotación.
+- Comportamientos de demanda.
+
+Este análisis es útil para control de inventarios y decisiones de abastecimiento.
+
 <p align="center">
-  <img width="1119" height="718" alt="image" src="https://github.com/user-attachments/assets/ef18d89a-6f55-41e1-a9a0-3915bc8254a2" />
-  <br><sub><strong>Figura 18.</strong> Modelo Estrella Tabla Desnormalizada </sub>
+  <img width="275" height="246" alt="Screenshot 2026-05-07 232946" src="https://github.com/user-attachments/assets/56d36462-6f98-40d8-844c-0f02a45c8b93" />
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
-### Respuestas a las preguntas 
-#### 1. ¿Cuántas ventas se realizaron por categoría de producto y mes?
-Esta pregunta se pudo responder mediante el uso de la siguiente consulta SQL:
+## 4.4. Cantidad enviada por mes
 
-```sql
-SELECT p.category, d.year, d.month_name, COUNT(f.order_number) AS total_ventas
-FROM fact_sales f
-JOIN dim_product p ON f.product_key = p.product_key
-JOIN dim_date d ON f.order_date_key = d.date_key
-GROUP BY p.category, d.year, d.month_no, d.month_name
-ORDER BY d.year, d.month_no;
+**Pregunta:** ¿Cuánta cantidad fue enviada por mes?
+
+Para analizar la cantidad enviada por mes se utilizó una relación inactiva entre la tabla de hechos y la tabla calendario.
+
+Con el fin de activar temporalmente dicha relación, se implementó la función `USERELATIONSHIP`.
+
+La medida desarrollada fue:
+
+```DAX
+QuantitySent =
+CALCULATE(
+    SUM(fact_sales[Quantity]),
+    USERELATIONSHIP(
+        fact_sales[ShipDateKey],
+        Calendario[Date_key]
+    )
+)
 ```
 
-La siguiente figura muestra la respuesta solicitada:
-
 <p align="center">
-  <img width="1315" height="1016" alt="image" src="https://github.com/user-attachments/assets/ba6b2c47-55d9-463b-b2e6-a8c29af8e8b7" />
-  <br><sub><strong>Figura 19.</strong> Respuesta pregunta 1. </sub>
+  <img width="1414" height="165" alt="image" src="https://github.com/user-attachments/assets/c54f162d-183b-4c99-801e-3ecc9a51fb8d" />
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
-
-#### 2. ¿Cuál es el ingreso total (ventas) por cliente y género?
-Esta pregunta se pudo responder mediante el uso de la siguiente consulta SQL:
-```sql
-SELECT c.customer_key, c.gender, SUM(f.sales_amount) AS ingreso_total
-FROM fact_sales f
-JOIN dim_customer c ON f.customer_key = c.customer_key
-GROUP BY c.customer_key, c.gender
-ORDER BY ingreso_total DESC;
-```
-De la ejecución de esta consulta se pudo destacar que el ingreso más representativo proviene del customer con key '1022', de género masculino. 
-
 <p align="center">
-  <img width="1209" height="869" alt="image" src="https://github.com/user-attachments/assets/38481dae-1a3b-4ad5-bb17-19b3421d2c9d" />
-  <br><sub><strong>Figura 20.</strong> Respuesta pregunta 2. </sub>
+  <img width="936" height="76" alt="Screenshot 2026-05-07 234620" src="https://github.com/user-attachments/assets/58bc990f-4870-4561-ae6f-0ac88c654a7a" />
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
+Esta medida permitió analizar la logística de envíos utilizando la fecha de despacho en lugar de la fecha de venta.
 
-#### 3. ¿Cuál es la cantidad total vendida por producto?
+## 4.5. Relación de las ventas con el tamaño del producto y el estado civil
 
-Esta pregunta se pudo responder mediante el uso de la siguiente consulta SQL:
+**Pregunta:** ¿Cómo se relacionan las ventas con el tamaño del producto y el estado civil de los clientes?
 
-```sql
-SELECT p.product_name, SUM(f.quantity) AS cantidad_total
-FROM fact_sales f
-JOIN dim_product p ON f.product_key = p.product_key
-GROUP BY p.product_name
-ORDER BY cantidad_total DESC;
-```
-La ejecución de esta consulta revela revela principalmente que los productos de nombre: 'Product 19', 'Product 41' y 'Product 18' son los más vendidos con una cantidad de 60, 41 y 39 unidades respectivamente.   
+Finalmente, se realizó un análisis cruzado entre:
 
-<p align="center">
-  <img width="1088" height="858" alt="image" src="https://github.com/user-attachments/assets/4d7c0e8e-752b-45a4-b2f3-a18c136caf8f" />
-  <br><sub><strong>Figura 21.</strong> Respuesta pregunta 3</sub>
-</p>
+- Tamaño de producto.
+- Estado civil de clientes.
 
-#### 4. ¿Cuál fue la cantidad enviada por mes de envío?
-Esta pregunta se pudo responder mediante el uso de la siguiente consulta SQL:
+Este tipo de análisis permite:
 
-```sql
-SELECT d.year, d.month_name, SUM(f.quantity) AS cantidad_enviada
-FROM fact_sales f
-JOIN dim_date d ON f.ship_date_key = d.date_key
-GROUP BY d.year, d.month_no, d.month_name
-ORDER BY d.year, d.month_no;
-```
-
-La ejecución de esta consulta permitió revelar la cantidad enviada en cada uno de los 32 meses de operación, tal como lo muestra la figura a continuación:
+- Personalizar promociones.
+- Detectar perfiles de clientes.
+- Optimizar estrategias comerciales.
 
 <p align="center">
-  <img width="1189" height="978" alt="image" src="https://github.com/user-attachments/assets/76f2f35f-a77f-457c-9983-461ef0ec0586" />
-  <br><sub><strong>Figura 22.</strong> Respuesta pregunta 4 </sub>
+  <img width="472" height="124" alt="image" src="https://github.com/user-attachments/assets/68621bc8-5f63-4755-ba72-ba71c9adf724" />
+  <br><sub><strong>Figura 1.</strong> Vista de los datos desnormalizados cargados en la tabla 'products' mediante PostgreSQL. </sub>
 </p>
 
-#### 5. ¿Cuánto se vendió por tamaño de producto y por estado civil del cliente?
-Esta pregunta se pudo responder mediante el uso de la siguiente consulta SQL:
-```sql
-SELECT p.size, c.marital_status, SUM(f.sales_amount) AS total_vendido
-FROM fact_sales f
-JOIN dim_product p ON f.product_key = p.product_key
-JOIN dim_customer c ON f.customer_key = c.customer_key
-GROUP BY p.size, c.marital_status;
-```
+---
 
-La ejecución de esta consulta reveló que la mayor cantidad de ventas se concentró en el grupo que adquirió talla Medium y su estado marital es casado; con un total vendido de 23714 unidades. 
+# 5. Conclusiones
 
-<p align="center">
-  <img width="1219" height="752" alt="image" src="https://github.com/user-attachments/assets/f21bb579-33a5-41d0-82e7-4137acb65877" />
-  <br><sub><strong>Figura 23.</strong> Respuesta pregunta 5 </sub>
-</p>
+La implementación del modelo estrella permitió transformar una estructura desnormalizada en una solución analítica eficiente y escalable.
+
+Entre los principales beneficios obtenidos se encuentran:
+
+- Reducción de redundancia de datos.
+- Mejora en el rendimiento de análisis.
+- Capacidad de realizar segmentaciones complejas.
+- Integración de análisis temporal mediante tabla calendario.
+- Uso de medidas DAX avanzadas para análisis logísticos.
+
+El uso de Power Pivot y modelado dimensional facilitó la construcción de un entorno de Business Intelligence capaz de responder preguntas estratégicas de negocio de manera rápida y eficiente.
