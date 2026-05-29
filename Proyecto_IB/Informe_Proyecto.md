@@ -73,7 +73,6 @@ En el escenario elegido, se necesita evaluar dos eventos distintos de forma simu
    `fecha_carga` y `fecha_actualizacion` con DEFAULT NOW().
 9. **Update** (`UPD_DIM_ESTABLECIMIENTO`) → actualizar `prov_ubi, cant_ubi, parr_ubi, area_ubi, clase, tipo, entidad, sector, fecha_actualizacion` con clave `nk_establecimiento` (SCD Tipo 1).
 
----
 <p align="center">
   <img width="1460" height="435" alt="Transformacion DIM_ESTABLECIMIENTO" src="https://github.com/user-attachments/assets/382f7b9c-4764-440f-8c1d-0ac6f2749bce" />
   <br><sub><strong>Figura 2.</strong> Transformacion DIM_ESTABLECIMIENTO. </sub>
@@ -96,7 +95,6 @@ En el escenario elegido, se necesita evaluar dos eventos distintos de forma simu
    - Si no existe (NULL) → **Table Output** para insertar
    - Si existe → **Dummy** (no hacer nada, SCD1 de diagnósticos es estable)
 
----
 
 <p align="center">
   <img width="1352" height="344" alt="Transformacion DIM_DIAGNOSTICO" src="https://github.com/user-attachments/assets/fcfa78d7-934b-483a-b36b-285b835ee7c4" />
@@ -122,7 +120,6 @@ En el escenario elegido, se necesita evaluar dos eventos distintos de forma simu
 4. **Database Lookup** → buscar `nk_residencia` en `dim_residencia`
 5. **Filter** → nuevos → **Table Output** | existentes → **Dummy**
 
----
 
 <p align="center">
   <img width="1366" height="349" alt="Transformacion DIM_RESIDENCIA" src="https://github.com/user-attachments/assets/f8ae3c45-778d-4c99-aa6e-8df2eed4955d" />
@@ -168,7 +165,6 @@ En el escenario elegido, se necesita evaluar dos eventos distintos de forma simu
 4. **Sort + Unique** → por `nk_paciente`
 5. **Database Lookup + Filter → Table Output** (mismo patrón que dimensiones anteriores)
 
----
 
 
 <p align="center">
@@ -223,7 +219,6 @@ Asegurarse de que los campos numéricos sean INTEGER o SMALLINT:
 - **Usar Insert-Update** con clave `(id_establecimiento, id_tiempo)`
   para soportar recargas parciales sin duplicar.
 
----
 
 <p align="center">
   <img width="1408" height="632" alt="Transformacion FACT_CAMAS_HOSPITALARIAS" src="https://github.com/user-attachments/assets/ab192015-aff7-4ccf-9eb5-f580f5726ead" />
@@ -332,7 +327,6 @@ Seleccionar y ordenar sólo los campos que van a la fact:
 - **Batch size: 5000** (equilibrio entre memoria y velocidad)
 - **Truncate table: SÍ** si es carga inicial; NO si es carga incremental
 
----
 
 <p align="center">
   <img width="815" height="897" alt="Transformacion FACT_EGRESOS_HOSPITALARIOS" src="https://github.com/user-attachments/assets/095929ae-6d11-437e-bb06-e3be25553a88" />
