@@ -29,7 +29,10 @@ El sistema de salud en el Ecuador sufre constantemente por hospitales colapsados
 La solución fue crear un almacén de datos centralizado que unifica automáticamente la disponibilidad de camas con el volumen de egresos de cada casa de salud, poniendo toda esta información conectada a disposición de los coordinadores locales a través de un tablero interactivo. Al consolidar los datos en un solo lugar, la herramienta permite a los coordinadores entender claramente las relaciones entre la capacidad física de un hospital y la cantidad de pacientes que realmente atiende o despacha. Con este entendimiento visual de las conexiones, los usuarios pueden monitorear los niveles de saturación por especialidad médica en su territorio, identificar cuellos de botella exactos y tomar decisiones operativas inmediatas, como gestionar derivaciones a tiempo o redistribuir recursos antes de llegar al colapso sanitario.
 
 ## Justificación del diseño
-<img width="1453" height="987" alt="image" src="https://github.com/user-attachments/assets/2be2b8b0-e3f7-4727-81f3-122553974668" />
+<p align="center">
+  <img width="1453" height="987" alt="Modelo constelacion" src="https://github.com/user-attachments/assets/2be2b8b0-e3f7-4727-81f3-122553974668" />
+  <br><sub><strong>Figura 1.</strong> Modelo constelacion (esquema galaxia). </sub>
+</p>
 
 Para estructurar los datos de este proyecto, se eligió implementar un Modelo Constelación (también conocido como Esquema Galaxia). Esta decisión se justifica porque este diseño permite tener múltiples tablas de hechos que comparten dimensiones comunes.
 
@@ -71,7 +74,10 @@ En el escenario elegido, se necesita evaluar dos eventos distintos de forma simu
 9. **Update** (`UPD_DIM_ESTABLECIMIENTO`) → actualizar `prov_ubi, cant_ubi, parr_ubi, area_ubi, clase, tipo, entidad, sector, fecha_actualizacion` con clave `nk_establecimiento` (SCD Tipo 1).
 
 ---
-<img width="1460" height="435" alt="image" src="https://github.com/user-attachments/assets/382f7b9c-4764-440f-8c1d-0ac6f2749bce" />
+<p align="center">
+  <img width="1460" height="435" alt="Transformacion DIM_ESTABLECIMIENTO" src="https://github.com/user-attachments/assets/382f7b9c-4764-440f-8c1d-0ac6f2749bce" />
+  <br><sub><strong>Figura 2.</strong> Transformacion DIM_ESTABLECIMIENTO. </sub>
+</p>
 
 
 
@@ -92,7 +98,10 @@ En el escenario elegido, se necesita evaluar dos eventos distintos de forma simu
 
 ---
 
-<img width="1352" height="344" alt="image" src="https://github.com/user-attachments/assets/fcfa78d7-934b-483a-b36b-285b835ee7c4" />
+<p align="center">
+  <img width="1352" height="344" alt="Transformacion DIM_DIAGNOSTICO" src="https://github.com/user-attachments/assets/fcfa78d7-934b-483a-b36b-285b835ee7c4" />
+  <br><sub><strong>Figura 3.</strong> Transformacion DIM_DIAGNOSTICO. </sub>
+</p>
 
 
 ## DIM_RESIDENCIA
@@ -115,7 +124,10 @@ En el escenario elegido, se necesita evaluar dos eventos distintos de forma simu
 
 ---
 
-<img width="1366" height="349" alt="image" src="https://github.com/user-attachments/assets/f8ae3c45-778d-4c99-aa6e-8df2eed4955d" />
+<p align="center">
+  <img width="1366" height="349" alt="Transformacion DIM_RESIDENCIA" src="https://github.com/user-attachments/assets/f8ae3c45-778d-4c99-aa6e-8df2eed4955d" />
+  <br><sub><strong>Figura 4.</strong> Transformacion DIM_RESIDENCIA. </sub>
+</p>
 
 ## DIM_PACIENTE
 
@@ -159,7 +171,10 @@ En el escenario elegido, se necesita evaluar dos eventos distintos de forma simu
 ---
 
 
-<img width="1331" height="361" alt="image" src="https://github.com/user-attachments/assets/f3055fe0-4662-4c76-b208-9f3650d24328" />
+<p align="center">
+  <img width="1331" height="361" alt="Transformacion DIM_PACIENTE" src="https://github.com/user-attachments/assets/f3055fe0-4662-4c76-b208-9f3650d24328" />
+  <br><sub><strong>Figura 5.</strong> Transformacion DIM_PACIENTE. </sub>
+</p>
 
 ## FACT_CAMAS_HOSPITALARIAS
 
@@ -210,7 +225,10 @@ Asegurarse de que los campos numéricos sean INTEGER o SMALLINT:
 
 ---
 
-<img width="1408" height="632" alt="image" src="https://github.com/user-attachments/assets/ab192015-aff7-4ccf-9eb5-f580f5726ead" />
+<p align="center">
+  <img width="1408" height="632" alt="Transformacion FACT_CAMAS_HOSPITALARIAS" src="https://github.com/user-attachments/assets/ab192015-aff7-4ccf-9eb5-f580f5726ead" />
+  <br><sub><strong>Figura 6.</strong> Transformacion FACT_CAMAS_HOSPITALARIAS. </sub>
+</p>
 
 
 ## FACT_EGRESOS_HOSPITALARIOS
@@ -316,9 +334,12 @@ Seleccionar y ordenar sólo los campos que van a la fact:
 
 ---
 
-<img width="815" height="897" alt="image" src="https://github.com/user-attachments/assets/095929ae-6d11-437e-bb06-e3be25553a88" />
+<p align="center">
+  <img width="815" height="897" alt="Transformacion FACT_EGRESOS_HOSPITALARIOS" src="https://github.com/user-attachments/assets/095929ae-6d11-437e-bb06-e3be25553a88" />
+  <br><sub><strong>Figura 7.</strong> Transformacion FACT_EGRESOS_HOSPITALARIOS. </sub>
+</p>
 
-
+	
 ## Análisis de insights clave obtenidos (OLAP)
 
 ## Recomendaciones al negocio
