@@ -29,6 +29,8 @@ El sistema de salud en el Ecuador sufre constantemente por hospitales colapsados
 La solución fue crear un almacén de datos centralizado que unifica automáticamente la disponibilidad de camas con el volumen de egresos de cada casa de salud, poniendo toda esta información conectada a disposición de los coordinadores locales a través de un tablero interactivo. Al consolidar los datos en un solo lugar, la herramienta permite a los coordinadores entender claramente las relaciones entre la capacidad física de un hospital y la cantidad de pacientes que realmente atiende o despacha. Con este entendimiento visual de las conexiones, los usuarios pueden monitorear los niveles de saturación por especialidad médica en su territorio, identificar cuellos de botella exactos y tomar decisiones operativas inmediatas, como gestionar derivaciones a tiempo o redistribuir recursos antes de llegar al colapso sanitario.
 
 ## Justificación del diseño
+<img width="1453" height="987" alt="image" src="https://github.com/user-attachments/assets/2be2b8b0-e3f7-4727-81f3-122553974668" />
+
 Para estructurar los datos de este proyecto, se eligió implementar un Modelo Constelación (también conocido como Esquema Galaxia). Esta decisión se justifica porque este diseño permite tener múltiples tablas de hechos que comparten dimensiones comunes.
 
 En el escenario elegido, se necesita evaluar dos eventos distintos de forma simultánea: la dotación de camas (oferta) y los egresos hospitalarios (demanda). En lugar de mezclar toda la información, el modelo constelación separa estos datos en dos tablas centrales, pero las conecta a las mismas dimensiones compartidas (como el establecimiento de salud y el tiempo). Gracias a esta arquitectura, el sistema soporta análisis más complejos, permitiendo que el tablero cruce y compare la capacidad física del hospital frente al volumen real de pacientes de manera exacta, sin generar duplicados ni errores de cálculo.
@@ -36,7 +38,6 @@ En el escenario elegido, se necesita evaluar dos eventos distintos de forma simu
 ## PROCESO ETL
 
 ##  DIM_ESTABLECIMIENTO
-
 **Fuente:** `camas_hospitalarias_2024.csv`
 
 ### Pasos:
@@ -70,6 +71,9 @@ En el escenario elegido, se necesita evaluar dos eventos distintos de forma simu
 9. **Update** (`UPD_DIM_ESTABLECIMIENTO`) → actualizar `prov_ubi, cant_ubi, parr_ubi, area_ubi, clase, tipo, entidad, sector, fecha_actualizacion` con clave `nk_establecimiento` (SCD Tipo 1).
 
 ---
+<img width="1460" height="435" alt="image" src="https://github.com/user-attachments/assets/382f7b9c-4764-440f-8c1d-0ac6f2749bce" />
+
+
 
 ## DIM_DIAGNOSTICO
 **Fuente:** `egresos_hospitalarios_2024.csv`
@@ -87,6 +91,9 @@ En el escenario elegido, se necesita evaluar dos eventos distintos de forma simu
    - Si existe → **Dummy** (no hacer nada, SCD1 de diagnósticos es estable)
 
 ---
+
+<img width="1352" height="344" alt="image" src="https://github.com/user-attachments/assets/fcfa78d7-934b-483a-b36b-285b835ee7c4" />
+
 
 ## DIM_RESIDENCIA
 
@@ -107,6 +114,8 @@ En el escenario elegido, se necesita evaluar dos eventos distintos de forma simu
 5. **Filter** → nuevos → **Table Output** | existentes → **Dummy**
 
 ---
+
+<img width="1366" height="349" alt="image" src="https://github.com/user-attachments/assets/f8ae3c45-778d-4c99-aa6e-8df2eed4955d" />
 
 ## DIM_PACIENTE
 
@@ -148,6 +157,9 @@ En el escenario elegido, se necesita evaluar dos eventos distintos de forma simu
 5. **Database Lookup + Filter → Table Output** (mismo patrón que dimensiones anteriores)
 
 ---
+
+
+<img width="1331" height="361" alt="image" src="https://github.com/user-attachments/assets/f3055fe0-4662-4c76-b208-9f3650d24328" />
 
 ## FACT_CAMAS_HOSPITALARIAS
 
@@ -197,6 +209,9 @@ Asegurarse de que los campos numéricos sean INTEGER o SMALLINT:
   para soportar recargas parciales sin duplicar.
 
 ---
+
+<img width="1408" height="632" alt="image" src="https://github.com/user-attachments/assets/ab192015-aff7-4ccf-9eb5-f580f5726ead" />
+
 
 ## FACT_EGRESOS_HOSPITALARIOS
 
@@ -300,6 +315,9 @@ Seleccionar y ordenar sólo los campos que van a la fact:
 - **Truncate table: SÍ** si es carga inicial; NO si es carga incremental
 
 ---
+
+<img width="815" height="897" alt="image" src="https://github.com/user-attachments/assets/095929ae-6d11-437e-bb06-e3be25553a88" />
+
 
 ## Análisis de insights clave obtenidos (OLAP)
 
