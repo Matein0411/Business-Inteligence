@@ -339,7 +339,14 @@ Seleccionar y ordenar sólo los campos que van a la fact:
   <br><sub><strong>Figura 7.</strong> Transformacion FACT_EGRESOS_HOSPITALARIOS. </sub>
 </p>
 
-	
+
 ## Análisis de insights clave obtenidos (OLAP)
 
 ## Recomendaciones al negocio
+Una vez implementado el Data Warehouse y el tablero de visualización, se plantean las siguientes recomendaciones estratégicas para el Ministerio de Salud y los coordinadores locales:
+
+* Fomentar decisiones basadas en evidencia y no en la intuición: Se recomienda que los directores de hospitales y coordinadores zonales integren la consulta de este tablero interactivo en sus reuniones de planificación operativa. Al disponer de cruces directos entre camas y egresos, las decisiones sobre derivaciones de pacientes o asignación de presupuestos deben justificarse utilizando los indicadores de saturación que muestra el sistema, abandonando la gestión reactiva.
+
+* Transición hacia actualizaciones periódicas (Cargas Incrementales): Actualmente, el modelo procesa información anual. Para maximizar la capacidad de respuesta, se recomienda establecer políticas que permitan alimentar el sistema con datos nuevos de manera más frecuente (mensual o trimestral), utilizando cargas incrementales. Esto permitirá analizar la información estratégica con datos actuales, identificando picos temporales de demanda antes de que el hospital colapse.
+
+* Rastrear el impacto de la infraestructura a lo largo del tiempo: Los hospitales no son entidades estáticas; constantemente abren nuevas áreas, cambian su categorización o incrementan sus camas. Se recomienda al negocio reportar disciplinadamente estos cambios al equipo de datos para registrar el historial completo de la infraestructura. Así, se podrá evaluar a largo plazo si la ampliación de un hospital realmente solucionó la crisis local de demanda.
