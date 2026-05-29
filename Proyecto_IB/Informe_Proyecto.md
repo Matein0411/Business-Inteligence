@@ -336,6 +336,18 @@ Seleccionar y ordenar sólo los campos que van a la fact:
 
 ## Análisis de insights clave obtenidos (OLAP)
 
+### Insights de camas hospitalarias
+El análisis permitió comprender la situación de la infraestructura hospitalaria y responder de forma clara a las siguientes preguntas:
+1. ¿Cómo se distribuye la capacidad instalada real del sistema hospitalario a nivel geográfico y qué proporción de estos recursos está destinada específicamente a salvar vidas?
+2. ¿En qué áreas médicas se presenta la mayor inoperatividad de infraestructura que explica la brecha actual entre la capacidad planificada y la utilizable?
+3. ¿Cuál es el nivel de eficiencia operativa en la rotación de la infraestructura física (camas) y cómo se relaciona el volumen de atención con los resultados de mortalidad según el sector?
+
+### Insight de egresos hospitalarios
+Con los egresos hospitalarios se identificaron patrones de demanda y resultados clínicos, respondiendo a las siguientes preguntas:
+1. ¿Cuál es el volumen y tasa de mortalidad de pacientes que han egresado por cada especialidad médica?
+2. ¿Cómo varía el promedio de días de estada hospitalaria según el rango de edad y el sexo del paciente?
+3. ¿Qué provincias del Ecuador registran la mayor demanda de atención médica y en qué localidades se concentran los pacientes que requieren hospitalización?
+
 ## Recomendaciones al negocio
 Una vez implementado el Data Warehouse y el tablero de visualización, se plantean las siguientes recomendaciones estratégicas para el Ministerio de Salud y los coordinadores locales:
 
