@@ -344,8 +344,8 @@ El análisis permitió comprender la situación de la infraestructura hospitalar
 
 ### Insight de egresos hospitalarios
 Con los egresos hospitalarios se identificaron patrones de demanda y resultados clínicos, respondiendo a las siguientes preguntas:
-1. ¿Cuál es el volumen y tasa de mortalidad de pacientes que han egresado por cada especialidad médica?
-2. ¿Cómo varía el promedio de días de estada hospitalaria según el rango de edad y el sexo del paciente?
+1. ¿Cuáles son las 5 especialidades médicas que registran el mayor volumen de egresos hospitalarios?
+2. ¿Cómo varía el promedio de días de estadía hospitalaria según el rango de edad y el sexo del paciente?
 3. ¿Qué provincias del Ecuador registran la mayor demanda de atención médica y en qué localidades se concentran los pacientes que requieren hospitalización?
 
 ## Recomendaciones al negocio
