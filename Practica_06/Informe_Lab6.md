@@ -20,7 +20,7 @@
 ## Modelo Estrella
 
 <p align="center">
-  <img width="1003" height="727" alt="Modelo estrella" src="https://github.com/user-attachments/assets/d163fafb-bc34-44ba-a73f-cdc010db0316" />
+  <img width="415" height="263" alt="image" src="https://github.com/user-attachments/assets/0940fd3e-ceee-40b0-8fb1-a4c6209ce19f" />
   <br><sub><strong>Figura 1.</strong> Modelo Estrella. </sub>
 </p>
 
