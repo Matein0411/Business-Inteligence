@@ -1,12 +1,21 @@
-<img width="748" height="528" alt="image" src="https://github.com/user-attachments/assets/4efb3307-fe22-43f4-8f17-5669099eb5d1" />
+<div align="center">
+  <img width="748" height="528" alt="image" src="https://github.com/user-attachments/assets/4efb3307-fe22-43f4-8f17-5669099eb5d1" />
+  <div>Figura 1. Resultados del modelo Naive Bayes en Weka.</div>
+</div>
 
 
 
-<img width="455" height="336" alt="image" src="https://github.com/user-attachments/assets/9b08e146-ce69-4939-bb5a-d0f727d17bb8" />
+<div align="center">
+  <img width="455" height="336" alt="image" src="https://github.com/user-attachments/assets/9b08e146-ce69-4939-bb5a-d0f727d17bb8" />
+  <div>Figura 2. Código Python para calcular la predicción con Naive Bayes.</div>
+</div>
 
 
 
-<img width="1001" height="754" alt="image" src="https://github.com/user-attachments/assets/f1ea3a12-6c67-43ff-87c1-77a76db2ac09" />
+<div align="center">
+  <img width="1001" height="754" alt="image" src="https://github.com/user-attachments/assets/f1ea3a12-6c67-43ff-87c1-77a76db2ac09" />
+  <div>Figura 3. Salida general de la evaluación del clasificador sobre el conjunto de entrenamiento.</div>
+</div>
 
 
 ```=== Run information ===
@@ -137,17 +146,26 @@ prediccion = naive_bayes_play(outlook, temperature, humidity, windy)
 print(f"\n Predicción final: {'JUGAR' if prediccion == 'yes' else 'NO JUGAR'}")
 ```
 
-<img width="365" height="200" alt="image" src="https://github.com/user-attachments/assets/b81c2705-015c-433d-937c-f19b00eec4d4" />
+<div align="center">
+  <img width="365" height="200" alt="image" src="https://github.com/user-attachments/assets/b81c2705-015c-433d-937c-f19b00eec4d4" />
+  <div>Figura 4. Probabilidad calculada para la clase SÍ jugar.</div>
+</div>
 
 
-<img width="357" height="202" alt="image" src="https://github.com/user-attachments/assets/eebf3459-0e7a-402a-b864-c7147010fb6d" />  
+<div align="center">
+  <img width="357" height="202" alt="image" src="https://github.com/user-attachments/assets/eebf3459-0e7a-402a-b864-c7147010fb6d" />
+  <div>Figura 5. Probabilidad calculada para la clase NO jugar.</div>
+</div>
 
 
 ## Predecir
 1. Clic en la opción Tool del menú y seleccionar ArffViewer
 
 
-<img width="390" height="151" alt="Screenshot 2026-06-30 185406" src="https://github.com/user-attachments/assets/97fb8bfb-59b6-4726-a0c5-531278b7c560" />
+<div align="center">
+  <img width="390" height="151" alt="Screenshot 2026-06-30 185406" src="https://github.com/user-attachments/assets/97fb8bfb-59b6-4726-a0c5-531278b7c560" />
+  <div>Figura 6. Selección de la herramienta ArffViewer desde el menú Tool.</div>
+</div>
 
 
 3. Clic en File → Open y seleccionar el archivo weather.nominal.arff.
@@ -158,48 +176,73 @@ utilizando las herramientas de edición disponibles en el ArffViewer.
 6. Se debe dejar en blanco el atributo de clase, ya que se desea que su valor sea predicho por el clasificador.
 
 
-<img width="716" height="399" alt="Screenshot 2026-06-30 185527" src="https://github.com/user-attachments/assets/3dadfc64-c078-4b8b-8c00-93684ae1d071" />
-<img width="363" height="137" alt="image" src="https://github.com/user-attachments/assets/1d1a4d77-d9ac-4a84-9917-9c14c008c112" />
+<div align="center">
+  <img width="716" height="399" alt="Screenshot 2026-06-30 185527" src="https://github.com/user-attachments/assets/3dadfc64-c078-4b8b-8c00-93684ae1d071" />
+  <div>Figura 7. Edición del archivo de prueba dentro de ArffViewer.</div>
+</div>
+
+<div align="center">
+  <img width="363" height="137" alt="image" src="https://github.com/user-attachments/assets/1d1a4d77-d9ac-4a84-9917-9c14c008c112" />
+  <div>Figura 8. Registro de prueba con el atributo de clase en blanco.</div>
+</div>
 
 
 7. Después de modificar los valores de la(s) fila(s), se debe guardar el archivo con el nombre test.arff.
 8. Luego, se debe ir a la pestaña Preprocess y hacer clic en la opción Open file, seleccionando el archivo weather.nominal.arff.
 
 
-<img width="1006" height="754" alt="Screenshot 2026-06-30 191335" src="https://github.com/user-attachments/assets/a98b5c1c-e719-4c7a-a308-3a4fa21230bd" />
+<div align="center">
+  <img width="1006" height="754" alt="Screenshot 2026-06-30 191335" src="https://github.com/user-attachments/assets/a98b5c1c-e719-4c7a-a308-3a4fa21230bd" />
+  <div>Figura 9. Carga del archivo weather.nominal.arff en la pestaña Preprocess.</div>
+</div>
 
 
 9. A continuación, se debe seleccionar la pestaña Classify y elegir el clasificador NaiveBayes.
 10. Clic en el botón Start, lo que permitirá construir el clasificador.
 
 
-<img width="1003" height="753" alt="image" src="https://github.com/user-attachments/assets/14f7ec5c-d7d2-415e-b36f-4b2ed8d39a9b" />
+<div align="center">
+  <img width="1003" height="753" alt="image" src="https://github.com/user-attachments/assets/14f7ec5c-d7d2-415e-b36f-4b2ed8d39a9b" />
+  <div>Figura 10. Configuración del clasificador NaiveBayes en la pestaña Classify.</div>
+</div>
 
 
 11. Seleccionar la opción Supplied test set y hacer clic en el botón Set.
 12. Posteriormente, se abre el archivo con Open File → seleccionar test.arff. 
 
 
-<img width="1006" height="754" alt="image" src="https://github.com/user-attachments/assets/2b349baf-be7d-461c-bbe4-4538f8b4a529" />
+<div align="center">
+  <img width="1006" height="754" alt="image" src="https://github.com/user-attachments/assets/2b349baf-be7d-461c-bbe4-4538f8b4a529" />
+  <div>Figura 11. Selección de la opción Supplied test set para usar el archivo de prueba.</div>
+</div>
 
 
 13. En More Options, seleccionar PlainText en Output predictions.
 
 
-<img width="425" height="477" alt="image" src="https://github.com/user-attachments/assets/010b04e5-690f-4021-92b2-2c26a6d761ef" />
+<div align="center">
+  <img width="425" height="477" alt="image" src="https://github.com/user-attachments/assets/010b04e5-690f-4021-92b2-2c26a6d761ef" />
+  <div>Figura 12. Configuración de la salida PlainText para las predicciones.</div>
+</div>
 
 
 14. Finalmente, hacer clic en el botón Start para aplicar el clasificador sobre la(s) instancia(s) de prueba.
 15. En este caso, el clasificador ha predicho una instancia desconocida como Play: Yes.
 
 
-<img width="1001" height="753" alt="image" src="https://github.com/user-attachments/assets/8928bad3-b897-4c3b-9656-51a17327a9e2" />
+<div align="center">
+  <img width="1001" height="753" alt="image" src="https://github.com/user-attachments/assets/8928bad3-b897-4c3b-9656-51a17327a9e2" />
+  <div>Figura 13. Predicción de la instancia desconocida como Play: Yes.</div>
+</div>
 
 
 16. Repetir lo mismo para J48:
 
 
-<img width="1005" height="752" alt="image" src="https://github.com/user-attachments/assets/f3892bc4-129d-4356-a1e1-6469d24f3d5e" />
+<div align="center">
+  <img width="1005" height="752" alt="image" src="https://github.com/user-attachments/assets/f3892bc4-129d-4356-a1e1-6469d24f3d5e" />
+  <div>Figura 14. Resultados obtenidos al repetir la prueba con el clasificador J48.</div>
+</div>
 
 
 
