@@ -9,11 +9,26 @@
 
 ## **Índice de Contenidos**
 
-1. [Modelo Estrella](#modelo-estrella)
-2. [Respuestas](#respuestas)
-   - [1. ¿Cuál es el costo total de atención por especialidad, ciudad y mes?](#1-cuál-es-el-costo-total-de-atención-por-especialidad-ciudad-y-mes)
-   - [2. ¿Qué ciudad tuvo más emergencias por mes y género?](#2-qué-ciudad-tuvo-más-emergencias-por-mes-y-género)
-   - [3. ¿Por diagnóstico, tipo de seguro, cuál es el costo promedio por visita y en qué ciudad es más alto?](#3-por-diagnóstico-tipo-de-seguro-cuál-es-el-costo-promedio-por-visita-y-en-qué-ciudad-es-más-alto)
+1. [Índice de Figuras](#índice-de-figuras)
+2. [Predecir](#predecir)
+3. [Referencias bibliográficas](#referencias-bibliográficas)
+4. [Declaración de porcentaje de uso de IA](#declaración-de-porcentaje-de-uso-de-ia)
+
+### **Índice de Figuras**
+* [Figura 1. Resultados del modelo Naive Bayes en Weka.](#figura-1)
+* [Figura 2. Código Python para calcular la predicción con Naive Bayes.](#figura-2)
+* [Figura 3. Salida general de la evaluación del clasificador sobre el conjunto de entrenamiento.](#figura-3)
+* [Figura 4. Probabilidad calculada para la clase SÍ jugar.](#figura-4)
+* [Figura 5. Probabilidad calculada para la clase NO jugar.](#figura-5)
+* [Figura 6. Selección de la herramienta ArffViewer desde el menú Tool.](#figura-6)
+* [Figura 7. Edición del archivo de prueba dentro de ArffViewer.](#figura-7)
+* [Figura 8. Registro de prueba con el atributo de clase en blanco.](#figura-8)
+* [Figura 9. Carga del archivo weather.nominal.arff en la pestaña Preprocess.](#figura-9)
+* [Figura 10. Configuración del clasificador NaiveBayes en la pestaña Classify.](#figura-10)
+* [Figura 11. Selección de la opción Supplied test set para usar el archivo de prueba.](#figura-11)
+* [Figura 12. Configuración de la salida PlainText para las predicciones.](#figura-12)
+* [Figura 13. Predicción de la instancia desconocida como Play: Yes.](#figura-13)
+* [Figura 14. Resultados obtenidos al repetir la prueba con el clasificador J48.](#figura-14)
 
 ---
 
