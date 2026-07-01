@@ -17,10 +17,16 @@
 
 ---
 
+## Parte 1
+
+1. Se cargó el conjunto de entrenamiento en Weka y se ejecutó el clasificador Naive Bayes para obtener el modelo inicial sobre el archivo `weather.symbolic.arff`.
+
 <div align="center">
   <img width="748" height="528" alt="image" src="https://github.com/user-attachments/assets/4efb3307-fe22-43f4-8f17-5669099eb5d1" />
   <div>Figura 1. Resultados del modelo Naive Bayes en Weka.</div>
 </div>
+
+2. Para replicar el cálculo de la predicción de forma manual, se implementó en Python la función `naive_bayes_play`, definiendo las probabilidades base y condicionales de cada atributo.
 
 
 
@@ -29,12 +35,16 @@
   <div>Figura 2. Código Python para calcular la predicción con Naive Bayes.</div>
 </div>
 
+3. Se analizó el resumen de evaluación sobre el conjunto de entrenamiento, donde se obtuvo una precisión global de 92.8571 % y se verificó que el clasificador reconocía correctamente la mayor parte de las instancias.
+
 
 
 <div align="center">
   <img width="1001" height="754" alt="image" src="https://github.com/user-attachments/assets/f1ea3a12-6c67-43ff-87c1-77a76db2ac09" />
   <div>Figura 3. Salida general de la evaluación del clasificador sobre el conjunto de entrenamiento.</div>
 </div>
+
+4. Con el script se ingresaron los datos del clima y se calcularon las probabilidades normalizadas para las clases SÍ jugar y NO jugar.
 
 
 ```=== Run information ===
@@ -165,10 +175,14 @@ prediccion = naive_bayes_play(outlook, temperature, humidity, windy)
 print(f"\n Predicción final: {'JUGAR' if prediccion == 'yes' else 'NO JUGAR'}")
 ```
 
+5. Finalmente, se interpretaron los resultados obtenidos para comparar las probabilidades de la clase SÍ jugar.
+
 <div align="center">
   <img width="365" height="200" alt="image" src="https://github.com/user-attachments/assets/b81c2705-015c-433d-937c-f19b00eec4d4" />
   <div>Figura 4. Probabilidad calculada para la clase SÍ jugar.</div>
 </div>
+
+6. De igual manera, se interpretaron los resultados obtenidos para comparar las probabilidades de la clase NO jugar.
 
 
 <div align="center">
