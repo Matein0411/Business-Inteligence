@@ -9,11 +9,10 @@
 
 ## **Índice de Contenidos**
 
-1. [Modelo Estrella](#modelo-estrella)
-2. [Respuestas](#respuestas)
-   - [1. ¿Cuál es el costo total de atención por especialidad, ciudad y mes?](#1-cuál-es-el-costo-total-de-atención-por-especialidad-ciudad-y-mes)
-   - [2. ¿Qué ciudad tuvo más emergencias por mes y género?](#2-qué-ciudad-tuvo-más-emergencias-por-mes-y-género)
-   - [3. ¿Por diagnóstico, tipo de seguro, cuál es el costo promedio por visita y en qué ciudad es más alto?](#3-por-diagnóstico-tipo-de-seguro-cuál-es-el-costo-promedio-por-visita-y-en-qué-ciudad-es-más-alto)
+1. [Índice de Figuras](#índice-de-figuras)
+2. [Predecir](#predecir)
+3. [Referencias bibliográficas](#referencias-bibliográficas)
+4. [Declaración de porcentaje de uso de IA](#declaración-de-porcentaje-de-uso-de-ia)
 
 ---
 
