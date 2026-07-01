@@ -1,3 +1,22 @@
+# <center> **ESCUELA POLITÉCNICA NACIONAL** </center>
+
+**Integrantes**
+* Betancourt Alison
+* Calvache Mateo
+* Camacho Julián
+* Villareal Alexis
+* Yunga Mateo
+
+## **Índice de Contenidos**
+
+1. [Modelo Estrella](#modelo-estrella)
+2. [Respuestas](#respuestas)
+   - [1. ¿Cuál es el costo total de atención por especialidad, ciudad y mes?](#1-cuál-es-el-costo-total-de-atención-por-especialidad-ciudad-y-mes)
+   - [2. ¿Qué ciudad tuvo más emergencias por mes y género?](#2-qué-ciudad-tuvo-más-emergencias-por-mes-y-género)
+   - [3. ¿Por diagnóstico, tipo de seguro, cuál es el costo promedio por visita y en qué ciudad es más alto?](#3-por-diagnóstico-tipo-de-seguro-cuál-es-el-costo-promedio-por-visita-y-en-qué-ciudad-es-más-alto)
+
+---
+
 <div align="center">
   <img width="748" height="528" alt="image" src="https://github.com/user-attachments/assets/4efb3307-fe22-43f4-8f17-5669099eb5d1" />
   <div>Figura 1. Resultados del modelo Naive Bayes en Weka.</div>
