@@ -9,18 +9,23 @@
 
 ## **Índice de Contenidos**
 
-1. [Modelo Estrella](#modelo-estrella)
-2. [Respuestas](#respuestas)
-   - [1. ¿Cuál es el costo total de atención por especialidad, ciudad y mes?](#1-cuál-es-el-costo-total-de-atención-por-especialidad-ciudad-y-mes)
-   - [2. ¿Qué ciudad tuvo más emergencias por mes y género?](#2-qué-ciudad-tuvo-más-emergencias-por-mes-y-género)
-   - [3. ¿Por diagnóstico, tipo de seguro, cuál es el costo promedio por visita y en qué ciudad es más alto?](#3-por-diagnóstico-tipo-de-seguro-cuál-es-el-costo-promedio-por-visita-y-en-qué-ciudad-es-más-alto)
+1. [Índice de Figuras](#índice-de-figuras)
+2. [Predecir](#predecir)
+3. [Referencias bibliográficas](#referencias-bibliográficas)
+4. [Declaración de porcentaje de uso de IA](#declaración-de-porcentaje-de-uso-de-ia)
 
 ---
+
+## Parte 1
+
+1. Se cargó el conjunto de entrenamiento en Weka y se ejecutó el clasificador Naive Bayes para obtener el modelo inicial sobre el archivo `weather.symbolic.arff`.
 
 <div align="center">
   <img width="748" height="528" alt="image" src="https://github.com/user-attachments/assets/4efb3307-fe22-43f4-8f17-5669099eb5d1" />
   <div>Figura 1. Resultados del modelo Naive Bayes en Weka.</div>
 </div>
+
+2. Para replicar el cálculo de la predicción de forma manual, se implementó en Python la función `naive_bayes_play`, definiendo las probabilidades base y condicionales de cada atributo.
 
 
 
@@ -29,12 +34,16 @@
   <div>Figura 2. Código Python para calcular la predicción con Naive Bayes.</div>
 </div>
 
+3. Se analizó el resumen de evaluación sobre el conjunto de entrenamiento, donde se obtuvo una precisión global de 92.8571 % y se verificó que el clasificador reconocía correctamente la mayor parte de las instancias.
+
 
 
 <div align="center">
   <img width="1001" height="754" alt="image" src="https://github.com/user-attachments/assets/f1ea3a12-6c67-43ff-87c1-77a76db2ac09" />
   <div>Figura 3. Salida general de la evaluación del clasificador sobre el conjunto de entrenamiento.</div>
 </div>
+
+4. Con el script se ingresaron los datos del clima y se calcularon las probabilidades normalizadas para las clases SÍ jugar y NO jugar.
 
 
 ```=== Run information ===
@@ -165,10 +174,14 @@ prediccion = naive_bayes_play(outlook, temperature, humidity, windy)
 print(f"\n Predicción final: {'JUGAR' if prediccion == 'yes' else 'NO JUGAR'}")
 ```
 
+5. Finalmente, se interpretaron los resultados obtenidos para comparar las probabilidades de la clase SÍ jugar.
+
 <div align="center">
   <img width="365" height="200" alt="image" src="https://github.com/user-attachments/assets/b81c2705-015c-433d-937c-f19b00eec4d4" />
   <div>Figura 4. Probabilidad calculada para la clase SÍ jugar.</div>
 </div>
+
+6. De igual manera, se interpretaron los resultados obtenidos para comparar las probabilidades de la clase NO jugar.
 
 
 <div align="center">
@@ -178,7 +191,7 @@ print(f"\n Predicción final: {'JUGAR' if prediccion == 'yes' else 'NO JUGAR'}")
 
 
 ## Predecir
-1. Clic en la opción Tool del menú y seleccionar ArffViewer
+1. Se hizo clic en la opción Tool del menú y se seleccionó ArffViewer.
 
 
 <div align="center">
@@ -187,12 +200,11 @@ print(f"\n Predicción final: {'JUGAR' if prediccion == 'yes' else 'NO JUGAR'}")
 </div>
 
 
-3. Clic en File → Open y seleccionar el archivo weather.nominal.arff.
-4. Luego, se deben seleccionar todos los registros en ArffViewer, excepto uno, ya que ese se reservará como registro de prueba.
-Clic en Edit → Delete Instances.
-5. A continuación, se deben modificar los valores del registro restante, asignándoles los valores que se desean utilizar como instancia de prueba,
-utilizando las herramientas de edición disponibles en el ArffViewer.
-6. Se debe dejar en blanco el atributo de clase, ya que se desea que su valor sea predicho por el clasificador.
+3. Se hizo clic en File → Open y se seleccionó el archivo weather.nominal.arff.
+4. Luego, se seleccionaron todos los registros en ArffViewer, excepto uno, ya que ese se reservó como registro de prueba.
+Se hizo clic en Edit → Delete Instances.
+5. A continuación, se modificaron los valores del registro restante, asignándoles los valores que se utilizaron como instancia de prueba, mediante las herramientas de edición disponibles en el ArffViewer.
+6. Se dejó en blanco el atributo de clase, ya que se deseó que su valor fuera predicho por el clasificador.
 
 
 <div align="center">
@@ -206,8 +218,8 @@ utilizando las herramientas de edición disponibles en el ArffViewer.
 </div>
 
 
-7. Después de modificar los valores de la(s) fila(s), se debe guardar el archivo con el nombre test.arff.
-8. Luego, se debe ir a la pestaña Preprocess y hacer clic en la opción Open file, seleccionando el archivo weather.nominal.arff.
+7. Después de modificar los valores de la(s) fila(s), se guardó el archivo con el nombre test.arff.
+8. Luego, se fue a la pestaña Preprocess y se hizo clic en la opción Open file, seleccionando el archivo weather.nominal.arff.
 
 
 <div align="center">
@@ -216,8 +228,8 @@ utilizando las herramientas de edición disponibles en el ArffViewer.
 </div>
 
 
-9. A continuación, se debe seleccionar la pestaña Classify y elegir el clasificador NaiveBayes.
-10. Clic en el botón Start, lo que permitirá construir el clasificador.
+9. A continuación, se seleccionó la pestaña Classify y se eligió el clasificador NaiveBayes.
+10. Se hizo clic en el botón Start, lo que permitió construir el clasificador.
 
 
 <div align="center">
@@ -226,8 +238,8 @@ utilizando las herramientas de edición disponibles en el ArffViewer.
 </div>
 
 
-11. Seleccionar la opción Supplied test set y hacer clic en el botón Set.
-12. Posteriormente, se abre el archivo con Open File → seleccionar test.arff. 
+11. Se seleccionó la opción Supplied test set y se hizo clic en el botón Set.
+12. Posteriormente, se abrió el archivo con Open File y se seleccionó test.arff. 
 
 
 <div align="center">
@@ -236,7 +248,7 @@ utilizando las herramientas de edición disponibles en el ArffViewer.
 </div>
 
 
-13. En More Options, seleccionar PlainText en Output predictions.
+13. En More Options, se seleccionó PlainText en Output predictions.
 
 
 <div align="center">
@@ -245,8 +257,8 @@ utilizando las herramientas de edición disponibles en el ArffViewer.
 </div>
 
 
-14. Finalmente, hacer clic en el botón Start para aplicar el clasificador sobre la(s) instancia(s) de prueba.
-15. En este caso, el clasificador ha predicho una instancia desconocida como Play: Yes.
+14. Finalmente, se hizo clic en el botón Start para aplicar el clasificador sobre la(s) instancia(s) de prueba.
+15. En este caso, el clasificador predijo una instancia desconocida como Play: Yes.
 
 
 <div align="center">
@@ -255,13 +267,21 @@ utilizando las herramientas de edición disponibles en el ArffViewer.
 </div>
 
 
-16. Repetir lo mismo para J48:
+16. Se repitió lo mismo para J48:
 
 
 <div align="center">
   <img width="1005" height="752" alt="image" src="https://github.com/user-attachments/assets/f3892bc4-129d-4356-a1e1-6469d24f3d5e" />
   <div>Figura 14. Resultados obtenidos al repetir la prueba con el clasificador J48.</div>
 </div>
+
+## Referencias bibliográficas
+
+1. Microsoft, "Algoritmo Bayes naive de Microsoft", *[Microsoft Learn](https://learn.microsoft.com/)*, 2026. [En línea]. Disponible en: https://learn.microsoft.com/es-es/analysis-services/data-mining/microsoft-naive-bayes-algorithm. [Accedido: 30-jun-2026].
+
+## Declaración de porcentaje de uso de IA
+
+Se estimó un 15% de uso de IA en la elaboración de este informe. Ese porcentaje se justificó porque la IA se utilizó únicamente como apoyo puntual para ajustar la redacción a tercera persona y tiempo pasado, además de ayudar a incorporar las nuevas secciones solicitadas; en cambio, el contenido técnico, la secuencia de pasos, las capturas y la mayor parte del desarrollo fueron elaborados de forma manual.
 
 
 
