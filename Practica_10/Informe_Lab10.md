@@ -131,6 +131,10 @@ Se interpretaron los resultados generados, como se muestra en la Figura 1.28.
 ### Interpretación de resultados
 
 La mejor regla de asociación obtenida al ejecutar el algoritmo Apriori sobre el dataset **DailyItem** fue **Jam → Cornflake**, con una confianza del **100%**. Esto significa que, cada vez que aparece *Jam*, también aparece *Cornflake* en esta combinación. Este resultado coincide con lo analizado en la sección anterior del capítulo.
+---
+## 3. Applying the Apriori Algorithm on a Numeric Dataset
+
+### 3.1. 
 
 ---
 
