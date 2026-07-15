@@ -142,12 +142,46 @@ El objetivo es analizar el rendimiento de los estudiantes, como los datos de not
 Abrir MS Excel y tabular los datos, luego, guardar el archivo como un archivo CSV, introducir el nombre del archivo como Conjunto de datos DailyItem y seleccionar CSV (delimitado por comas), finalmente.
 
 <p align="center">
-<img width="875" height="301" alt="image" src="https://github.com/user-attachments/assets/b4c0a4f7-c114-4982-82d5-829bb113a31a" /> /><br>
+<img width="875" height="301" alt="image" src="https://github.com/user-attachments/assets/b4c0a4f7-c114-4982-82d5-829bb113a31a" /><br>
 <sub><b>Figura 3.1.</b> Dataset de 9 ítems con las columnas Name	MST(20.0)	Quiz(15)	Lab(20.0)	ENDSEM (45.0)	Total (100.0)	Grade</sub>
 </p>
 
 ### 3.2. Cargar y preparar en Weka
 
+A continuación, cargar el archivo CSV creado en el paso anterior en Weka.
+
+<img width="1269" height="948" alt="image" src="https://github.com/user-attachments/assets/32605589-54b6-46e5-8efd-7a1c24126286" />
+
+### 3.3. Eliminar columnas
+
+Dado que las columnas Número de matrícula y Nombre no desempeñan ningún papel en la minería de asociaciones, se las eliminó.
+
+<img width="1120" height="943" alt="image" src="https://github.com/user-attachments/assets/8a4356ac-ec59-42cc-a6ec-c8c803df964d" />
+
+Pero los datos son de naturaleza numérica y la minería de asociaciones no se puede aplicar a datos numéricos, ya que la minería de reglas de asociación solo funciona con valores nominales. Por lo tanto, es necesario convertir los datos numéricos en valores nominales mediante el proceso de conversión llamado discretización.
+
+Aquí, no estamos usando el filtro NuméricoaNominal, pero aún queremos convertir las calificaciones en valores nominales como Malo, Promedio, Bueno, etc., para un mejor análisis.
+
+<img width="797" height="810" alt="image" src="https://github.com/user-attachments/assets/d979f843-fe3f-4f40-ab35-01db2d04c8cf" />
+
+### 3.4. Operación de Discretización
+
+Para realizar la operación de discretización de convertir valores numéricos a nominales, el usuario puede aplicar uno de los filtros de Weka que discretiza los valores de los datos. Hay dos tipos de discretización, a saber, intervalo igual y frecuencia igual. Ambos son similares al agrupamiento. En consecuencia, utilizaremos el término 'agrupación' para cada grupo diferente. En la discretización de intervalo igual, calculamos un tamaño de agrupación y luego colocamos las muestras en la agrupación apropiada. En la discretización de frecuencia igual, permitimos que los tamaños de las agrupaciones varíen, donde nuestro objetivo es elegir tamaños de agrupación de manera que cada agrupación tenga aproximadamente el mismo número de muestras. La idea es que si cada agrupación tiene el mismo número de muestras, ninguna agrupación, o grupo, tendrá un mayor o menor impacto en los resultados de la minería de datos. Para aplicar el filtro de discretización, haga clic en el botón Elegir para seleccionar el filtro. Esto abre un árbol de carpetas.
+
+<img width="1251" height="942" alt="image" src="https://github.com/user-attachments/assets/c9d16c34-eed3-4c0b-81b9-2d6758ca61df" />
+
+### 3.5. Editor de objetos genéricos y así cambiar las propiedades del filtro Discretizar.
+
+Para el análisis de las calificaciones, nos interesarán los valores Bajo, Medio y Alto para cada columna, así que realice los siguientes cambios:
+
+1. Establezca el número de intervalos en 3 desde el valor predeterminado de 10.
+2. Establezca el atributo useEqualFrequency en True para que 1/3 de los estudiantes se coloquen en cada intervalo de Alto, Medio y Bajo en función de sus calificaciones.
+   
+<img width="1258" height="949" alt="image" src="https://github.com/user-attachments/assets/a4dd156c-a6a5-4fc6-8250-44aa0338bef4" />
+
+### 3.4. Nuevas categorías
+
+### 3.5. Reglas de minería de asociaciones
 
 ---
 
