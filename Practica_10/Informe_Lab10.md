@@ -308,7 +308,27 @@ Para el análisis de las calificaciones, nos interesarán los valores Bajo, Medi
 
 ### 3.6. Nuevas categorías
 
+Tras aplicar el filtro de Discretización con la configuración de 3 intervalos (bins = 3) y frecuencia igual (useEqualFrequency = True), los datos numéricos originales fueron transformados exitosamente en categorías nominales. En el caso del atributo MST, por ejemplo, los valores se agruparon en tres categorías etiquetadas como B1of3, B2of3 y B3of3, lo que permite una interpretación cualitativa del rendimiento de los estudiantes, diferenciando niveles de desempeño en lugar de utilizar valores absolutos. Este proceso permitió que el dataset estuviera listo para ser procesado por los algoritmos de minería de reglas de asociación, eliminando la restricción original de trabajar únicamente con variables nominales.
+
+<p align="center">
+<img width="975" height="734" alt="image" src="https://github.com/user-attachments/assets/3e597d9b-8f26-4fa2-a303-9d2d06b4b83e" />
+<br>
+<sub><b>Figura 3.7. Discretización de datos numéricos a nominales. </b> A.</sub>
+</p>
+
+
 ### 3.7. Reglas de minería de asociaciones
+
+Una vez finalizada la preparación, se ejecutó el algoritmo Apriori en la pestaña Associate de Weka. Se configuró el algoritmo con una confianza mínima de 0.9 y un soporte mínimo adecuado para identificar patrones relevantes.  Los resultados obtenidos revelan asociaciones significativas entre las calificaciones parciales y la calificación final (Grade). Algunas de las reglas más destacadas son:  
+
+- Regla 1: MST(20.0)='B3of3' Lab(20.0)='B3of3' ==> Grade=A (Confianza: 1). Esta regla indica que los estudiantes que logran una calificación alta en los exámenes MST y en el Laboratorio tienen una probabilidad del 100% de alcanzar la calificación máxima.
+- Regla 2: Quiz(15)='B1of3' ENDSEM(45.0)='B1of3' ==> Grade=E (Confianza: 1). Esta regla evidencia que un desempeño bajo en el Quiz y en el examen final está fuertemente asociado con la obtención de una calificación de grado 'E'.
+
+<p align="center">
+<img width="975" height="898" alt="image" src="https://github.com/user-attachments/assets/f4cc12e4-ac4d-4daf-8334-1ae75b58c029" />
+<br>
+<sub><b>Figura 3.8. Resultados de la minería de reglas de asociación (Algoritmo Apriori). </b> </sub>
+</p>
 
 ---
 
