@@ -364,4 +364,41 @@ Best rules found:
  19. MST(20.0)=H Lab(20.0)=H Total(100.0)=H 2 ==> Grade=A 2    acc:(0.85829)
  20. Grade=E 8 ==> ENDSEM(45.0)=L Total(100.0)=L 7    acc:(0.79178)
 ```
+### 10.7 Aplicación del Algoritmo Apriori en Weka en un Dataset más grande del Mundo Real
 
+Se procedió a tabular los datos en Excel, guardando posteriormente el archivo en formato CSV con el nombre DailyItem2 Data set. La estructura del archivo se aprecia en la siguiente imagen:
+
+<img width="492" height="178" alt="image" src="https://github.com/user-attachments/assets/543cf300-50b4-4890-b05e-69a881e19a1e" />
+
+Para ejecutar el algoritmo, se inició Weka y se seleccionó la opción "Explorer". Dentro de la pestaña "Preprocess", se importó el archivo CSV generado en el paso anterior mediante el botón
+"Open file"
+
+<img width="884" height="671" alt="image" src="https://github.com/user-attachments/assets/7cf8dfb5-5437-46c4-a280-5173a0f1e24b" />
+
+Al cargar el archivo, Weka interpreta inicialmente las columnas como valores numéricos. Dado que el algoritmo Apriori requiere datos nominales, fue necesaria una conversión.
+En el apartado de filtros (Filter), se seleccionó el botón "Choose" y se navegó a la ruta:
+• filters > unsupervised > attribute > NumericToNominal.
+Finalmente, se confirmó la acción haciendo clic en "Apply".
+
+<img width="883" height="284" alt="image" src="https://github.com/user-attachments/assets/f7507ffa-f8b5-44d3-9d19-42dde280026c" />
+
+Se eliminó el atributo "Transaction" del panel izquierdo para centrar el análisis en los ítems relevantes. Para ello, se seleccionó dicho atributo y se presionó el botón "Remove", como se muestra a continuación:
+
+<img width="590" height="760" alt="image" src="https://github.com/user-attachments/assets/d6d4008f-e1ed-4a69-841b-55591c4381e2" />
+
+Se accedió a la pestaña "Associate" ubicada en la barra de navegación superior. Allí, se seleccionó Apriori como el algoritmo de reglas de asociación a utilizar
+
+<img width="573" height="180" alt="image" src="https://github.com/user-attachments/assets/1fba9a0c-86bc-4200-9bf3-c111b68b1217" />
+
+Al hacer clic sobre el campo de texto del algoritmo, se abrió la ventana "Generic Object Editor". Se modificaron los parámetros predeterminados para ajustar el análisis:
+• Se estableció el lowerBoundMinSupport en 0.5, el metricType en Confidence y el minMetric en 0.75.
+
+<img width="587" height="782" alt="image" src="https://github.com/user-attachments/assets/c21d62e4-b77d-44a9-aa16-7d6004c47f95" />
+
+Finalmente, se ejecutó el algoritmo presionando el botón "Start". A continuación, se presentan los resultados obtenidos:
+
+<img width="884" height="662" alt="image" src="https://github.com/user-attachments/assets/c065f72f-d3c3-4325-b7ac-697e8b51b96d" />
+
+## Interpretación de resultados: 
+El análisis realizado sobre el conjunto de cinco transacciones, configurado con un soporte mínimo de 0.5 y una confianza de 0.75, reveló como hallazgo principal una fuerte asociación positiva entre la compra de Cornflakes y Mermelada.
+Específicamente, la regla más significativa indica que la adquisición de Cornflakes implica la compra de Mermelada con una confianza del 100% y un Lift de 1.25, lo que demuestra una dependencia directa entre ambos productos. Adicionalmente, se identificaron relaciones frecuentes bidireccionales entre el Pan y la Mermelada con una confianza del 75%, aunque la correlación entre cereales y mermelada se mantiene como el patrón más robusto y predictivo dentro de la muestra estudiada.
