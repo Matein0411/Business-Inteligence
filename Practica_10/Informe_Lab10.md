@@ -313,7 +313,7 @@ Tras aplicar el filtro de Discretización con la configuración de 3 intervalos 
 <p align="center">
 <img width="975" height="734" alt="image" src="https://github.com/user-attachments/assets/3e597d9b-8f26-4fa2-a303-9d2d06b4b83e" />
 <br>
-<sub><b>Figura 3.7. Discretización de datos numéricos a nominales. </b> A.</sub>
+<sub><b>Figura 3.7. Discretización de datos numéricos a nominales. </b> </sub>
 </p>
 
 
@@ -329,6 +329,16 @@ Una vez finalizada la preparación, se ejecutó el algoritmo Apriori en la pesta
 <br>
 <sub><b>Figura 3.8. Resultados de la minería de reglas de asociación (Algoritmo Apriori). </b> </sub>
 </p>
+
+### Interpretación de resultados
+
+El algoritmo Apriori se ejecutó bajo el esquema weka.associations.Apriori con un soporte mínimo de 0.2 (2 instancias) y una confianza mínima de 0.9 (90%). El proceso de minería generó 5 niveles de conjuntos de ítems (itemsets), alcanzando una complejidad máxima de nivel 5 (L(5): 1), lo cual demuestra que el modelo logró encontrar relaciones complejas entre hasta cinco variables simultáneamente.
+
+Análisis de las reglas encontradas:
+
+1. Identificación de perfiles de alto rendimiento (Reglas 2, 3, 4 y 10): Las reglas 2, 3, 4 y 10 presentan una confianza del 100% (conf: 1) al asociar calificaciones de categoría 'B3of3' (el nivel más alto tras la discretización) en atributos como MST, Laboratorio y ENDSEM con la obtención de un Grade=A. Esto confirma una correlación directa y predecible: el éxito en las evaluaciones prácticas y parciales garantiza la calificación máxima en el curso.
+2. Identificación de perfiles de bajo rendimiento (Reglas 1, 5, 6 y 7): De manera inversa, el algoritmo identificó que la combinación de notas de nivel 'B1of3' (el nivel más bajo) en los atributos MST, Quiz, Laboratorio y ENDSEM, tiene una asociación del 100% con un Grade=E. Este hallazgo es fundamental para la gestión académica, ya que permite identificar de forma temprana a los estudiantes en riesgo de reprobación basándose únicamente en sus primeras evaluaciones.
+3. Patrones de rendimiento intermedio (Reglas 8 y 9): Es interesante observar cómo el modelo identifica asociaciones mixtas. Por ejemplo, las reglas 8 y 9 indican que, ante un Quiz de nivel bajo ('B1of3'), un estudiante aún puede aspirar a un Grade=B si su nota en ENDSEM o Total alcanza un nivel intermedio ('B2of3'). Esto sugiere que un buen desempeño en el examen final puede compensar deficiencias en evaluaciones tempranas, permitiendo al estudiante mejorar su nota final.
 
 ---
 
