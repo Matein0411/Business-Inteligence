@@ -1,10 +1,34 @@
+# <center> **ESCUELA POLITÉCNICA NACIONAL** </center>
+<center><h3><b>FACULTAD DE INGENIERÍA DE SISTEMAS</b></h3></center>
+<center><h4><b>PRÁCTICA DE BUSINESS INTELLIGENCE EN WEKA</b></h4></center>
+
+<br>
+
+**Integrantes:**
+* Betancourt Alison
+* Calvache Mateo
+* Camacho Julián
+* Villareal Alexis
+* Yunga Mateo
+
+---
+
+## **Índice de Contenidos**
+
+1. [Creación del dataset y ejecución de Apriori](#1-creación-del-dataset-y-ejecución-de-apriori)
+2. [Aplicación del Algoritmo Apriori en Weka en un Dataset más grande del Mundo Real](#2-aplicación-del-algoritmo-apriori-en-weka-en-un-dataset-más-grande-del-mundo-real)
+3. [Applying the Apriori Algorithm on a Numeric Dataset](#3-applying-the-apriori-algorithm-on-a-numeric-dataset)
+4. [Process of Performing Manual discretization](#4-process-of-performing-manual-discretization)
+
+---
+
 ## 1. Creación del dataset y ejecución de Apriori
 
 ### 1.1. Creación del dataset
 
 #### 1.1.1. Tabulación de datos
 
-Se abrió MS Excel y se tabularon los datos como se muestra en la Figura 1.18.
+Se abrió MS Excel y se tabularon los datos como se muestra en la Figura 1.1.1.
 
 <p align="center">
 <img width="559" height="156" alt="image" src="https://github.com/user-attachments/assets/fe39946f-7b61-47db-9212-3c23591db213" />
@@ -14,7 +38,7 @@ Se abrió MS Excel y se tabularon los datos como se muestra en la Figura 1.18.
 
 #### 1.1.2. Guardado en formato CSV
 
-El archivo se guardó como CSV desde **File → Save As**, con el nombre **DailyItem Dataset** y el formato **CSV (Comma delimited)**. Luego se guardó en el **Desktop**, como se muestra en la Figura 1.19.
+El archivo se guardó como CSV desde **File → Save As**, con el nombre **DailyItem Dataset** y el formato **CSV (Comma delimited)**. Luego se guardó en el **Desktop**, como se muestra en la Figura 1.1.2.
 
 <p align="center">
 <img width="936" height="578" alt="image" src="https://github.com/user-attachments/assets/1ee3454d-14cc-462d-b3e3-fdb440c9450d" />
@@ -28,7 +52,7 @@ El archivo se guardó como CSV desde **File → Save As**, con el nombre **Daily
 
 #### 1.2.1. Apertura de Weka
 
-Se abrió Weka y, en el panel **Weka GUI Chooser**, se seleccionó **Explorer**, como se muestra en la Figura 1.20.
+Se abrió Weka y, en el panel **Weka GUI Chooser**, se seleccionó **Explorer**, como se muestra en la Figura 1.2.1.
 
 <p align="center">
 <img width="600" height="495" alt="image" src="https://github.com/user-attachments/assets/a81e5034-70c0-46e8-a857-de8db19a0c87" /><br>
@@ -37,7 +61,7 @@ Se abrió Weka y, en el panel **Weka GUI Chooser**, se seleccionó **Explorer**,
 
 #### 1.2.2. Carga del dataset
 
-En la pestaña **Preprocess**, se hizo clic en **Open file** y se seleccionó el archivo **DailyItem Dataset (.csv)** desde el **Desktop**. Una vez cargado el dataset, aparecieron los nombres de los atributos como se muestra en la Figura 1.21.
+En la pestaña **Preprocess**, se hizo clic en **Open file** y se seleccionó el archivo **DailyItem Dataset (.csv)** desde el **Desktop**. Una vez cargado el dataset, aparecieron los nombres de los atributos como se muestra en la Figura 1.2.2.
 
 <p align="center">
 <img width="886" height="665" alt="image" src="https://github.com/user-attachments/assets/6858b537-7516-4aa8-9502-b8d97fdca381" />
@@ -47,7 +71,7 @@ En la pestaña **Preprocess**, se hizo clic en **Open file** y se seleccionó el
 
 #### 1.2.3. Conversión de numérico a nominal
 
-Una vez cargado el dataset, Weka lo consideró numérico por defecto. Como la minería de asociación no puede aplicarse directamente sobre datos numéricos, fue necesario convertirlos a nominal. Para ello, en la pestaña **Preprocess** se hizo clic en **Choose** y se seleccionó el filtro **unsupervised → NumericToNominal**. Después se volvió a hacer clic en **Choose**, como se muestra en la Figura 1.22.
+Una vez cargado el dataset, Weka lo consideró numérico por defecto. Como la minería de asociación no puede aplicarse directamente sobre datos numéricos, fue necesario convertirlos a nominal. Para ello, en la pestaña **Preprocess** se hizo clic en **Choose** y se seleccionó el filtro **unsupervised → NumericToNominal**. Después se volvió a hacer clic en **Choose**, como se muestra en la Figura 1.2.3.
 
 <p align="center">
 <img width="886" height="178" alt="image" src="https://github.com/user-attachments/assets/159c1210-cca3-41f6-a223-ade05aceaf47" />
@@ -57,7 +81,7 @@ Una vez cargado el dataset, Weka lo consideró numérico por defecto. Como la mi
 
 #### 1.2.4. Aplicación del filtro
 
-Después de seleccionar el filtro **NumericToNominal**, se hizo clic en **Apply** para aplicarlo al dataset, como se muestra en la Figura 1.23.
+Después de seleccionar el filtro **NumericToNominal**, se hizo clic en **Apply** para aplicarlo al dataset, como se muestra en la Figura 1.2.4.
 
 <p align="center">
 <img width="886" height="664" alt="image" src="https://github.com/user-attachments/assets/a4c8789c-f7c4-4a60-8efd-8a3672e33cd5" />
@@ -67,7 +91,7 @@ Después de seleccionar el filtro **NumericToNominal**, se hizo clic en **Apply*
 
 #### 1.2.5. Eliminación del atributo Transaction
 
-Tras cargar el dataset y aplicar el filtro, se eliminaron los atributos que no aportaban a la minería de asociación. En este caso, el atributo **Transaction** no intervino en el análisis, por lo que se eliminó antes de ejecutar Apriori. Para ello, se seleccionó **Transaction** en el panel izquierdo y se hizo clic en **Remove**, como se muestra en la Figura 1.24.
+Tras cargar el dataset y aplicar el filtro, se eliminaron los atributos que no aportaban a la minería de asociación. En este caso, el atributo **Transaction** no intervino en el análisis, por lo que se eliminó antes de ejecutar Apriori. Para ello, se seleccionó **Transaction** en el panel izquierdo y se hizo clic en **Remove**, como se muestra en la Figura 1.2.5.
 
 <p align="center">
 <img width="886" height="666" alt="image" src="https://github.com/user-attachments/assets/c206aff3-bd49-4769-ad95-67f197eeff9e" />
@@ -77,7 +101,7 @@ Tras cargar el dataset y aplicar el filtro, se eliminaron los atributos que no a
 
 #### 1.2.6. Selección de Apriori
 
-Se hizo clic en la pestaña **Associate** de Weka. Luego se pulsó **Choose** y se seleccionó **Apriori** dentro de **associations**, como se muestra en la Figura 1.25.
+Se hizo clic en la pestaña **Associate** de Weka. Luego se pulsó **Choose** y se seleccionó **Apriori** dentro de **associations**, como se muestra en la Figura 1.2.6.
 
 <p align="center">
 <img width="886" height="99" alt="image" src="https://github.com/user-attachments/assets/610f6c3e-7756-4a1c-9595-1b4e11bb5fd4" />
@@ -87,7 +111,7 @@ Se hizo clic en la pestaña **Associate** de Weka. Luego se pulsó **Choose** y 
 
 #### 1.2.7. Apertura del Generic Object Editor
 
-Se hizo clic en el campo **Associator**, donde aparece escrito **Apriori**. Esto abrió la ventana de propiedades del algoritmo, es decir, el **Generic Object Editor**, como se muestra en la Figura 1.26.
+Se hizo clic en el campo **Associator**, donde aparece escrito **Apriori**. Esto abrió la ventana de propiedades del algoritmo, es decir, el **Generic Object Editor**, como se muestra en la Figura 1.2.7.
 
 <p align="center">
 <img width="595" height="796" alt="image" src="https://github.com/user-attachments/assets/394a5f98-58aa-4825-8570-263fe0860a3b" />
@@ -99,16 +123,16 @@ Se hizo clic en el campo **Associator**, donde aparece escrito **Apriori**. Esto
 
 En el **Generic Object Editor** se configuraron los valores de Apriori:
 
-- En **lowerBoundMinSupport**, establecer el soporte mínimo en **0.5**.
-- En **metricType**, seleccionar **Confidence**.
-- En **minMetric**, establecer la confianza mínima en **0.75**.
-- En **numRules**, indicar el número de reglas a encontrar, en este caso **10**.
+* En **lowerBoundMinSupport**, establecer el soporte mínimo en **0.5**.
+* En **metricType**, seleccionar **Confidence**.
+* En **minMetric**, establecer la confianza mínima en **0.75**.
+* En **numRules**, indicar el número de reglas a encontrar, en este caso **10**.
 
 Luego se hizo clic en **OK** para guardar la configuración.
 
 #### 1.2.9. Ejecución del algoritmo
 
-Finalmente, se hizo clic en **Start** para ejecutar el algoritmo Apriori sobre el dataset **DailyItem**. El resultado se mostró en la parte derecha de la ventana de Weka, como se observa en la Figura 1.27.
+Finalmente, se hizo clic en **Start** para ejecutar el algoritmo Apriori sobre el dataset **DailyItem**. El resultado se mostró en la parte derecha de la ventana de Weka, como se observa en la Figura 1.2.8.
 
 <p align="center">
 <img width="203" height="226" alt="image" src="https://github.com/user-attachments/assets/aa6fde92-830a-4b0f-b562-b08f2806aa44" />
@@ -118,7 +142,7 @@ Finalmente, se hizo clic en **Start** para ejecutar el algoritmo Apriori sobre e
 
 #### 1.2.10. Interpretación de resultados
 
-Se interpretaron los resultados generados, como se muestra en la Figura 1.28.
+Se interpretaron los resultados generados, como se muestra en la Figura 1.2.9.
 
 <p align="center">
 <img width="886" height="665" alt="image" src="https://github.com/user-attachments/assets/cd46b91a-59fc-4343-8655-aa6f6348eb11" />
@@ -133,9 +157,92 @@ Se interpretaron los resultados generados, como se muestra en la Figura 1.28.
 La mejor regla de asociación obtenida al ejecutar el algoritmo Apriori sobre el dataset **DailyItem** fue **Jam → Cornflake**, con una confianza del **100%**. Esto significa que, cada vez que aparece *Jam*, también aparece *Cornflake* en esta combinación. Este resultado coincide con lo analizado en la sección anterior del capítulo.
 
 ---
+
+## 2. Aplicación del Algoritmo Apriori en Weka en un Dataset más grande del Mundo Real
+
+### 2.1. Creación del dataset y tabulación de datos
+
+Se procedió a tabular los datos en Excel, guardando posteriormente el archivo en formato CSV con el nombre `DailyItem2 Data set`. La estructura del archivo se aprecia en la siguiente imagen:
+
+<p align="center">
+<img width="492" height="178" alt="Estructura del dataset DailyItem2" src="https://github.com/user-attachments/assets/543cf300-50b4-4890-b05e-69a881e19a1e" />
+<br>
+<sub><b>Figura 2.1.1.</b> Estructura de transacciones del dataset DailyItem2 creado en Excel.</sub>
+</p>
+
+### 2.2. Apertura de Weka y carga del dataset
+
+Para ejecutar el algoritmo, se inició Weka y se seleccionó la opción "Explorer". Dentro de la pestaña "Preprocess", se importó el archivo CSV generado en el paso anterior mediante el botón "Open file".
+
+<p align="center">
+<img width="884" height="671" alt="Carga del dataset en Weka" src="https://github.com/user-attachments/assets/7cf8dfb5-5437-46c4-a280-5173a0f1e24b" />
+<br>
+<sub><b>Figura 2.2.1.</b> Importación y lectura inicial de los atributos de DailyItem2 en Weka.</sub>
+</p>
+
+### 2.3. Conversión de numérico a nominal (NumericToNominal)
+
+Al cargar el archivo, Weka interpreta inicialmente las columnas como valores numéricos. Dado que el algoritmo Apriori requiere datos nominales, fue necesaria una conversión. En el apartado de filtros (Filter), se seleccionó el botón "Choose" y se navegó a la ruta: `filters → unsupervised → attribute → NumericToNominal`. Finalmente, se confirmó la acción haciendo clic en "Apply".
+
+<p align="center">
+<img width="883" height="284" alt="Conversión numérico a nominal" src="https://github.com/user-attachments/assets/f7507ffa-f8b5-44d3-9d19-42dde280026c" />
+<br>
+<sub><b>Figura 2.3.1.</b> Configuración y aplicación del filtro NumericToNominal para compatibilidad con Apriori.</sub>
+</p>
+
+### 2.4. Eliminación de la columna Transaction
+
+Se eliminó el atributo "Transaction" del panel izquierdo para centrar el análisis en los ítems relevantes. Para ello, se seleccionó dicho atributo y se presionó el botón "Remove", como se muestra a continuación:
+
+<p align="center">
+<img width="590" height="760" alt="Eliminación del atributo Transaction" src="https://github.com/user-attachments/assets/d6d4008f-e1ed-4a69-841b-55591c4381e2" />
+<br>
+<sub><b>Figura 2.4.1.</b> Proceso de eliminación del atributo identificador Transaction en la pestaña Preprocess.</sub>
+</p>
+
+### 2.5. Selección del algoritmo Apriori
+
+Se accedió a la pestaña "Associate" ubicada en la barra de navegación superior. Allí, se seleccionó Apriori como el algoritmo de reglas de asociación a utilizar.
+
+<p align="center">
+<img width="573" height="180" alt="Selección de Apriori" src="https://github.com/user-attachments/assets/1fba9a0c-86bc-4200-9bf3-c111b68b1217" />
+<br>
+<sub><b>Figura 2.5.1.</b> Selección de Apriori bajo el grupo de algoritmos de asociación.</sub>
+</p>
+
+### 2.6. Configuración en el Generic Object Editor
+
+Al hacer clic sobre el campo de texto del algoritmo, se abrió la ventana "Generic Object Editor". Se modificaron los parámetros predeterminados para ajustar el análisis:
+* Se estableció el `lowerBoundMinSupport` en **0.5**.
+* Se estableció el `metricType` en **Confidence**.
+* Se estableció el `minMetric` en **0.75**.
+
+<p align="center">
+<img width="587" height="782" alt="Configuración de Apriori en el Generic Object Editor" src="https://github.com/user-attachments/assets/c21d62e4-b77d-44a9-aa16-7d6004c47f95" />
+<br>
+<sub><b>Figura 2.6.1.</b> Configuración de los parámetros de soporte mínimo y confianza en el Generic Object Editor.</sub>
+</p>
+
+### 2.7. Ejecución de Apriori y visualización de resultados
+
+Finalmente, se ejecutó el algoritmo presionando el botón "Start". A continuación, se presentan los resultados obtenidos:
+
+<p align="center">
+<img width="884" height="662" alt="Resultados de la ejecución de Apriori" src="https://github.com/user-attachments/assets/c065f72f-d3c3-4325-b7ac-697e8b51b96d" />
+<br>
+<sub><b>Figura 2.7.1.</b> Ventana de resultados de Weka mostrando las mejores reglas de asociación generadas.</sub>
+</p>
+
+### 2.8. Interpretación de resultados
+El análisis realizado sobre el conjunto de cinco transacciones, configurado con un soporte mínimo de 0.5 y una confianza de 0.75, reveló como hallazgo principal una fuerte asociación positiva entre la compra de Cornflakes y Mermelada.
+
+Específicamente, la regla más significativa indica que la adquisición de Cornflakes implica la compra de Mermelada con una confianza del 100% y un Lift de 1.25, lo que demuestra una dependencia directa entre ambos productos. Adicionalmente, se identificaron relaciones frecuentes bidireccionales entre el Pan y la Mermelada con una confianza del 75%, aunque la correlación entre cereales y mermelada se mantiene como el patrón más robusto y predictivo dentro de la muestra estudiada.
+
+---
+
 ## 3. Applying the Apriori Algorithm on a Numeric Dataset
 
-El objetivo es analizar el rendimiento de los estudiantes, como los datos de notas son números y Weka prefiere "categorías" (ej. nota baja, nota media, nota alta), el ejercicio pide transformar esos números.
+El objetivo es analizar el rendimiento de los estudiantes. Como los datos de notas son números y Weka prefiere "categorías" (ej. nota baja, nota media, nota alta), el ejercicio pide transformar esos números.
 
 ### 3.1. Preparar los datos en Excel
 
@@ -143,45 +250,65 @@ Abrir MS Excel y tabular los datos, luego, guardar el archivo como un archivo CS
 
 <p align="center">
 <img width="875" height="301" alt="image" src="https://github.com/user-attachments/assets/b4c0a4f7-c114-4982-82d5-829bb113a31a" /><br>
-<sub><b>Figura 3.1.</b> Dataset de 9 ítems con las columnas Name	MST(20.0)	Quiz(15)	Lab(20.0)	ENDSEM (45.0)	Total (100.0)	Grade</sub>
+<sub><b>Figura 3.1.</b> Dataset de 9 ítems con las columnas Name, MST(20.0), Quiz(15), Lab(20.0), ENDSEM (45.0), Total (100.0) y Grade.</sub>
 </p>
 
 ### 3.2. Cargar y preparar en Weka
 
 A continuación, cargar el archivo CSV creado en el paso anterior en Weka.
 
+<p align="center">
 <img width="1269" height="948" alt="image" src="https://github.com/user-attachments/assets/32605589-54b6-46e5-8efd-7a1c24126286" />
+<br>
+<sub><b>Figura 3.2.</b> Carga del dataset de calificaciones estudiantiles en la interfaz principal de Weka.</sub>
+</p>
 
 ### 3.3. Eliminar columnas
 
 Dado que las columnas Número de matrícula y Nombre no desempeñan ningún papel en la minería de asociaciones, se las eliminó.
 
+<p align="center">
 <img width="1120" height="943" alt="image" src="https://github.com/user-attachments/assets/8a4356ac-ec59-42cc-a6ec-c8c803df964d" />
+<br>
+<sub><b>Figura 3.3.</b> Visualización tras eliminar los atributos irrelevantes del dataset de estudiantes.</sub>
+</p>
 
 Pero los datos son de naturaleza numérica y la minería de asociaciones no se puede aplicar a datos numéricos, ya que la minería de reglas de asociación solo funciona con valores nominales. Por lo tanto, es necesario convertir los datos numéricos en valores nominales mediante el proceso de conversión llamado discretización.
 
 Aquí, no estamos usando el filtro NuméricoaNominal, pero aún queremos convertir las calificaciones en valores nominales como Malo, Promedio, Bueno, etc., para un mejor análisis.
 
+<p align="center">
 <img width="797" height="810" alt="image" src="https://github.com/user-attachments/assets/d979f843-fe3f-4f40-ab35-01db2d04c8cf" />
+<br>
+<sub><b>Figura 3.4.</b> Visualización de los atributos numéricos en Weka antes de aplicar discretización.</sub>
+</p>
 
 ### 3.4. Operación de Discretización
 
 Para realizar la operación de discretización de convertir valores numéricos a nominales, el usuario puede aplicar uno de los filtros de Weka que discretiza los valores de los datos. Hay dos tipos de discretización, a saber, intervalo igual y frecuencia igual. Ambos son similares al agrupamiento. En consecuencia, utilizaremos el término 'agrupación' para cada grupo diferente. En la discretización de intervalo igual, calculamos un tamaño de agrupación y luego colocamos las muestras en la agrupación apropiada. En la discretización de frecuencia igual, permitimos que los tamaños de las agrupaciones varíen, donde nuestro objetivo es elegir tamaños de agrupación de manera que cada agrupación tenga aproximadamente el mismo número de muestras. La idea es que si cada agrupación tiene el mismo número de muestras, ninguna agrupación, o grupo, tendrá un mayor o menor impacto en los resultados de la minería de datos. Para aplicar el filtro de discretización, haga clic en el botón Elegir para seleccionar el filtro. Esto abre un árbol de carpetas.
 
+<p align="center">
 <img width="1251" height="942" alt="image" src="https://github.com/user-attachments/assets/c9d16c34-eed3-4c0b-81b9-2d6758ca61df" />
+<br>
+<sub><b>Figura 3.5.</b> Navegación y selección del filtro Discretize bajo filtros de atributos no supervisados en Weka.</sub>
+</p>
 
-### 3.5. Editor de objetos genéricos y así cambiar las propiedades del filtro Discretizar.
+### 3.5. Configuración de propiedades en el Generic Object Editor
 
 Para el análisis de las calificaciones, nos interesarán los valores Bajo, Medio y Alto para cada columna, así que realice los siguientes cambios:
 
 1. Establezca el número de intervalos en 3 desde el valor predeterminado de 10.
-2. Establezca el atributo useEqualFrequency en True para que 1/3 de los estudiantes se coloquen en cada intervalo de Alto, Medio y Bajo en función de sus calificaciones.
-   
+2. Establezca el atributo `useEqualFrequency` en True para que 1/3 de los estudiantes se coloquen en cada intervalo de Alto, Medio y Bajo en función de sus calificaciones.
+
+<p align="center">
 <img width="1258" height="949" alt="image" src="https://github.com/user-attachments/assets/a4dd156c-a6a5-4fc6-8250-44aa0338bef4" />
+<br>
+<sub><b>Figura 3.6.</b> Ajustes en el filtro Discretize: número de contenedores (bins) en 3 y habilitación de frecuencias iguales.</sub>
+</p>
 
-### 3.4. Nuevas categorías
+### 3.6. Nuevas categorías
 
-### 3.5. Reglas de minería de asociaciones
+### 3.7. Reglas de minería de asociaciones
 
 ---
 
@@ -207,7 +334,7 @@ El archivo se guardó como `students.csv` (Archivo → Guardar como → CSV sepa
 
 ---
 
-### 4.2. Preparación antes de discretizar
+### 4.2. Preparation antes de discretizar
 
 - Se eliminaron las columnas **Roll No.** y **Name**, ya que no aportan a la minería de asociación.
 
@@ -415,41 +542,3 @@ Best rules found:
  19. MST(20.0)=H Lab(20.0)=H Total(100.0)=H 2 ==> Grade=A 2    acc:(0.85829)
  20. Grade=E 8 ==> ENDSEM(45.0)=L Total(100.0)=L 7    acc:(0.79178)
 ```
-### 10.7 Aplicación del Algoritmo Apriori en Weka en un Dataset más grande del Mundo Real
-
-Se procedió a tabular los datos en Excel, guardando posteriormente el archivo en formato CSV con el nombre DailyItem2 Data set. La estructura del archivo se aprecia en la siguiente imagen:
-
-<img width="492" height="178" alt="image" src="https://github.com/user-attachments/assets/543cf300-50b4-4890-b05e-69a881e19a1e" />
-
-Para ejecutar el algoritmo, se inició Weka y se seleccionó la opción "Explorer". Dentro de la pestaña "Preprocess", se importó el archivo CSV generado en el paso anterior mediante el botón
-"Open file"
-
-<img width="884" height="671" alt="image" src="https://github.com/user-attachments/assets/7cf8dfb5-5437-46c4-a280-5173a0f1e24b" />
-
-Al cargar el archivo, Weka interpreta inicialmente las columnas como valores numéricos. Dado que el algoritmo Apriori requiere datos nominales, fue necesaria una conversión.
-En el apartado de filtros (Filter), se seleccionó el botón "Choose" y se navegó a la ruta:
-• filters > unsupervised > attribute > NumericToNominal.
-Finalmente, se confirmó la acción haciendo clic en "Apply".
-
-<img width="883" height="284" alt="image" src="https://github.com/user-attachments/assets/f7507ffa-f8b5-44d3-9d19-42dde280026c" />
-
-Se eliminó el atributo "Transaction" del panel izquierdo para centrar el análisis en los ítems relevantes. Para ello, se seleccionó dicho atributo y se presionó el botón "Remove", como se muestra a continuación:
-
-<img width="590" height="760" alt="image" src="https://github.com/user-attachments/assets/d6d4008f-e1ed-4a69-841b-55591c4381e2" />
-
-Se accedió a la pestaña "Associate" ubicada en la barra de navegación superior. Allí, se seleccionó Apriori como el algoritmo de reglas de asociación a utilizar
-
-<img width="573" height="180" alt="image" src="https://github.com/user-attachments/assets/1fba9a0c-86bc-4200-9bf3-c111b68b1217" />
-
-Al hacer clic sobre el campo de texto del algoritmo, se abrió la ventana "Generic Object Editor". Se modificaron los parámetros predeterminados para ajustar el análisis:
-• Se estableció el lowerBoundMinSupport en 0.5, el metricType en Confidence y el minMetric en 0.75.
-
-<img width="587" height="782" alt="image" src="https://github.com/user-attachments/assets/c21d62e4-b77d-44a9-aa16-7d6004c47f95" />
-
-Finalmente, se ejecutó el algoritmo presionando el botón "Start". A continuación, se presentan los resultados obtenidos:
-
-<img width="884" height="662" alt="image" src="https://github.com/user-attachments/assets/c065f72f-d3c3-4325-b7ac-697e8b51b96d" />
-
-## Interpretación de resultados: 
-El análisis realizado sobre el conjunto de cinco transacciones, configurado con un soporte mínimo de 0.5 y una confianza de 0.75, reveló como hallazgo principal una fuerte asociación positiva entre la compra de Cornflakes y Mermelada.
-Específicamente, la regla más significativa indica que la adquisición de Cornflakes implica la compra de Mermelada con una confianza del 100% y un Lift de 1.25, lo que demuestra una dependencia directa entre ambos productos. Adicionalmente, se identificaron relaciones frecuentes bidireccionales entre el Pan y la Mermelada con una confianza del 75%, aunque la correlación entre cereales y mermelada se mantiene como el patrón más robusto y predictivo dentro de la muestra estudiada.
