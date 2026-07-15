@@ -131,10 +131,23 @@ Se interpretaron los resultados generados, como se muestra en la Figura 1.28.
 ### Interpretación de resultados
 
 La mejor regla de asociación obtenida al ejecutar el algoritmo Apriori sobre el dataset **DailyItem** fue **Jam → Cornflake**, con una confianza del **100%**. Esto significa que, cada vez que aparece *Jam*, también aparece *Cornflake* en esta combinación. Este resultado coincide con lo analizado en la sección anterior del capítulo.
+
 ---
 ## 3. Applying the Apriori Algorithm on a Numeric Dataset
 
-### 3.1. 
+El objetivo es analizar el rendimiento de los estudiantes, como los datos de notas son números y Weka prefiere "categorías" (ej. nota baja, nota media, nota alta), el ejercicio pide transformar esos números.
+
+### 3.1. Preparar los datos en Excel
+
+Abrir MS Excel y tabular los datos, luego, guardar el archivo como un archivo CSV, introducir el nombre del archivo como Conjunto de datos DailyItem y seleccionar CSV (delimitado por comas), finalmente.
+
+<p align="center">
+<img width="875" height="301" alt="image" src="https://github.com/user-attachments/assets/b4c0a4f7-c114-4982-82d5-829bb113a31a" /> /><br>
+<sub><b>Figura 3.1.</b> Dataset de 9 ítems con las columnas Name	MST(20.0)	Quiz(15)	Lab(20.0)	ENDSEM (45.0)	Total (100.0)	Grade</sub>
+</p>
+
+### 3.2. Cargar y preparar en Weka
+
 
 ---
 
