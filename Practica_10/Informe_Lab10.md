@@ -7,7 +7,8 @@
 Se abrió MS Excel y se tabularon los datos como se muestra en la Figura 1.18.
 
 <p align="center">
-<img width="517" height="155" alt="image" src="https://github.com/user-attachments/assets/9ee6d7ba-072a-4989-ba49-078f734b7ebb" /><br>
+<img width="559" height="156" alt="image" src="https://github.com/user-attachments/assets/fe39946f-7b61-47db-9212-3c23591db213" />
+<br>
 <sub><b>Figura 1.1.1.</b> Dataset diario creado en Excel.</sub>
 </p>
 
@@ -17,6 +18,7 @@ El archivo se guardó como CSV desde **File → Save As**, con el nombre **Daily
 
 <p align="center">
 <img width="936" height="578" alt="image" src="https://github.com/user-attachments/assets/1ee3454d-14cc-462d-b3e3-fdb440c9450d" />
+<br>
 <sub><b>Figura 1.1.2.</b> Guardado del archivo en formato CSV.</sub><br>
 </p>
 
@@ -38,7 +40,8 @@ Se abrió Weka y, en el panel **Weka GUI Chooser**, se seleccionó **Explorer**,
 En la pestaña **Preprocess**, se hizo clic en **Open file** y se seleccionó el archivo **DailyItem Dataset (.csv)** desde el **Desktop**. Una vez cargado el dataset, aparecieron los nombres de los atributos como se muestra en la Figura 1.21.
 
 <p align="center">
-<br><br><br>
+<img width="886" height="665" alt="image" src="https://github.com/user-attachments/assets/6858b537-7516-4aa8-9502-b8d97fdca381" />
+<br>
 <sub><b>Figura 1.2.2.</b> Dataset cargado en Weka.</sub>
 </p>
 
@@ -47,7 +50,8 @@ En la pestaña **Preprocess**, se hizo clic en **Open file** y se seleccionó el
 Una vez cargado el dataset, Weka lo consideró numérico por defecto. Como la minería de asociación no puede aplicarse directamente sobre datos numéricos, fue necesario convertirlos a nominal. Para ello, en la pestaña **Preprocess** se hizo clic en **Choose** y se seleccionó el filtro **unsupervised → NumericToNominal**. Después se volvió a hacer clic en **Choose**, como se muestra en la Figura 1.22.
 
 <p align="center">
-<br><br><br>
+<img width="886" height="178" alt="image" src="https://github.com/user-attachments/assets/159c1210-cca3-41f6-a223-ade05aceaf47" />
+<br>
 <sub><b>Figura 1.2.3.</b> Selección del filtro NumericToNominal en Weka.</sub>
 </p>
 
@@ -56,7 +60,8 @@ Una vez cargado el dataset, Weka lo consideró numérico por defecto. Como la mi
 Después de seleccionar el filtro **NumericToNominal**, se hizo clic en **Apply** para aplicarlo al dataset, como se muestra en la Figura 1.23.
 
 <p align="center">
-<br><br><br>
+<img width="886" height="664" alt="image" src="https://github.com/user-attachments/assets/a4c8789c-f7c4-4a60-8efd-8a3672e33cd5" />
+<br>
 <sub><b>Figura 1.2.4.</b> Aplicación del filtro de numérico a nominal.</sub>
 </p>
 
@@ -65,7 +70,8 @@ Después de seleccionar el filtro **NumericToNominal**, se hizo clic en **Apply*
 Tras cargar el dataset y aplicar el filtro, se eliminaron los atributos que no aportaban a la minería de asociación. En este caso, el atributo **Transaction** no intervino en el análisis, por lo que se eliminó antes de ejecutar Apriori. Para ello, se seleccionó **Transaction** en el panel izquierdo y se hizo clic en **Remove**, como se muestra en la Figura 1.24.
 
 <p align="center">
-<br><br><br>
+<img width="886" height="666" alt="image" src="https://github.com/user-attachments/assets/c206aff3-bd49-4769-ad95-67f197eeff9e" />
+<br>
 <sub><b>Figura 1.2.5.</b> Eliminación del atributo Transaction.</sub>
 </p>
 
@@ -74,7 +80,8 @@ Tras cargar el dataset y aplicar el filtro, se eliminaron los atributos que no a
 Se hizo clic en la pestaña **Associate** de Weka. Luego se pulsó **Choose** y se seleccionó **Apriori** dentro de **associations**, como se muestra en la Figura 1.25.
 
 <p align="center">
-<br><br><br>
+<img width="886" height="99" alt="image" src="https://github.com/user-attachments/assets/610f6c3e-7756-4a1c-9595-1b4e11bb5fd4" />
+<br>
 <sub><b>Figura 1.2.6.</b> Selección del algoritmo Apriori.</sub>
 </p>
 
@@ -83,7 +90,8 @@ Se hizo clic en la pestaña **Associate** de Weka. Luego se pulsó **Choose** y 
 Se hizo clic en el campo **Associator**, donde aparece escrito **Apriori**. Esto abrió la ventana de propiedades del algoritmo, es decir, el **Generic Object Editor**, como se muestra en la Figura 1.26.
 
 <p align="center">
-<br><br><br>
+<img width="595" height="796" alt="image" src="https://github.com/user-attachments/assets/394a5f98-58aa-4825-8570-263fe0860a3b" />
+<br>
 <sub><b>Figura 1.2.7.</b> Apertura del Generic Object Editor.</sub>
 </p>
 
@@ -103,7 +111,8 @@ Luego se hizo clic en **OK** para guardar la configuración.
 Finalmente, se hizo clic en **Start** para ejecutar el algoritmo Apriori sobre el dataset **DailyItem**. El resultado se mostró en la parte derecha de la ventana de Weka, como se observa en la Figura 1.27.
 
 <p align="center">
-<br><br><br>
+<img width="203" height="226" alt="image" src="https://github.com/user-attachments/assets/aa6fde92-830a-4b0f-b562-b08f2806aa44" />
+<br>
 <sub><b>Figura 1.2.8.</b> Inicio de la ejecución del algoritmo Apriori.</sub>
 </p>
 
@@ -112,7 +121,8 @@ Finalmente, se hizo clic en **Start** para ejecutar el algoritmo Apriori sobre e
 Se interpretaron los resultados generados, como se muestra en la Figura 1.28.
 
 <p align="center">
-<br><br><br>
+<img width="886" height="665" alt="image" src="https://github.com/user-attachments/assets/cd46b91a-59fc-4343-8655-aa6f6348eb11" />
+<br>
 <sub><b>Figura 1.2.9.</b> Resultados después de ejecutar el algoritmo Apriori.</sub>
 </p>
 
@@ -120,13 +130,13 @@ Se interpretaron los resultados generados, como se muestra en la Figura 1.28.
 
 ### Interpretación de resultados
 
-La mejor regla de asociación obtenida al ejecutar el algoritmo Apriori sobre el dataset **DailyItem** fue **Jam → Cornflakes**, con una confianza del **100%**. Esto significa que, cada vez que aparece *Jam*, también aparece *Cornflakes* en esta combinación. Este resultado coincide con lo analizado en la sección anterior del capítulo.
+La mejor regla de asociación obtenida al ejecutar el algoritmo Apriori sobre el dataset **DailyItem** fue **Jam → Cornflake**, con una confianza del **100%**. Esto significa que, cada vez que aparece *Jam*, también aparece *Cornflake* en esta combinación. Este resultado coincide con lo analizado en la sección anterior del capítulo.
 
 ---
 
-## 5. Process of Performing Manual discretization
+## 4. Process of Performing Manual discretization
 
-### 5.1. Creación del dataset
+### 4.1. Creación del dataset
 
 Se construyó en Excel un dataset de **60 estudiantes** con las siguientes columnas:
 
@@ -139,25 +149,25 @@ Se construyó en Excel un dataset de **60 estudiantes** con las siguientes colum
 
 <p align="center">
 <img width="646" alt="Dataset de 60 estudiantes en Excel" src="https://github.com/user-attachments/assets/16d14cfe-6707-4f71-8b8f-0758be07637c" /><br>
-<sub><b>Figura 5.1.1.</b> Dataset de 60 estudiantes creado en Excel, con las columnas Roll No., Name, MST, Quiz, Lab, ENDSEM, Total y Grade.</sub>
+<sub><b>Figura 4.1.1.</b> Dataset de 60 estudiantes creado en Excel, con las columnas Roll No., Name, MST, Quiz, Lab, ENDSEM, Total y Grade.</sub>
 </p>
 
 El archivo se guardó como `students.csv` (Archivo → Guardar como → CSV separado por comas).
 
 ---
 
-### 5.2. Preparación antes de discretizar
+### 4.2. Preparación antes de discretizar
 
 - Se eliminaron las columnas **Roll No.** y **Name**, ya que no aportan a la minería de asociación.
 
 <p align="center">
 <img width="516" alt="Dataset sin Roll No. y Name" src="https://github.com/user-attachments/assets/dea752f1-3e9a-4e21-88cc-3f7ebf31f516" /><br>
-<sub><b>Figura 5.2.1.</b> Dataset resultante tras eliminar las columnas Roll No. y Name, listo para la discretización.</sub>
+<sub><b>Figura 4.2.1.</b> Dataset resultante tras eliminar las columnas Roll No. y Name, listo para la discretización.</sub>
 </p>
 
 ---
 
-### 5.3. Discretización manual (columna por columna)
+### 4.3. Discretización manual (columna por columna)
 
 Se repitió el siguiente proceso de forma **independiente para cada una** de las 4 columnas numéricas (MST, Quiz, Lab, ENDSEM):
 
@@ -171,18 +181,18 @@ El dataset final, con las 4 columnas convertidas a L/M/H y la columna Grade inta
 
 <p align="center">
 <img width="511" alt="Dataset discretizado L/M/H" src="https://github.com/user-attachments/assets/14759808-40c9-4cab-bad5-8765c16c226c" /><br>
-<sub><b>Figura 5.3.1.</b> Dataset final discretizado (columnas MST, Quiz, Lab y ENDSEM en L/M/H), guardado como MARKS_discretizado.csv.</sub>
+<sub><b>Figura 4.3.1.</b> Dataset final discretizado (columnas MST, Quiz, Lab y ENDSEM en L/M/H), guardado como MARKS_discretizado.csv.</sub>
 </p>
 
 ---
 
-### 5.4. Carga en Weka y ejecución del algoritmo
+### 4.4. Carga en Weka y ejecución del algoritmo
 
 - Se cargó `students.csv` en Weka (**Preprocess → Open file**).
 
 <p align="center">
 <img width="1003" alt="Dataset cargado en Weka" src="https://github.com/user-attachments/assets/a6a32170-f19c-4aca-899e-297669cc29b2" /><br>
-<sub><b>Figura 5.4.1.</b> Dataset cargado en Weka mediante la pestaña Preprocess → Open file.</sub>
+<sub><b>Figura 4.4.1.</b> Dataset cargado en Weka mediante la pestaña Preprocess → Open file.</sub>
 </p>
 
 - En la pestaña **Associate** se ejecutó el algoritmo Apriori en **4 variantes distintas**, combinando dos factores:
@@ -193,18 +203,18 @@ El dataset final, con las 4 columnas convertidas a L/M/H y la columna Grade inta
 
 ---
 
-### 5.5. Ejecución 1 — car = True, con M (L/M/H)
+### 4.5. Ejecución 1 — car = True, con M (L/M/H)
 
 Generic Object Editor con car=True y dataset con M.
 
 <p align="center">
 <img width="476" alt="Generic Object Editor car=True con M" src="https://github.com/user-attachments/assets/8663dfa3-4426-4b60-b358-f7376008c7d5" /><br>
-<sub><b>Figura 5.5.1.</b> Configuración del Generic Object Editor con car=True sobre el dataset con M (L/M/H).</sub>
+<sub><b>Figura 4.5.1.</b> Configuración del Generic Object Editor con car=True sobre el dataset con M (L/M/H).</sub>
 </p>
 
 <p align="center">
 <img width="1001" alt="Resultados Ejecución 1" src="https://github.com/user-attachments/assets/3dd756cc-33a6-42bb-87aa-a4e7661479f6" /><br>
-<sub><b>Figura 5.5.2.</b> Resultados de la Ejecución 1 en la pestaña Associate.</sub>
+<sub><b>Figura 4.5.2.</b> Resultados de la Ejecución 1 en la pestaña Associate.</sub>
 </p>
 
 ```
@@ -234,13 +244,13 @@ Best rules found:
 
 ---
 
-### 5.6. Ejecución 2 — car = False, con M (L/M/H)
+### 4.6. Ejecución 2 — car = False, con M (L/M/H)
 
 `car = False`: ya no se fuerza que Grade sea el consecuente; se generan reglas de asociación generales entre cualquier combinación de atributos (MST, Quiz, Lab, ENDSEM, Grade).
 
 <p align="center">
 <img width="1002" alt="Resultados Ejecución 2" src="https://github.com/user-attachments/assets/9e3747b2-fc50-4e16-a0ef-f0d517d954ee" /><br>
-<sub><b>Figura 5.6.1.</b> Resultados de la Ejecución 2 (car=False, con M).</sub>
+<sub><b>Figura 4.6.1.</b> Resultados de la Ejecución 2 (car=False, con M).</sub>
 </p>
 
 ```
@@ -270,7 +280,7 @@ Best rules found:
 
 ---
 
-### 5.7. Preparación del dataset sin M
+### 4.7. Preparación del dataset sin M
 
 Para descartar los valores intermedios y quedarse solo con combinaciones extremas de desempeño:
 
@@ -280,18 +290,18 @@ Para descartar los valores intermedios y quedarse solo con combinaciones extrema
 
 <p align="center">
 <img width="445" alt="Dataset sin M" src="https://github.com/user-attachments/assets/ca232511-4253-4e9c-9130-e02dc25bcb69" /><br>
-<sub><b>Figura 5.7.1.</b> Dataset con los valores M reemplazados por ?, guardado como MARKS_sin_M.csv.</sub>
+<sub><b>Figura 4.7.1.</b> Dataset con los valores M reemplazados por ?, guardado como MARKS_sin_M.csv.</sub>
 </p>
 
 ---
 
-### 5.8. Ejecución 3 — car = True, sin M (solo L/H)
+### 4.8. Ejecución 3 — car = True, sin M (solo L/H)
 
 Generic Object Editor con car=True y dataset sin M.
 
 <p align="center">
 <img width="1006" alt="Generic Object Editor car=True sin M" src="https://github.com/user-attachments/assets/f3faad0c-ffb6-4303-a8a9-ea3d85ae1ca7" /><br>
-<sub><b>Figura 5.8.1.</b> Resultados con car=True sobre el dataset sin M (solo L/H).</sub>
+<sub><b>Figura 4.8.1.</b> Resultados con car=True sobre el dataset sin M (solo L/H).</sub>
 </p>
 
 ```
@@ -321,13 +331,13 @@ Best rules found:
 
 ---
 
-### 5.9. Ejecución 4 — car = False, sin M (solo L/H)
+### 4.9. Ejecución 4 — car = False, sin M (solo L/H)
 
 Generic Object Editor con car=False y dataset sin M.
 
 <p align="center">
 <img width="1002" alt="Generic Object Editor car=False sin M" src="https://github.com/user-attachments/assets/6ddc21f0-f7d7-442a-a19d-93384e1543cb" /><br>
-<sub><b>Figura 5.9.1.</b> Resultados con car=False sobre el dataset sin M (solo L/H).</sub>
+<sub><b>Figura 4.9.1.</b> Resultados con car=False sobre el dataset sin M (solo L/H).</sub>
 </p>
 
 ```
