@@ -7,7 +7,7 @@
 Se abrió MS Excel y se tabularon los datos como se muestra en la Figura 1.18.
 
 <p align="center">
-<br><br><br>
+<img width="517" height="155" alt="image" src="https://github.com/user-attachments/assets/9ee6d7ba-072a-4989-ba49-078f734b7ebb" /><br>
 <sub><b>Figura 1.1.1.</b> Dataset diario creado en Excel.</sub>
 </p>
 
@@ -16,8 +16,8 @@ Se abrió MS Excel y se tabularon los datos como se muestra en la Figura 1.18.
 El archivo se guardó como CSV desde **File → Save As**, con el nombre **DailyItem Dataset** y el formato **CSV (Comma delimited)**. Luego se guardó en el **Desktop**, como se muestra en la Figura 1.19.
 
 <p align="center">
-<br><br><br>
-<sub><b>Figura 1.1.2.</b> Guardado del archivo en formato CSV.</sub>
+<img width="936" height="578" alt="image" src="https://github.com/user-attachments/assets/1ee3454d-14cc-462d-b3e3-fdb440c9450d" />
+<sub><b>Figura 1.1.2.</b> Guardado del archivo en formato CSV.</sub><br>
 </p>
 
 ---
@@ -29,8 +29,8 @@ El archivo se guardó como CSV desde **File → Save As**, con el nombre **Daily
 Se abrió Weka y, en el panel **Weka GUI Chooser**, se seleccionó **Explorer**, como se muestra en la Figura 1.20.
 
 <p align="center">
-<br><br><br>
-<sub><b>Figura 1.2.1.</b> Panel Weka GUI Chooser.</sub>
+<img width="600" height="495" alt="image" src="https://github.com/user-attachments/assets/a81e5034-70c0-46e8-a857-de8db19a0c87" /><br>
+<sub><b>Figura 1.2.1.</b> Panel Weka GUI Chooser.</sub><br>
 </p>
 
 #### 1.2.2. Carga del dataset
