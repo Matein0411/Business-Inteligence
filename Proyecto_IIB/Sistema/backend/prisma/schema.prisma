@@ -1,0 +1,175 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  idUsuario      Int      @id @default(autoincrement()) @map("id_usuario")
+  nombreUsuario  String   @unique @map("nombre_usuario") @db.VarChar(50)
+  contrasenaHash String   @map("contrasena_hash") @db.VarChar(255)
+  nombreCompleto String   @map("nombre_completo") @db.VarChar(100)
+  rol            String   @default("vendedor") @db.VarChar(20)
+  activo         Boolean  @default(true)
+  fechaCreacion  DateTime @default(now()) @map("fecha_creacion") @db.Timestamp(6)
+
+  @@map("usuario")
+}
+
+model Categoria {
+  idCategoria Int        @id @default(autoincrement()) @map("id_categoria")
+  nombre      String     @unique @db.VarChar(50)
+  descripcion String?    @db.VarChar(150)
+  productos   Producto[]
+
+  @@map("categoria")
+}
+
+model Cliente {
+  idCliente        Int         @id @default(autoincrement()) @map("id_cliente")
+  nombres          String      @db.VarChar(100)
+  cedula           String?     @unique @db.VarChar(10)
+  telefono         String?     @db.VarChar(15)
+  barrio           String?     @db.VarChar(80)
+  clienteFrecuente Boolean     @default(false) @map("cliente_frecuente")
+  limiteCredito    Decimal     @default(0) @map("limite_credito") @db.Decimal(10, 2)
+  fechaRegistro    DateTime    @default(now()) @map("fecha_registro") @db.Timestamp(6)
+  pagosFiado       PagoFiado[]
+  ventas           Venta[]
+
+  @@map("cliente")
+}
+
+model Proveedor {
+  idProveedor   Int      @id @default(autoincrement()) @map("id_proveedor")
+  nombreEmpresa String   @map("nombre_empresa") @db.VarChar(100)
+  contacto      String?  @db.VarChar(100)
+  telefono      String?  @db.VarChar(15)
+  direccion     String?  @db.VarChar(150)
+  fechaRegistro DateTime @default(now()) @map("fecha_registro") @db.Timestamp(6)
+  compras       Compra[]
+
+  @@map("proveedor")
+}
+
+model Producto {
+  idProducto         Int      @id @default(autoincrement()) @map("id_producto")
+  nombre             String   @db.VarChar(100)
+  idCategoria        Int      @map("id_categoria")
+  marca              String?  @db.VarChar(50)
+  unidadMedida       String   @default("unidad") @map("unidad_medida") @db.VarChar(20)
+  precioCompra       Decimal  @map("precio_compra") @db.Decimal(10, 2)
+  precioVenta        Decimal  @map("precio_venta") @db.Decimal(10, 2)
+  stockActual        Int      @default(0) @map("stock_actual")
+  stockMinimo        Int      @default(0) @map("stock_minimo")
+  activo             Boolean  @default(true)
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion") @db.Timestamp(6)
+  fechaActualizacion DateTime @default(now()) @map("fecha_actualizacion") @db.Timestamp(6)
+
+  categoria             Categoria         @relation(fields: [idCategoria], references: [idCategoria])
+  detallesVenta         DetalleVenta[]
+  detallesCompra        DetalleCompra[]
+  reglasComoAntecedente ReglaAsociacion[] @relation("ReglaAntecedente")
+  reglasComoConsecuente ReglaAsociacion[] @relation("ReglaConsecuente")
+
+  @@index([idCategoria], map: "idx_producto_categoria")
+  @@map("producto")
+}
+
+model Venta {
+  idVenta     Int      @id @default(autoincrement()) @map("id_venta")
+  fechaHora   DateTime @default(now()) @map("fecha_hora") @db.Timestamp(6)
+  idCliente   Int?     @map("id_cliente")
+  metodoPago  String   @map("metodo_pago") @db.VarChar(20)
+  estadoVenta String   @default("completada") @map("estado_venta") @db.VarChar(20)
+  total       Decimal  @db.Decimal(10, 2)
+
+  cliente  Cliente?       @relation(fields: [idCliente], references: [idCliente])
+  detalles DetalleVenta[]
+
+  @@index([idCliente], map: "idx_venta_cliente")
+  @@index([fechaHora], map: "idx_venta_fecha")
+  @@map("venta")
+}
+
+model DetalleVenta {
+  idDetalle      Int     @id @default(autoincrement()) @map("id_detalle")
+  idVenta        Int     @map("id_venta")
+  idProducto     Int     @map("id_producto")
+  cantidad       Int
+  precioUnitario Decimal @map("precio_unitario") @db.Decimal(10, 2)
+  subtotal       Decimal @db.Decimal(10, 2)
+
+  venta    Venta    @relation(fields: [idVenta], references: [idVenta], onDelete: Cascade)
+  producto Producto @relation(fields: [idProducto], references: [idProducto])
+
+  @@index([idVenta], map: "idx_detalle_venta_venta")
+  @@index([idProducto], map: "idx_detalle_venta_producto")
+  @@map("detalle_venta")
+}
+
+model Compra {
+  idCompra    Int      @id @default(autoincrement()) @map("id_compra")
+  fechaHora   DateTime @default(now()) @map("fecha_hora") @db.Timestamp(6)
+  idProveedor Int      @map("id_proveedor")
+  total       Decimal  @db.Decimal(10, 2)
+
+  proveedor Proveedor       @relation(fields: [idProveedor], references: [idProveedor])
+  detalles  DetalleCompra[]
+
+  @@index([idProveedor], map: "idx_compra_proveedor")
+  @@index([fechaHora], map: "idx_compra_fecha")
+  @@map("compra")
+}
+
+model DetalleCompra {
+  idDetalleCompra Int     @id @default(autoincrement()) @map("id_detalle_compra")
+  idCompra        Int     @map("id_compra")
+  idProducto      Int     @map("id_producto")
+  cantidad        Int
+  precioUnitario  Decimal @map("precio_unitario") @db.Decimal(10, 2)
+  subtotal        Decimal @db.Decimal(10, 2)
+
+  compra   Compra   @relation(fields: [idCompra], references: [idCompra], onDelete: Cascade)
+  producto Producto @relation(fields: [idProducto], references: [idProducto])
+
+  @@index([idCompra], map: "idx_detalle_compra_compra")
+  @@index([idProducto], map: "idx_detalle_compra_producto")
+  @@map("detalle_compra")
+}
+
+model PagoFiado {
+  idPago      Int      @id @default(autoincrement()) @map("id_pago")
+  idCliente   Int      @map("id_cliente")
+  fechaHora   DateTime @default(now()) @map("fecha_hora") @db.Timestamp(6)
+  monto       Decimal  @db.Decimal(10, 2)
+  metodoPago  String   @default("efectivo") @map("metodo_pago") @db.VarChar(20)
+  observacion String?  @db.VarChar(150)
+
+  cliente Cliente @relation(fields: [idCliente], references: [idCliente])
+
+  @@index([idCliente], map: "idx_pago_fiado_cliente")
+  @@index([fechaHora], map: "idx_pago_fiado_fecha")
+  @@map("pago_fiado")
+}
+
+/// Reglas de asociacion (Apriori) precalculadas sobre las canastas de venta.
+model ReglaAsociacion {
+  idRegla               Int      @id @default(autoincrement()) @map("id_regla")
+  idProductoAntecedente Int      @map("id_producto_antecedente")
+  idProductoConsecuente Int      @map("id_producto_consecuente")
+  soporte               Decimal  @db.Decimal(6, 5)
+  confianza             Decimal  @db.Decimal(6, 5)
+  lift                  Decimal  @db.Decimal(8, 4)
+  fechaCalculo          DateTime @default(now()) @map("fecha_calculo") @db.Timestamp(6)
+
+  antecedente Producto @relation("ReglaAntecedente", fields: [idProductoAntecedente], references: [idProducto], onDelete: Cascade)
+  consecuente Producto @relation("ReglaConsecuente", fields: [idProductoConsecuente], references: [idProducto], onDelete: Cascade)
+
+  @@index([idProductoAntecedente], map: "idx_regla_antecedente")
+  @@index([fechaCalculo], map: "idx_regla_fecha")
+  @@map("regla_asociacion")
+}

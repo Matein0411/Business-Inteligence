@@ -1,0 +1,3 @@
+export const USUARIO_REPOSITORY = Symbol('USUARIO_REPOSITORY');
+export const PASSWORD_HASHER = Symbol('PASSWORD_HASHER');
+export const GENERADOR_TOKEN = Symbol('GENERADOR_TOKEN');
